@@ -5,7 +5,8 @@ $("#btnEnviar").on("click",function (e) {
     ru='guardardiscapacitado';
     mje='Registro Guardado'    
     dt='';
-    GuardarRegistro(ds,ru,mje,dt);    
+    GuardarRegistro(ds,ru,mje,dt);
+    
 });
 
 $("#ObtenerUbicacion").on("click",function (e) {
