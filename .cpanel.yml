@@ -1,0 +1,7 @@
+---
+  deployment:
+    tasks:
+      - export DEPLOYPATH=/home/drtcl/public_html/
+      - /bin/rsync -av public/ $DEPLOYPATH
+      - export DEPLOYPATH=/home/drtcl/web/
+      - /bin/rsync -av ./ $DEPLOYPATH
