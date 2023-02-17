@@ -19,7 +19,7 @@ class CreateDiscapacitadosTable extends Migration
             $table->string('apellido_paterno', 100)->nullable()->default('');
             $table->string('apellido_materno', 100)->nullable()->default('');
             $table->string('doc_identidad',10)->nullable()->default('');
-            $table->string('nro_doc_identidad',10)->nullable()->default('');
+            $table->string('nro_doc_identidad',10)->unique();
             $table->string('direccion',250)->nullable()->default('');
             $table->string('distrito',250)->nullable()->default('');
             $table->string('altitud',200)->nullable()->default('');

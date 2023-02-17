@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -11,23 +9,19 @@
     <!-- Place favicon.ico in the root directory -->
   
     <!-- ========================= CSS here ========================= -->
-    
-    {{-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> --}}
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="assets/css/LineIcons.2.0.css" />
-    <link rel="stylesheet" href="assets/css/tiny-slider.css" />
+    {{-- <link rel="stylesheet" href="assets/css/tiny-slider.css" /> --}}
     <link rel="stylesheet" href="assets/css/animate.css" />
     <link rel="stylesheet" href="assets/css/lindy-uikit.css" />
     <script src="assets/js/cdn.min_2.js" defer></script>
     <script src="assets/controller/data.js"></script>
     <link rel="shortcut icon" href="assets/img/logo/favicon.png">
-    <link rel="stylesheet" href="assets/css/bootstrap-5.0.0-beta1.min">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+    
+    <script src="assets/js/axios.min.js"></script>
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+      
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-
     @yield('extra_css')
   </head>
   
@@ -175,13 +169,12 @@
 
 {{-- Js Contenido --}}
   
-    <script src="assets/js/bootstrap-5.0.0-beta1.min.js"></script>
+    {{-- <script src="assets/js/bootstrap-5.0.0-beta1.min.js"></script> --}}
     <script src="assets/js/tiny-slider.js"></script>
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/main.js"></script>
 
-    <script src="bootstrap/assets/js/jquery.js"></script>    
+    <script src="bootstrap/assets/js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>    
 
     
@@ -193,6 +186,7 @@
         $("#modalLogin").modal("show");
       })
     </script>
+    
 </body>
 
 </html>

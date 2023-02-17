@@ -45,6 +45,11 @@ Route::get('/paneladmin',[paginasController::class, 'paneladmin'])->name('panela
 //Discapacitado
 Route::get('CreateDiscapacitados',[DiscapacitadosController::class, 'create'])->name('Create.Discapacitados');
 Route::post('guardardiscapacitado',[DiscapacitadosController::class, 'store'])->name('guardar.discapacitado');
+Route::post('actualizardiscapacitado',[DiscapacitadosController::class, 'update'])->name('actualizar.discapacitado');
+Route::get('msjeregistrodiscapacitados',[DiscapacitadosController::class, 'mensaje'])->name('msjeregistro.discapacitados');
+Route::get('consultadni/{dni}',[DiscapacitadosController::class, 'consultadni'])->name('consulta.dni');
+Route::get('editardiscapacitado/{id}',[DiscapacitadosController::class, 'edit'])->name('editar.discapacitado');
+Route::get('editarpersonas',[DiscapacitadosController::class, 'editarpersonas'])->name('editar.personas');
 //End Discapacitado
 
 

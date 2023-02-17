@@ -1,4 +1,5 @@
 
+
 $("#btnEnviar").on("click",function (e) {
     e.preventDefault();
     ds=$("#registro").serialize();
@@ -6,7 +7,7 @@ $("#btnEnviar").on("click",function (e) {
     mje='Registro Guardado'    
     dt='';
     GuardarRegistro(ds,ru,mje,dt);
-    
+    setTimeout( function() { window.location.href = "msjeregistrodiscapacitados"; }, 3000 );
 });
 
 $("#ObtenerUbicacion").on("click",function (e) {
@@ -50,25 +51,38 @@ $("#btnBuscar").on("click",function(e){
     e.preventDefault();
     $.ajax({
         type: "GET",
-        url: "https://dniruc.apisperu.com/api/v1/dni/"+ $("#nro_doc_identidad").val() +"?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFsZXhpb3RvdnZAZ21haWwuY29tIn0.lI0TpAOzB02VvEjL01-oofG-Zk9glBYVfE6gJ766H0M",
-        data: "json",
-        // dataType: "json",
-        beforeSend: function() {
-            $("#spinner").prop('hidden',false);
-        }
-        ,
+        url: "consultadni/"+$("#nro_doc_identidad").val(),
+        dataType: "json",
         success: function (response) {
-            $("#nombres").val(response['nombres']);
-            $("#apellido_materno").val(response['apellidoMaterno']);
-            $("#apellido_paterno").val(response['apellidoPaterno']);
-            $("#spinner").prop('hidden',true);
-        },
-        error: function (response) {  
-            $("#spinner").prop('hidden',true);
-            alert('error'+response);
-            
+            if (response.length>0) {
+                alert("El DNI ya se encuentra registrado");
+            }else{
+                $.ajax({
+                    type: "GET",
+                    url: "https://dniruc.apisperu.com/api/v1/dni/"+ $("#nro_doc_identidad").val() +"?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFsZXhpb3RvdnZAZ21haWwuY29tIn0.lI0TpAOzB02VvEjL01-oofG-Zk9glBYVfE6gJ766H0M",
+                    data: "json",
+                    // dataType: "json",
+                    beforeSend: function() {
+                        $("#spinner").prop('hidden',false);
+                    },
+                    success: function (response) {
+                        $("#nombres").val(response['nombres']);
+                        $("#apellido_materno").val(response['apellidoMaterno']);
+                        $("#apellido_paterno").val(response['apellidoPaterno']);
+                        $("#spinner").prop('hidden',true);
+                    },
+                    error: function (response) {  
+                        $("#spinner").prop('hidden',true);
+                        alert('error'+response);
+                        
+                    }
+                });
+            }
         }
     });
+
+
+    
 });
 
 $("#btnBuscarApoderado").on("click",function(e){
