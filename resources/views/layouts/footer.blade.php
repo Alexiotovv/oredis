@@ -1,66 +1,96 @@
- <!-- ========================= footer style-4 start ========================= -->
-<footer class="footer footer-style-4">
+<footer class="footer-area">
     <div class="container">
-      <div class="widget-wrapper">
-        <div class="row">
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <div class="footer-widget wow fadeInUp" data-wow-delay=".2s">
-              <div class="logo">
-                <h3>OREDIS</h3>
-              </div>
-              <p class="desc">Buscando la integracion y el desarrollo en la vida de tod@s los ciudadan@s de la Region Loreto</p>
-              <ul class="socials">
-                <li> <a href="https://web.facebook.com/goreloretoperu/?_rdc=1&_rdr"> <i class="lni lni-facebook-filled"></i> </a> </li>
-                <li> <a href="https://twitter.com/goreloretoof?lang=es"> <i class="lni lni-twitter-filled"></i> </a> </li>
-                <li> <a href="https://www.instagram.com/goreloreto/?hl=es"> <i class="lni lni-instagram-filled"></i> </a> </li>
-                
-              </ul>
+        <div class="footer-top pt-75 pb-40">
+            <div class="row align-items-center">
+                {{-- <div class="col-md-6">
+                    <div class="footer-logo mb-40 wow fadeInLeft">
+                        <img src="assets/images/logo/footer-logo-1.png" alt="Brand Logo">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-wrapper mb-40 wow fadeInRight">
+                        <h3>
+                            <span class="blue-dark">OREDIS</span>
+                        </h3>
+                    </div>
+                </div> --}}
             </div>
-          </div>
-          <div class="col-xl-2 offset-xl-1 col-lg-2 col-md-6 col-sm-6">
-            <div class="footer-widget wow fadeInUp" data-wow-delay=".3s">
-              <h6>Enlaces de Interes</h6>
-              <ul class="links">
-                <li> <a href="https://www.gob.pe/">Portal web-Perú</a> </li>
-                <li> <a href="https://www.regionloreto.gob.pe/inicio">Region Loreto</a> </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-            <div class="footer-widget wow fadeInUp" data-wow-delay=".4s">
-              <!--<h6>Services</h6>
-              <ul class="links">
-                <li> <a href="#0">Web Design</a> </li>
-                <li> <a href="#0">Web Development</a> </li>
-                <li> <a href="#0">Seo Optimization</a> </li>
-                <li> <a href="#0">Blog Writing</a> </li>
-              </ul>-->
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6">
-            <div class="footer-widget wow fadeInUp" data-wow-delay=".5s">
-              <!--<h6>Download App</h6>
-              <ul class="download-app">
-                <li>
-                  <a href="#0">
-                    <span class="icon"><i class="lni lni-apple"></i></span>
-                    <span class="text">Download on the <b>App Store</b> </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#0">
-                    <span class="icon"><i class="lni lni-play-store"></i></span>
-                    <span class="text">GET IT ON <b>Play Store</b> </span>
-                  </a>
-                </li>
-              </ul>-->
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="copyright-wrapper wow fadeInUp" data-wow-delay=".2s">
-        <p>2021-Oficina Regional de Tecnologias de la Información y Telecomunicación-<a href="https://www.regionloreto.gob.pe/noticias" rel="nofollow" target="_blank">GOREL</a></p>
-      </div>
+        <div class="footer-widget pt-70 pb-40">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="widget footer-nav-widget mb-40 wow fadeInUp" data-wow-delay=".15s">
+                        <h4 class="widget-title">Contacto</h4>
+                        <ul class="widget-nav">
+                            <li><a href="#">999999</a></li>
+                            <li><a href="#">mail@gmail.com</a></li>
+                            <li><a href="#">Av. quiñonemz</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="widget footer-nav-widget mb-40 wow fadeInUp" data-wow-delay=".20s">
+                        <h4 class="widget-title">Enlaces de Interés</h4>
+                        <ul class="widget-nav">
+                            <li><a href="#">regionloreto.gob.pe</a></li>
+                            <li><a href="#">ordeis.regionloreto.gob.pe</a></li>
+                            {{-- <li><a href="#">Meet The Team</a></li> --}}
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-12">
+                    <div class="widget social-widget mb-40 wow fadeInUp" data-wow-delay=".25s">
+                        <h4 class="widget-title">Síguenos en</h4>
+                        <ul class="social-nav">
+                            {{-- <li><a href="#"><i class="fab fa-dribbble"></i>Dribbble</a></li> --}}
+                            <li><a href="#"><i class="fab fa-instagram"></i>Instagram</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i>Twitter</a></li>
+                            {{-- <li><a href="#"><i class="fab fa-behance"></i>Behance</a></li> --}}
+                            <li><a href="#"><i class="fab fa-facebook-f"></i>Facebook</a></li>
+                            {{-- <li><a href="#"><i class="fab fa-medium-m"></i>Medium</a></li> --}}
+                        </ul>
+                    </div>
+                </div>
+                {{-- <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="widget newsletter-widget mb-40 wow fadeInUp" data-wow-delay=".30s">
+                        <div class="newsletter-content">
+                            <h3>Subscribe Our
+                                Newsletter</h3>
+                            <p>Natus errorsit voluptatem accusa dolore
+                                mque quae <a href="#">abillo inventore verita</a> achitec
+                                beatae vitae dicta sunt explicabo.</p>
+                            <form>
+                                <div class="form_group">
+                                    <input type="email" class="form_control" placeholder="Email Address"
+                                        name="email" required>
+                                    <button class="main-btn">Sign Up</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> --}}
+            </div>
+        </div>
+        
+        <div class="footer-copyright">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="copyright-text">
+                        <p>&copy; 2022. All rights reserved design by Webtend</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="footer-nav float-lg-right">
+                        <ul>
+                            <li><a href="service-details.html">Setting & Privacy </a></li>
+                            <li><a href="service-details.html">Faqs</a></li>
+                            <li><a href="service-details.html">Services</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </footer>
-   <!-- ========================= footer style-4 end ========================= -->
+</footer>

@@ -21,9 +21,16 @@ class DiscapacitadosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('regdiscapacitado');
+        $provincias=DB::table('ubigeos')
+        ->select('ubigeos.provincia')
+        ->distinct('ubigeos.provincia')
+        ->get();
+        $distritos=DB::table('ubigeos')
+        ->select('ubigeos.id','ubigeos.distrito','ubigeos.ubigeo_distrito') 
+        ->get();
+        return view('regdiscapacitado',compact('provincias','distritos'));
     }
 
     /**
@@ -42,7 +49,7 @@ class DiscapacitadosController extends Controller
         $obj->doc_identidad=request('doc_identidad');#OK
         $obj->nro_doc_identidad=request('nro_doc_identidad');#OK
         $obj->direccion=request('direccion');#
-        $obj->distrito=request('distrito');#
+        $obj->ubigeo_id=request('distrito');#
         $obj->altitud=request('altitud');
         $obj->longitud=request('longitud');
         $obj->latitud=request('latitud');
@@ -96,9 +103,16 @@ class DiscapacitadosController extends Controller
 
      public function editarpersonas()
     {
-        $distritos=['BELEN','IQUITOS','SAN JUAN'];
+        $provincias=DB::table('ubigeos')
+        ->select('ubigeos.provincia')
+        ->distinct('ubigeos.provincia')
+        ->get();
+        $distritos=DB::table('ubigeos')
+        ->select('ubigeos.id','ubigeos.distrito','ubigeos.ubigeo_distrito') 
+        ->get();
+
         $estado_civil=['SOLTERO','CASADO','VIUDO','DIVORCIADO'];
-        return view('editarpersonas',compact('distritos','estado_civil'));
+        return view('editarpersonas',compact('distritos','estado_civil','provincias'));
     }
      
      
@@ -138,7 +152,7 @@ class DiscapacitadosController extends Controller
         $obj->doc_identidad=request('doc_identidad');#OK
         $obj->nro_doc_identidad=request('nro_doc_identidad');#OK
         $obj->direccion=request('direccion');#
-        $obj->distrito=request('distrito');#
+        $obj->ubigeo_id=request('distrito');#
         $obj->altitud=request('altitud');
         $obj->longitud=request('longitud');
         $obj->latitud=request('latitud');

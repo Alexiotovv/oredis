@@ -6,11 +6,6 @@ use App\Models\User;
 use DB;
 class UserController extends Controller
 {
-
-
-
-
-
     
     public function ActualizaContrasena(Request $request)
     {
@@ -32,7 +27,9 @@ class UserController extends Controller
 
     public function Usuarios(Request $request)
     {
+        
         return view('listarusuarios');
+
     }
 
 

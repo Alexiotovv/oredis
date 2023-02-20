@@ -1,29 +1,6 @@
-@extends('menuvertical')
-@section('extra_css')
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/zangdar@1.0.25/dist/zangdar.min.js"></script>
-    
+@extends('layouts.panel')
 
-    <style id="compiled-css" type="text/css">
-        .zandgar__wizard {
-            display: block;
-            height: 100%;
-            position: relative;
-        }
-
-        .zandgar__wizard .zandgar__step {
-            display: none;
-        }
-
-        .zandgar__wizard .zandgar__step.zandgar__step__active {
-            display: block;
-        }
-        
-    </style>
-    
-@endsection
-@section('contenido_panel')
+@section('content')
     <form id="registro">@csrf
         
         <h1 class="h3">Actualizar Formulario de Registro</h1>
@@ -84,19 +61,27 @@
                     <label class="form-label" for="direccion">Dirección</label>
                     <input class="form-control" type="text" value="direccion" name="direccion" id="direccion" placeholder="Direción..." required>
                 </div>
-                <div class="col-md-4">
-                    <label class="form-label" for="distrito">Distrito</label>
-                    <select class="form-select" aria-label="Default select example" name="distrito" id="distrito">
-                        <option value="SAN JUAN">SAN JUAN</option>
-                        <option value="BELEN">BELEN</option>
-                        <option value="IQUITOS">IQUITOS</option>
+                <div class="col-md-3">
+                    <label class="form-label" for="provinci">Provincia</label>
+                    <select class="form-select" aria-label="Default select example" name="provincia" id="provincia">
+                        @foreach ($provincias as $prov )
+                            <option value="">{{$prov->provincia}}</option>
+                        @endforeach
                     </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <label class="form-label" for="distrito">Distrito</label>
+                    <select class="form-select" aria-label="Default select example" name="distrito" id="distrito">
+                        @foreach ($distritos as $dist )
+                            <option value="{{$dist->id}}">{{$dist->ubigeo_distrito}}-{{$dist->distrito}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3">
                     <label class="form-label" for="correo">Correo</label>
                     <input class="form-control" type="email" name="correo" id="correo" placeholder="Correo...">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label class="form-label" for="telefono">teléfono</label>
                     <input class="form-control" maxlength="12" type="number" name="telefono" id="telefono" placeholder="Teléfono...">
                 </div>
@@ -371,47 +356,9 @@
     
     <script>
 
-        function buildStepsBreadcrumb(registro, element, steps) {
-            const $steps = document.getElementById(element)
-            $steps.innerHTML = ''
-            for (let label in steps) {
-                if (steps.hasOwnProperty(label)) {
-                    const $li = document.createElement('li')
-                    const $a = document.createElement('a')
-                    $li.classList.add('nav-item')
-                    $a.classList.add('nav-link')
-                    if (steps[label].active) {
-                        $a.classList.add('active')
-                    }
-                    $a.setAttribute('href', '#')
-                    $a.innerText = label
-                    $a.addEventListener('click', e => {
-                        e.preventDefault()
-                        wizard.revealStep(label)
-                    })
-                    $li.appendChild($a)
-                    $steps.appendChild($li)
-                }
-            }
-        }
-
-        function onStepChange(wizard, selector) {
-            const steps = wizard.getBreadcrumb()
-            buildStepsBreadcrumb(wizard, selector, steps)
-        }
-
-        const wizard = new window.Zangdar('#registro', {
-            onStepChange: () => {
-                onStepChange(wizard, 'steps-native')
-            },
-            onSubmit(e) {
-                e.preventDefault()
-                console.log(e.target.elements)
-                return false
-            }
-        })
-
-        onStepChange(wizard, 'steps-native')
+    
     </script>
-    {{-- <script src="assets/app_js/editarresgistro.js"></script> --}}
+    <script src="assets/js/jquery.js"></script>
+    <script src="app_js/crud.js"></script>
+    <script src="app_js/editarresgistro.js"></script>
 @endsection

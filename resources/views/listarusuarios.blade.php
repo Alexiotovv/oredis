@@ -15,7 +15,7 @@
 <div class="content">
     <div class="row">
         <div class="col-md-4">
-            <button class="btn btn-primary" id="btnNuevoUsuario"><i class="lni lni-plus"></i>Nuevo Usuario</button>
+            <a class="btn btn-primary" id="btnNuevoUsuario"><i class="lni lni-plus"></i>Nuevo Usuario</a>
             <br>
         </div>
     </div>
@@ -164,5 +164,8 @@
 </form>
 {{-- End Modal para Cambiar Clave --}}
 
+
 @endsection
-<script src="assets/app_js/usuarios.js"></script>
+
+
+
