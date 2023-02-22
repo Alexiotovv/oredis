@@ -13,6 +13,7 @@ return array(
     'App\\Http\\Controllers\\LoginController' => $baseDir . '/app/Http/Controllers/LoginController.php',
     'App\\Http\\Controllers\\OcupacionesController' => $baseDir . '/app/Http/Controllers/OcupacionesController.php',
     'App\\Http\\Controllers\\PublicacionesController' => $baseDir . '/app/Http/Controllers/PublicacionesController.php',
+    'App\\Http\\Controllers\\UbigeosController' => $baseDir . '/app/Http/Controllers/UbigeosController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Controllers\\paginasController' => $baseDir . '/app/Http/Controllers/paginasController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',

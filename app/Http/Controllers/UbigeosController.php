@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ubigeos;
 use Illuminate\Http\Request;
-
+use DB;
 class UbigeosController extends Controller
 {
     /**
@@ -46,7 +46,11 @@ class UbigeosController extends Controller
      */
     public function show(ubigeos $ubigeos)
     {
-        //
+        //obtener registros
+        $distritos=DB::table('ubigeos')
+        ->select('ubigeos.id','ubigeos.provincia','ubigeos.ubigeo_distrito','ubigeos.distrito')
+        ->get();
+        return response()->json($distritos);
     }
 
     /**

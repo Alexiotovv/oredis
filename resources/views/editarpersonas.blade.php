@@ -1,8 +1,8 @@
 @extends('layouts.panel')
 
 @section('content')
-    <form id="registro">@csrf
-        
+    <form id="formActualiza">@csrf
+        {{--  --}}
         <h1 class="h3">Actualizar Formulario de Registro</h1>
         <p class="lead">
             Sirvase a llenar el siguiente formulario para su actualización
@@ -32,12 +32,11 @@
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
-                        <div class="valid-feedback" id="dni_encontrado">
-                            Encontrado
+                        <div id="dni_encontrado" class="valid-feedback">
+                            DNI encontrado.
                         </div>
-
-                        <div class="invalid-feedback" id="dni_no_encontrado">
-                            Dni no encontrado
+                        <div id="dni_noencontrado" class="invalid-feedback">
+                            NO se encontró DNI.
                         </div>
                     </div>
                     
@@ -108,10 +107,7 @@
 
             </div>
 
-            <div class="col-12 text-bottom text-right mb-3" style="padding-top: 25px;">
-                <button class="btn btn-primary mb-2" data-next>Siguiente <i
-                        class="lni lni-arrow-right-circle"></i></button>
-            </div>
+
         </section>
 
         <section data-step="2. Datos de trabajo">
@@ -135,16 +131,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-6 text-left">
-                    <button class="btn btn-outline-primary" data-prev><i class="lni lni-arrow-left-circle"></i>
-                        Anterior</button>
-                </div>
-                <div class="col-6 text-right">
-                    <button class="btn btn-primary" data-next>Siguiente <i
-                            class="lni lni-arrow-right-circle"></i></button>
-                </div>
-            </div>
+           
         </section>
 
         <section data-step="3. Datos personales">
@@ -176,7 +163,7 @@
                 <div class="col-md-4">
                     <label class="form-label" for="diagnostico_discapacidad">Diagnostico de
                         discapacidad</label>
-                    <select class="form-select" aria-label="Default select example" name="diagnostico_discapacidad" id="diagnostico_discapacidad">
+                    <select class="form-select" aria-label="Default select example" name="diagnostico_discapacidad" id="diagnostico_discapacidad" required>
                         <option selected>Seleccione el grado</option>
                         <option value="LEVE">LEVE</option>
                         <option value="MODERADO">MODERADO</option>
@@ -341,10 +328,7 @@
             </div>
 
             <div class="row" style="padding-top: 30px;">
-                <div class="col-6 text-left">
-                    <button class="btn btn-outline-primary" data-prev><i class="lni lni-arrow-left-circle"></i>
-                        Anterior</button>
-                </div>
+
                 <div class="col-6 text-right">
                     <button class="btn btn-primary" id="btnEnviar" type="submit"><i
                             class="lni lni-telegram-original"></i> Enviar</button>
@@ -354,11 +338,7 @@
 
     </form>
     
-    <script>
-
-    
-    </script>
     <script src="assets/js/jquery.js"></script>
     <script src="app_js/crud.js"></script>
-    <script src="app_js/editarresgistro.js"></script>
+    <script src="app_js/editarregistro.js"></script>
 @endsection

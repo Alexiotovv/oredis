@@ -27,13 +27,23 @@ class UserController extends Controller
 
     public function Usuarios(Request $request)
     {
+        $distritos=DB::table('ubigeos')
+        ->select('ubigeos.id','ubigeos.ubigeo_distrito','ubigeos.distrito')
+        ->get();
+        $provincias=DB::table('ubigeos')
+        ->select('ubigeos.provincia')
+        ->distinct()
+        ->get();
         
-        return view('listarusuarios');
+        return view('listarusuarios',compact('distritos','provincias'));
 
     }
 
 
     public function ActualizaUsuario(Request $request){
+        $distritos=json_encode(request('distrito'));
+        $provincias=json_encode(request('provincia'));
+
         $id=request('IdUsuario');
         $user = User::findOrFail($id);
         $user->name = $request->input('name');
@@ -43,6 +53,8 @@ class UserController extends Controller
         // $user->password = bcrypt($request->input('password'));
         $user->is_admin = $request->input('rol');
         $user->status = $request->input('status');
+        $user->zona_dist = $distritos;
+        $user->zona_prov = $provincias;
         $user->save();
         $data=["Mensaje"=>"Listo"];
         return response()->json($data);
@@ -50,6 +62,10 @@ class UserController extends Controller
     }
 
     public function create(Request $request){
+        
+        $distritos=json_encode(request('distrito'));
+        $provincias=json_encode(request('provincia'));
+
         $user = new User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
@@ -58,6 +74,8 @@ class UserController extends Controller
         $user->password = bcrypt($request->input('password'));
         $user->is_admin = $request->input('rol');
         $user->status = $request->input('status');
+        $user->zona_dist = $distritos;
+        $user->zona_prov = $provincias;
         $user->save();
         $data=["Mensaje"=>"Listo"];
         return response()->json($data);
@@ -93,4 +111,9 @@ class UserController extends Controller
           }
           return response()->json($data);
         }
+    public function EditarUsuario($id)
+    {
+        $usuario=User::findOrFail($id);
+        return response()->json($usuario);
+    }
 }

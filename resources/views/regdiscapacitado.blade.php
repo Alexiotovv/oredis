@@ -31,7 +31,7 @@
                         <input type="text" class="form-control" id="nro_doc_identidad" name="nro_doc_identidad"  required>
                         <button type="button" class="btn btn-primary" name="btnBuscar" id="btnBuscar"
                             disabled><i class="lni lni-search"></i>Buscar</button>
-                        <div id="nro_doc_identidad" class="invalid-feedback">
+                            <div id="nro_doc_identidad" class="invalid-feedback">
                             DNI ya se encuentra registrado.
                             </div>
                         <div class="text-center" id="spinner" hidden>
@@ -60,11 +60,11 @@
                 </div>
                 <div class="col-md-4">
                     <label class="form-label" for="direccion">Dirección</label>
-                    <input class="form-control" type="text" name="direccion" placeholder="Direción..." required>
+                    <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Direción..." required>
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label" for="distrito">Provincia</label>
-                    <select class="form-select" aria-label="Default select example" name="provincia">
+                    <label class="form-label" for="provincia">Provincia</label>
+                    <select class="form-select" aria-label="Default select example" name="provincia" disabled>
                         @foreach ($provincias as $prov )
                             <option value="">{{$prov->provincia}}</option>
                         @endforeach
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="distrito">Distrito</label>
-                    <select class="form-select" aria-label="Default select example" name="distrito">
+                    <select class="form-select" aria-label="Default select example" name="distrito" id="distrito">
                         @foreach ($distritos as $dist )
                             <option value="{{$dist->id}}">{{$dist->ubigeo_distrito}}-{{$dist->distrito}}</option>
                         @endforeach
@@ -84,8 +84,8 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="telefono">teléfono</label>
-                    <input class="form-control" maxlength="12" type="number" name="telefono"
-                        placeholder="Teléfono...">
+                    <input class="form-control" maxlength="12" type="number" id="telefono" name="telefono"
+                        placeholder="Teléfono..." required>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label" for="estado_civil">Estado civil</label>
@@ -257,7 +257,7 @@
                     <label class="form-label" for="dni_apoderado">Nro de documento</label>
                     <div class="input-group lg-3">
                         <input class="form-control" type="text" name="dni_apoderado"
-                            id="dni_apoderado" placeholder="Nro de documento..." required>
+                            id="dni_apoderado" placeholder="Nro de documento...">
                         <button type="button" class="btn btn-primary" name="btnBuscarApoderado"
                             id="btnBuscarApoderado" disabled><i class="lni lni-search"></i>Buscar</button>
 

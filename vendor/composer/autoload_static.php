@@ -573,6 +573,7 @@ class ComposerStaticInitd85d19bdc5bcb4b3b687f59d03f75b9e
         'App\\Http\\Controllers\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/LoginController.php',
         'App\\Http\\Controllers\\OcupacionesController' => __DIR__ . '/../..' . '/app/Http/Controllers/OcupacionesController.php',
         'App\\Http\\Controllers\\PublicacionesController' => __DIR__ . '/../..' . '/app/Http/Controllers/PublicacionesController.php',
+        'App\\Http\\Controllers\\UbigeosController' => __DIR__ . '/../..' . '/app/Http/Controllers/UbigeosController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Controllers\\paginasController' => __DIR__ . '/../..' . '/app/Http/Controllers/paginasController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',

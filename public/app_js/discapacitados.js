@@ -1,24 +1,30 @@
-// $("#Prueba").on("click",function (e) {
-//     e.preventDefault();
+distritos={}
+$("#distrito").on('change', function() {
+    //aqui me quedé 
+    $("#provincia").val(distritos.provincia).change();
+});
 
-//     Swal.fire(
-//         {
-//         position: 'top-end',
-//         icon: 'success',
-//         title: "hola",
-//         showConfirmButton: false,
-//         timer: 1500}
-//         )
-
-// })
+distritos={};
+$.ajax({
+  type: "GET",
+  url: "obtenerdistritos",
+  dataType: "json",
+  success: function (response) {
+    distritos=response;
+  }
+});
 
 $("#btnRegistrar").on("click",function (e) { 
-    e.preventDefault();
-    ds=$("#formRegistro").serialize();
-    ru='guardardiscapacitado';
-    mje='Registro Guardado'
-    GuardarRegistro(ds,ru,mje);
-    // setTimeout( function() { window.location.href = "msjeregistrodiscapacitados"; }, 3000 );
+    if ($("#nro_doc_identidad").val()=="" || $("#direccion").val()=="" ||$("#telefono").val()=="" ){
+        //que haga su trabajo los mensajea de html de cada input
+    }else{
+        e.preventDefault();
+        ds=$("#formRegistro").serialize();
+        ru='guardardiscapacitado';
+        mje='Registro Guardado'
+        GuardarRegistro(ds,ru,mje);
+        // setTimeout( function() { window.location.href = "msjeregistrodiscapacitados"; }, 3000 );
+    }
 });
 
 $("#ObtenerUbicacion").on("click",function (e) {
@@ -59,6 +65,7 @@ $("#IngresarManualUbicacion").on("click",function (e) {
 });
 
 $("#btnBuscar").on("click",function(e){
+    
     e.preventDefault();
     $.ajax({
         type: "GET",
@@ -95,8 +102,6 @@ $("#btnBuscar").on("click",function(e){
             }
         }
     });
-
-
     
 });
 

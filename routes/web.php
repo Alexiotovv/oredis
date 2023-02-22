@@ -6,6 +6,7 @@ use App\Http\Controllers\PublicacionesController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DiscapacitadosController;
+use App\Http\Controllers\UbigeosController;
 // use App\Http\Controllers\UserController;
 Route::get('/storage-link', function () {
     $targetFolder = storage_path('app/public');
@@ -42,6 +43,8 @@ Route::get('/paneladmin',[paginasController::class, 'paneladmin'])->name('panela
 //Apps
 // Route::get('/appPublicaciones',[PublicacionesController::class, 'index'])->name('appPublicaciones');
 
+Route::get('obtenerdistritos',[UbigeosController::class, 'show'])->name('obtener.distritos');
+
 //Discapacitado
 Route::get('CreateDiscapacitados',[DiscapacitadosController::class, 'create'])->name('Create.Discapacitados');
 Route::post('guardardiscapacitado',[DiscapacitadosController::class, 'store'])->name('guardar.discapacitado');
@@ -70,6 +73,7 @@ Route::post("login",[LoginController::class, 'login']);
 Route::put('login', [LoginController::class, 'logout']);
 Route::get("Usuarios",[UserController::class, "Usuarios"])->name('Usuarios');
 Route::post("ActualizaUsuario",[UserController::class, "ActualizaUsuario"])->name('Actualiza.Usuario');
+Route::get("EditarUsuario/{id}",[UserController::class, "EditarUsuario"])->name('Editar.Usuario');
 Route::get("ListarUsuarios",[UserController::class, "ListarUsuarios"])->name('Listar.Usuarios');
 Route::post("ActualizaContrasena",[UserController::class, "ActualizaContrasena"])->name('Actualiza.Contrasena');
 //END USUARIOS

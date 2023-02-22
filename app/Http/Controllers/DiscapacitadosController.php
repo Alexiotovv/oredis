@@ -144,6 +144,7 @@ class DiscapacitadosController extends Controller
      */
     public function update(Request $request)
     {
+        
         $id=request('idPersona');
         $obj=discapacitados::findOrFail($id);
         $obj->nombre=request('nombre');

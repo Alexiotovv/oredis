@@ -1,3 +1,19 @@
+
+
+$("#provincia").on('change', function() {
+  // if ($("#EtiquetaUsuario").text()=="Nuevo Usuario") {
+    $("#distrito").empty();
+    $("#provincia").val().forEach(element => {
+      distritos.forEach(element2 => {
+        if (element==element2.provincia) {
+          $("#distrito").append('<option selected value="' + element2.id + '">'+ element2.distrito+'</option>').change();
+        }
+      });
+    });
+  // }
+
+});
+
 $("#btnGuardaContrasena").on("click",function (e) {
   e.preventDefault();
 
@@ -34,25 +50,40 @@ $(document).on("click",".btnEditarUsuario",function (e) {
   $("#EtiquetaUsuario").text('Editar Usuario');
   fila = $(this).closest("tr");
   id = (fila).find('td:eq(0)').text();
-  nombre = (fila).find('td:eq(2)').text();
-  nombres = (fila).find('td:eq(3)').text();
-  apellidos = (fila).find('td:eq(4)').text();
-  correo = (fila).find('td:eq(5)').text();
-  rol = (fila).find('td:eq(6)').text();
-  estado = (fila).find('td:eq(7)').text();
 
+  $.ajax({
+    type: "GET",
+    url: "EditarUsuario/"+id,
+    dataType: "json",
+    success: function (response) {
+      $("#IdUsuario").val(response.id);
+      $("#usuario").val(response.name);
+      $("#nombres").val(response.nombres);
+      $("#apellidos").val(response.apellidos);
+      $("#email").val(response.email);
+      $("#rol").val(response.is_admin).change();
+      $("#status").val(response.status).change();
+      $("#password").prop("disabled",true);
 
-  $("#IdUsuario").val(id);
-  $("#usuario").val(nombre);
-  $("#nombres").val(nombres);
-  $("#apellidos").val(apellidos);
-  $("#email").val(correo);
-  $("#rol").val(rol).change();
-  $("#status").val(estado).change();
-  $("#password").prop("disabled",true);
-  $("#ModalUsuario").modal('show');
+      $("#provincia").val(JSON.parse(response.zona_prov)).change();
+      $("#distrito").val(JSON.parse(response.zona_dist)).change();
+      
+      $("#ModalUsuario").modal('show');
+    }
+  });
+
+  
 });
 
+distritos={};
+$.ajax({
+  type: "GET",
+  url: "obtenerdistritos",
+  dataType: "json",
+  success: function (response) {
+    distritos=response;
+  }
+});
 
 $("#btnNuevoUsuario").on("click",function (e) {
   e.preventDefault();
@@ -62,6 +93,7 @@ $("#btnNuevoUsuario").on("click",function (e) {
   $("#apellidos").val("");
   $("#nombres").val("");
   $("#ModalUsuario").modal('show');
+    
 })
 
 $("#name").keyup(function(){
@@ -109,10 +141,10 @@ $("#btnGuardaUsuario").on("click",function(e){
   var serializedData = $("#formUsuario").serialize();
   let ruta="";
   let msje="";
+  
   if (($("#estadousuario").val()=='No Disponible') ||($("#estadoemail").val()=='No Disponible')) {
-      
+      //No hace nada
   }else{
-
       if ($("#EtiquetaUsuario").text()=='Nuevo Usuario') {
           ruta="register";
           msje="Registro Guardado"
@@ -124,11 +156,10 @@ $("#btnGuardaUsuario").on("click",function(e){
       LimpiarFormUsuarios();
       $("#ModalUsuario").modal('hide');
   }
-
 });
 
-$("#DTUsuarios").DataTable({
 
+$("#DTUsuarios").DataTable({
   "destroy":true,
   "ajax":"ListarUsuarios",
   "method":"GET",
@@ -143,11 +174,11 @@ $("#DTUsuarios").DataTable({
       {data:"is_admin"},
       {data:"status"},
   ],order:[0],
-  // buttons:['copy','excel','pdf'],
-  // dom: 'Bfrtip',
+  buttons:['copy','excel','pdf'],
+  dom: 'Bfrtip',
 
 });
-
+  
 
 $(document).ready(function () {
   $("#show_hide_password a").on('click', function (event) {
