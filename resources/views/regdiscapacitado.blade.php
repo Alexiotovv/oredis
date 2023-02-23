@@ -58,26 +58,7 @@
                     <input class="form-control" type="text" name="apellido_materno" id="apellido_materno"
                         placeholder="Apellido paterno..." readonly required>
                 </div>
-                <div class="col-md-4">
-                    <label class="form-label" for="direccion">Dirección</label>
-                    <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Direción..." required>
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label" for="provincia">Provincia</label>
-                    <select class="form-select" aria-label="Default select example" name="provincia" disabled>
-                        @foreach ($provincias as $prov )
-                            <option value="">{{$prov->provincia}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label" for="distrito">Distrito</label>
-                    <select class="form-select" aria-label="Default select example" name="distrito" id="distrito">
-                        @foreach ($distritos as $dist )
-                            <option value="{{$dist->id}}">{{$dist->ubigeo_distrito}}-{{$dist->distrito}}</option>
-                        @endforeach
-                    </select>
-                </div>
+           
                 <div class="col-md-3">
                     <label class="form-label" for="correo">Correo</label>
                     <input class="form-control" type="email" name="correo" placeholder="Correo...">
@@ -107,28 +88,49 @@
                     <label class="form-label" for="fecha_nacimiento">Fech. Nac.</label>
                     <input type="date" class="form-control" name="fecha_nacimiento"
                         id="fecha_nacimiento">
+                        <br>
                 </div>
-
-
+                
+                <hr>
+                <h5>Domicilio</h5>
+                <div class="col-md-3">
+                    <label class="form-label" for="provincia">Provincia</label>
+                    <select class="form-select" aria-label="Default select example" name="provincia" id="provincia" disabled>
+                        @foreach ($provincias as $prov )
+                            <option value="{{$prov->provincia}}">{{$prov->provincia}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label" for="distrito">Distrito</label>
+                    <select class="form-select" aria-label="Default select example" name="distrito" id="distrito">
+                      @foreach ($distritos as $dist)
+                        <option value="{{$dist->id}}">{{$dist->ubigeo_distrito}}-{{$dist->distrito}}</option>
+                      @endforeach
+                        
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="direccion">Dirección</label>
+                    <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Direción..." required>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label" for="direccion">Número</label>
+                    <input class="form-control" type="text" name="numero" id="numero" placeholder="Número..." required>
+                </div>
             </div>
 
-
-            {{-- <div class="col-12 text-bottom text-right mb-3" style="padding-top: 25px;">
-                <button class="btn btn-primary mb-2" data-next>Siguiente <i
-                        class="lni lni-arrow-right-circle"></i></button>
-            </div> --}}
         </section>
         <hr>
         <section data-step="2. Datos de trabajo">
-            <div class="row row-cols-1">
-                
+            <div class="row">
                 <h5>Laboral</h5>
-                <div class="col mb-2">
+                <div class="col-md-6">
                     <label class="form-label" for="ocupacion">Ocupación</label>
                     <input class="form-control" type="text" name="ocupacion" id="ocupacion"
                         placeholder="Ocupación...">
                 </div>
-                <div class="col mb-2">
+                <div class="col-md-6">
                     <label class="form-label" for="Grado de instrucción">Grado de instrucción</label>
                     <select class="form-select" aria-label="Default select example"
                         name="grado_instruccion">
@@ -142,16 +144,7 @@
                     </select>
                 </div>
             </div>
-            {{-- <div class="row">
-                <div class="col-6 text-left">
-                    <button class="btn btn-outline-primary" data-prev><i
-                            class="lni lni-arrow-left-circle"></i> Anterior</button>
-                </div>
-                <div class="col-6 text-right">
-                    <button class="btn btn-primary" data-next>Siguiente <i
-                            class="lni lni-arrow-right-circle"></i></button>
-                </div>
-            </div> --}}
+
         </section>
         <hr>
         <section data-step="3. Datos personales">
@@ -333,7 +326,7 @@
                 </div>
             </div>
             <hr>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="content">
                     <h5>Datos de Geolocalziación</h5>
                     <a class="btn btn-primary" id="ObtenerUbicacion"><i class="lni lni-search"></i>
@@ -353,7 +346,7 @@
                     <label for="">Altitud</label>
                     <input type="text" class="form-control" id="altitud" name="altitud" readonly>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="row" style="padding-top: 30px;">
                 {{-- <div class="col-6 text-left">
@@ -366,9 +359,10 @@
             </div>
         </section>
     </form>
-    <script src="assets/js/jquery.js"></script>
+    
+@endsection
+@section('extra_js')
+    {{-- <script src="assets/js/jquery.js"></script> --}}
     <script src="app_js/crud.js"></script>
     <script src="app_js/discapacitados.js"></script>
-    
-    
 @endsection

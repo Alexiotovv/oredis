@@ -1,18 +1,25 @@
 distritos={}
-$("#distrito").on('change', function() {
-    //aqui me quedé 
-    $("#provincia").val(distritos.provincia).change();
+$.ajax({
+    type: "GET",
+    url: "obtenerdistritos",
+    dataType: "json",
+    success: function (response) {
+        distritos=response;
+    }
 });
 
-distritos={};
-$.ajax({
-  type: "GET",
-  url: "obtenerdistritos",
-  dataType: "json",
-  success: function (response) {
-    distritos=response;
-  }
+$("#distrito").on('change', function() {
+    distritos.forEach(element => {
+        if (element.id==$("#distrito").val()) {
+            $("#provincia").val(element.provincia).change();
+        }
+    });
 });
+
+dist_asignados={}
+
+
+
 
 $("#btnRegistrar").on("click",function (e) { 
     if ($("#nro_doc_identidad").val()=="" || $("#direccion").val()=="" ||$("#telefono").val()=="" ){
@@ -27,42 +34,42 @@ $("#btnRegistrar").on("click",function (e) {
     }
 });
 
-$("#ObtenerUbicacion").on("click",function (e) {
-    e.preventDefault();
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(posicion,error,options);
+// $("#ObtenerUbicacion").on("click",function (e) {
+//     e.preventDefault();
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(posicion,error,options);
 
-    }else{
-        alert("No puedes acceder a la ubicación");
-    }
-});
+//     }else{
+//         alert("No puedes acceder a la ubicación");
+//     }
+// });
 
-var options={
-    EnableHighAccuracy:true,
-    Timeout:500,
-    MaximunAge:0
-}
+// var options={
+//     EnableHighAccuracy:true,
+//     Timeout:500,
+//     MaximunAge:0
+// }
 
-function error(err){
-    alert(err);
-}
+// function error(err){
+//     alert(err);
+// }
 
-function posicion(geolocationPosition) {  
-    let coords=geolocationPosition.coords;
-    $("#latitud").val(coords.latitude);
-    $("#longitud").val(coords.longitude);
-    $("#altitud").val(coords.altitude);
-    $("#latitud").prop('readonly',true);
-    $("#longitud").prop('readonly',true);
-    $("#altitud").prop('readonly',true);
-}
+// function posicion(geolocationPosition) {  
+//     let coords=geolocationPosition.coords;
+//     $("#latitud").val(coords.latitude);
+//     $("#longitud").val(coords.longitude);
+//     $("#altitud").val(coords.altitude);
+//     $("#latitud").prop('readonly',true);
+//     $("#longitud").prop('readonly',true);
+//     $("#altitud").prop('readonly',true);
+// }
 
-$("#IngresarManualUbicacion").on("click",function (e) {
-    $("#Latitud").prop('readonly',false);
-    $("#Longitud").prop('readonly',false);
-    $("#Altitud").prop('readonly',false);
-    $("#Latitud").focus();
-});
+// $("#IngresarManualUbicacion").on("click",function (e) {
+//     $("#Latitud").prop('readonly',false);
+//     $("#Longitud").prop('readonly',false);
+//     $("#Altitud").prop('readonly',false);
+//     $("#Latitud").focus();
+// });
 
 $("#btnBuscar").on("click",function(e){
     

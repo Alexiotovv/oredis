@@ -108,7 +108,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                 <label for="">Provincia</label>
                                 <select id="provincia" name="provincia[]" class="multiple-select" multiple="multiple">
                                     @foreach ($provincias as $prov)    

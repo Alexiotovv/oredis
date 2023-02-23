@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\discapacitados;
+use App\Models\direcciones;
 use Illuminate\Http\Request;
 use DB;
 class DiscapacitadosController extends Controller
@@ -27,8 +28,19 @@ class DiscapacitadosController extends Controller
         ->select('ubigeos.provincia')
         ->distinct('ubigeos.provincia')
         ->get();
+        // $distritos=DB::table('ubigeos')
+        // ->select('ubigeos.id','ubigeos.distrito','ubigeos.ubigeo_distrito') 
+        // ->get();
+        
+        $dist_asignados=DB::table('users')
+        ->where('users.id','=',auth()->user()->id)
+        ->select('users.zona_dist')
+        ->get();
+        $dist=json_decode($dist_asignados[0]->zona_dist);
+
         $distritos=DB::table('ubigeos')
-        ->select('ubigeos.id','ubigeos.distrito','ubigeos.ubigeo_distrito') 
+        ->whereIn('ubigeos.id',$dist)
+        ->select('ubigeos.id','ubigeos.distrito','ubigeos.ubigeo_distrito')
         ->get();
         return view('regdiscapacitado',compact('provincias','distritos'));
     }
@@ -48,11 +60,6 @@ class DiscapacitadosController extends Controller
         $obj->apellido_materno=request('apellido_materno');#
         $obj->doc_identidad=request('doc_identidad');#OK
         $obj->nro_doc_identidad=request('nro_doc_identidad');#OK
-        $obj->direccion=request('direccion');#
-        $obj->ubigeo_id=request('distrito');#
-        $obj->altitud=request('altitud');
-        $obj->longitud=request('longitud');
-        $obj->latitud=request('latitud');
         $obj->correo=request('correo');#
         $obj->telefono=request('telefono');#
         $obj->fecha_nacimiento=request('fecha_nacimiento');#
@@ -79,6 +86,26 @@ class DiscapacitadosController extends Controller
 
         $obj->Usuario=auth()->user()->id;
         $obj->save();
+        
+        //Capturamos el Id buscando el dni del recien ingresado
+        $ultimo_id=DB::table('discapacitados')->where('nro_doc_identidad',request('nro_doc_identidad'))->value('id');
+        // cerramos la captura del recien ingresado
+
+        //Ahora se guarda la dirección pero primero actualiza todas las direcciones activa=false para registrar solo una dirección como activa = true
+        $obj = direcciones::where('activo',true)->update(['activo'=>false]);
+        //desactiva todo
+
+        //crear el nuevo registro con unica direccion activo
+        $obj= new direcciones();
+        $obj->disc_id=$ultimo_id;#
+        $obj->direccion=request('direccion');#
+        $obj->ubigeo_id=request('distrito');#
+        $obj->numero=request('numero');#
+        $obj->activo=true;
+        $obj->save();
+        // $obj->altitud=request('altitud');
+        // $obj->longitud=request('longitud');
+        // $obj->latitud=request('latitud');
         $data=['Mensaje'=>'ok'];
         return response()->json($data);
     }
@@ -107,10 +134,17 @@ class DiscapacitadosController extends Controller
         ->select('ubigeos.provincia')
         ->distinct('ubigeos.provincia')
         ->get();
-        $distritos=DB::table('ubigeos')
-        ->select('ubigeos.id','ubigeos.distrito','ubigeos.ubigeo_distrito') 
-        ->get();
 
+        $dist_asignados=DB::table('users')
+        ->where('users.id','=',auth()->user()->id)
+        ->select('users.zona_dist')
+        ->get();
+        $dist=json_decode($dist_asignados[0]->zona_dist);
+
+        $distritos=DB::table('ubigeos')
+        ->whereIn('ubigeos.id',$dist)
+        ->select('ubigeos.id','ubigeos.distrito','ubigeos.ubigeo_distrito')
+        ->get();
         $estado_civil=['SOLTERO','CASADO','VIUDO','DIVORCIADO'];
         return view('editarpersonas',compact('distritos','estado_civil','provincias'));
     }
@@ -118,10 +152,19 @@ class DiscapacitadosController extends Controller
      
      public function edit($dni)
     {
-        $datos = DB::table('discapacitados')
+        $discapacitados = DB::table('discapacitados')
         ->select('discapacitados.*')
         ->where('discapacitados.nro_doc_identidad','=',$dni)
         ->get();
+
+        $direcciones = DB::table('direcciones')
+        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+        ->leftjoin('discapacitados','discapacitados.id','=','direcciones.disc_id')
+        ->where('discapacitados.nro_doc_identidad','=',$dni)
+        ->select('direcciones.*','ubigeos.provincia','ubigeos.distrito')
+        ->get();
+        $datos=['direcciones'=>$direcciones,'discapacitados'=>$discapacitados];
+
         return response()->json($datos);
         
     }
@@ -152,11 +195,11 @@ class DiscapacitadosController extends Controller
         $obj->apellido_materno=request('apellido_materno');#
         $obj->doc_identidad=request('doc_identidad');#OK
         $obj->nro_doc_identidad=request('nro_doc_identidad');#OK
-        $obj->direccion=request('direccion');#
-        $obj->ubigeo_id=request('distrito');#
-        $obj->altitud=request('altitud');
-        $obj->longitud=request('longitud');
-        $obj->latitud=request('latitud');
+        // $obj->direccion=request('direccion');#
+        // $obj->ubigeo_id=request('distrito');#
+        // $obj->altitud=request('altitud');
+        // $obj->longitud=request('longitud');
+        // $obj->latitud=request('latitud');
         $obj->correo=request('correo');#
         $obj->telefono=request('telefono');#
         $obj->fecha_nacimiento=request('fecha_nacimiento');#

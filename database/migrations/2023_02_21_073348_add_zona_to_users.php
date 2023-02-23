@@ -14,8 +14,9 @@ class AddZonaToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('zona_prov', 100)->nullable()->default('');
-            $table->string('zona_dist', 200)->nullable()->default('');
+            $table->string('zona_prov')->default('[""]');
+            $table->text('zona_dist');
+            
         });
     }
 
@@ -27,7 +28,8 @@ class AddZonaToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn('zona_prov');
+            $table->dropColumn('zona_dist');
         });
     }
 }

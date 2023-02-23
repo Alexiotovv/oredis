@@ -1,4 +1,7 @@
-
+$("#btnNuevaDireccion").on('click', function(e) {
+  e.preventDefault();
+  $("#modalDirecciones").modal('show');
+});
 
 $("#btnEnviar").on("click",function (e) {
   if ($("#nro_doc_identidad").val()=="" || $("#direccion").val()=="" ||$("#telefono").val()==""){
@@ -32,22 +35,22 @@ function error(err){
   alert(err);
 }
 
-function posicion(geolocationPosition) {  
-  let coords=geolocationPosition.coords;
-  $("#Latitud").val(coords.latitude);
-  $("#Longitud").val(coords.longitude);
-  $("#Altitud").val(coords.altitude);
-  $("#Latitud").prop('readonly',true);
-  $("#Longitud").prop('readonly',true);
-  $("#Altitud").prop('readonly',true);
-}
+// function posicion(geolocationPosition) {  
+//   let coords=geolocationPosition.coords;
+//   $("#Latitud").val(coords.latitude);
+//   $("#Longitud").val(coords.longitude);
+//   $("#Altitud").val(coords.altitude);
+//   $("#Latitud").prop('readonly',true);
+//   $("#Longitud").prop('readonly',true);
+//   $("#Altitud").prop('readonly',true);
+// }
 
-$("#IngresarManualUbicacion").on("click",function (e) {
-  $("#Latitud").prop('readonly',false);
-  $("#Longitud").prop('readonly',false);
-  $("#Altitud").prop('readonly',false);
-  $("#Latitud").focus();
-});
+// $("#IngresarManualUbicacion").on("click",function (e) {
+//   $("#Latitud").prop('readonly',false);
+//   $("#Longitud").prop('readonly',false);
+//   $("#Altitud").prop('readonly',false);
+//   $("#Latitud").focus();
+// });
 
 $("#btnBuscarEditar").on("click",function(e){
   e.preventDefault();
@@ -62,43 +65,65 @@ $("#btnBuscarEditar").on("click",function(e){
             url: "editardiscapacitado/"+$("#nro_doc_identidad").val(),
             dataType: "json",
             success: function (response) {
-              $("#idPersona").val(response[0].id);
+              $("#idPersona").val(response.discapacitados[0].id);
               $("#nro_doc_identidad").addClass('is-valid')
               $("#dni_encontrado").show();
               $("#dni_noencontrado").hide();
               
-              $("#nombre").val(response[0].nombre);
-              $("#apellido_paterno").val(response[0].apellido_paterno);
-              $("#apellido_materno").val(response[0].apellido_materno);
-              $("#doc_identidad").val(response[0].doc_identidad).change();
-              $("#direccion").val(response[0].direccion);
-              $("#distrito").val(response[0].ubigeo_id);
-              $("#altitud").val(response[0].altitud);
-              $("#longitud").val(response[0].longitud);
-              $("#latitud").val(response[0].latitud);
-              $("#correo").val(response[0].correo);
-              $("#telefono").val(response[0].telefono);
-              $("#fecha_nacimiento").val(response[0].fecha_nacimiento);
-              $("#estado_civil").val(response[0].estado_civil).change();
-              $("#sexo").val(response[0].sexo).change();
-              $("#ocupacion").val(response[0].ocupacion);
-              $("#grado_instruccion").val(response[0].grado_instruccion);
-              $("#flag_certifi_discapacidad").val(response[0].flag_certifi_discapacidad).change();
-              $("#tipo_discapacidad").val(response[0].tipo_discapacidad).change();
-              $("#diagnostico_discapacidad").val(response[0].diagnostico_discapacidad).change();
+              $("#nombre").val(response.discapacitados[0].nombre);
+              $("#apellido_paterno").val(response.discapacitados[0].apellido_paterno);
+              $("#apellido_materno").val(response.discapacitados[0].apellido_materno);
+              $("#doc_identidad").val(response.discapacitados[0].doc_identidad).change();
+              // $("#direccion").val(response[0].direccion);
+              // $("#distrito").val(response[0].ubigeo_id);
+              // $("#altitud").val(response[0].altitud);
+              // $("#longitud").val(response[0].longitud);
+              // $("#latitud").val(response[0].latitud);
+              $("#correo").val(response.discapacitados[0].correo);
+              $("#telefono").val(response.discapacitados[0].telefono);
+              $("#fecha_nacimiento").val(response.discapacitados[0].fecha_nacimiento);
+              $("#estado_civil").val(response.discapacitados[0].estado_civil).change();
+              $("#sexo").val(response.discapacitados[0].sexo).change();
+              $("#ocupacion").val(response.discapacitados[0].ocupacion);
+              $("#grado_instruccion").val(response.discapacitados[0].grado_instruccion);
+              $("#flag_certifi_discapacidad").val(response.discapacitados[0].flag_certifi_discapacidad).change();
+              $("#tipo_discapacidad").val(response.discapacitados[0].tipo_discapacidad).change();
+              $("#diagnostico_discapacidad").val(response.discapacitados[0].diagnostico_discapacidad).change();
               //RecibirRadio(nombre del elemento, valor guardado que viene, valor del primer radio);
-              RecibirRadio("requiere_ayuda",response[0].requiere_ayuda,'SI');
-              RecibirRadio("tipo_ayuda",response[0].tipo_ayuda,'FISICA');
-              $("#ayuda_mecanica").val(response[0].ayuda_mecanica).change();
-              $("#nombre_apoderado").val(response[0].nombre_apoderado);
-              $("#dni_apoderado").val(response[0].dni_apoderado);
-              $("#parentesco").val(response[0].parentesco).change();
-              $("#direccion_apoderado").val(response[0].direccion_apoderado);
-              $("#correo_apoderado").val(response[0].correo_apoderado);
-              $("#telefono_apoderado").val(response[0].telefono_apoderado);
-              $("#tipo_seguro").val(response[0].tipo_seguro).change();
-              $("#seguro_salud").val(response[0].seguro_salud);
-              $("#fecha_empadronamiento").val(response[0].fecha_empadronamiento);
+              RecibirRadio("requiere_ayuda",response.discapacitados[0].requiere_ayuda,'SI');
+              RecibirRadio("tipo_ayuda",response.discapacitados[0].tipo_ayuda,'FISICA');
+              $("#ayuda_mecanica").val(response.discapacitados[0].ayuda_mecanica).change();
+              $("#nombre_apoderado").val(response.discapacitados[0].nombre_apoderado);
+              $("#dni_apoderado").val(response.discapacitados[0].dni_apoderado);
+              $("#parentesco").val(response.discapacitados[0].parentesco).change();
+              $("#direccion_apoderado").val(response.discapacitados[0].direccion_apoderado);
+              $("#correo_apoderado").val(response.discapacitados[0].correo_apoderado);
+              $("#telefono_apoderado").val(response.discapacitados[0].telefono_apoderado);
+              $("#tipo_seguro").val(response.discapacitados[0].tipo_seguro).change();
+              $("#seguro_salud").val(response.discapacitados[0].seguro_salud);
+              $("#fecha_empadronamiento").val(response.discapacitados[0].fecha_empadronamiento);
+              
+              //poniendo en la tabla sus direcciones
+              $("#DTDirecciones tbody").html('');
+              response.direcciones.forEach(element => {
+                if (element.activo) {
+                  color='style ="background-color: #aef0af;"';
+                }else{color=""}
+
+                $("#DTDirecciones").append('<tr '+ color +'>'+
+                '<td>'+ element.id +'</td>'+
+                '<td>'+ 
+                    '<button class="btn btn-outline-warning btnEditarDireccion"><i class="lni lni-pencil"></i></button>' + 
+                    '<button class="btn btn-outline-danger btnEliminar"><i class="lni lni-trash"></i></button>' +
+                '</td>'+
+                '<td>'+ element.provincia +'</td>'+
+                '<td>'+ element.distrito +'</td>'+
+                '<td>'+ element.direccion +'</td>'+
+                '<td>'+ element.numero +'</td>'+
+                '<td>'+ element.activo +'</td>'+
+                '</tr>');  
+              });
+              
             }
           });
         }else{
