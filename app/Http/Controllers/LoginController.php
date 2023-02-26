@@ -23,9 +23,9 @@ class LoginController extends Controller
                 return redirect()->intended('home');
             }
 
-            return redirect('login');
+            return redirect('home');
         }else{
-            return redirect('login');
+            return redirect('home');
         }
         
     }

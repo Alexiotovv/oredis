@@ -92,7 +92,10 @@ class DiscapacitadosController extends Controller
         // cerramos la captura del recien ingresado
 
         //Ahora se guarda la dirección pero primero actualiza todas las direcciones activa=false para registrar solo una dirección como activa = true
-        $obj = direcciones::where('activo',true)->update(['activo'=>false]);
+        $obj = DB::table('direcciones')
+        ->where('direcciones.disc_id',$ultimo_id)
+        ->where('direcciones.activo',1)
+        ->update(['direcciones.activo'=>0]);;
         //desactiva todo
 
         //crear el nuevo registro con unica direccion activo
@@ -171,10 +174,22 @@ class DiscapacitadosController extends Controller
 
     public function consultadni($dni)
     {
-        $datos = DB::table('discapacitados')
-        ->select('discapacitados.id','discapacitados.nro_doc_identidad')
+
+        $discapacitados = DB::table('discapacitados')
+        ->select('discapacitados.id','discapacitados.nro_doc_identidad',
+        'discapacitados.nombre','discapacitados.apellido_paterno','discapacitados.apellido_materno')
         ->where('discapacitados.nro_doc_identidad','=',$dni)
         ->get();
+
+        $direcciones = DB::table('direcciones')
+        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+        ->leftjoin('discapacitados','discapacitados.id','=','direcciones.disc_id')
+        ->where('discapacitados.nro_doc_identidad','=',$dni)
+        ->select('direcciones.*','ubigeos.provincia','ubigeos.distrito')
+        ->orderByDesc('direcciones.id')
+        ->get();
+        $datos=['direcciones'=>$direcciones,'discapacitados'=>$discapacitados];
+
         return response()->json($datos);
     }
 

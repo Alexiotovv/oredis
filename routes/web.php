@@ -7,6 +7,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DiscapacitadosController;
 use App\Http\Controllers\UbigeosController;
+use App\Http\Controllers\DireccionesController;
+use App\Http\Controllers\VisitasController;
 // use App\Http\Controllers\UserController;
 Route::get('/storage-link', function () {
     $targetFolder = storage_path('app/public');
@@ -30,15 +32,12 @@ Route::get('register',function(){
 })->name('register');
 
 
-
-
-
 //Paginas
 Route::get('/nosotros',[paginasController::class, 'nosotros'])->name('nosotros');
 Route::get('/home',[paginasController::class, 'home'])->name('home');
 Route::get('/direcciones',[paginasController::class, 'direcciones'])->name('direcciones');
-Route::get('/misionvision',[paginasController::class, 'misionvision'])->name('misionvision');
-Route::get('pagpublicaciones',[paginasController::class, 'pagpublicaciones'])->name('pagpublicaciones');
+// Route::get('/misionvision',[paginasController::class, 'misionvision'])->name('misionvision');
+// Route::get('pagpublicaciones',[paginasController::class, 'pagpublicaciones'])->name('pagpublicaciones');
 Route::get('/paneladmin',[paginasController::class, 'paneladmin'])->name('paneladmin');
 //Apps
 // Route::get('/appPublicaciones',[PublicacionesController::class, 'index'])->name('appPublicaciones');
@@ -54,6 +53,21 @@ Route::get('consultadni/{dni}',[DiscapacitadosController::class, 'consultadni'])
 Route::get('editardiscapacitado/{id}',[DiscapacitadosController::class, 'edit'])->name('editar.discapacitado');
 Route::get('editarpersonas',[DiscapacitadosController::class, 'editarpersonas'])->name('editar.personas');
 //End Discapacitado
+
+//direcciones
+Route::post('guardardireccion',[DireccionesController::class, 'store'])->name('guardar.direccion');
+Route::post('actualizardireccion',[DireccionesController::class, 'update'])->name('actualizar.direccion');
+Route::get('obtenerdirecciones/{idPersona}',[DireccionesController::class, 'show'])->name('obtener.direcciones');
+Route::get('editardireccion/{id}',[DireccionesController::class, 'edit'])->name('editar.direccion');
+
+
+Route::get('obtenerdistusuarios/{id}',[UserController::class, 'obtenerdistusuarios'])->name('obtenerdist.usuarios');
+//end direcciones
+
+
+
+//visitas
+Route::get('registrarvisita/',[VisitasController::class, 'create'])->name('registrar.visita');
 
 
 Route::post('CreatePublicaciones',[PublicacionesController::class, 'create'])->name('Create.Publicaciones');

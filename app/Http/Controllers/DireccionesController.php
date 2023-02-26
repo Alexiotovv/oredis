@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\direcciones;
 use Illuminate\Http\Request;
+use DB;
 
 class DireccionesController extends Controller
 {
@@ -12,6 +13,7 @@ class DireccionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         //
@@ -35,7 +37,23 @@ class DireccionesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $obj = DB::table('direcciones')
+        ->where('direcciones.disc_id',request('idPersonaDireccion'))
+        ->where('direcciones.activo',1)
+        ->update(['direcciones.activo'=>0]);
+        
+
+        $obj=new direcciones();
+        $obj->disc_id=request('idPersonaDireccion');
+        $obj->ubigeo_id=request('distrito');
+        $obj->direccion=request('direccion');
+        $obj->numero=request('numero');
+        $obj->activo=true;
+        $obj->save();
+        
+
+        $data=['Msje'=>'ok'];
+        return response()->json($data);
     }
 
     /**
@@ -44,9 +62,16 @@ class DireccionesController extends Controller
      * @param  \App\Models\direcciones  $direcciones
      * @return \Illuminate\Http\Response
      */
-    public function show(direcciones $direcciones)
+    public function show($idPersona)//ObtenerDirecciones
     {
-        //
+        $direcciones = DB::table('direcciones')
+        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+        ->where('direcciones.disc_id','=',$idPersona)
+        ->select('direcciones.*','ubigeos.provincia','ubigeos.distrito')
+        ->orderByDesc('direcciones.id')
+        ->get();
+        
+        return response()->json($direcciones);
     }
 
     /**
@@ -55,9 +80,15 @@ class DireccionesController extends Controller
      * @param  \App\Models\direcciones  $direcciones
      * @return \Illuminate\Http\Response
      */
-    public function edit(direcciones $direcciones)
+    public function edit($id)
     {
-        //
+        $data=DB::table('direcciones')
+        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+        ->where('direcciones.id','=',$id)
+        ->select('direcciones.id','direcciones.direccion','direcciones.numero','direcciones.activo',
+        'ubigeos.provincia as provincia','ubigeos.id as distritoId')
+        ->get();
+        return response()->json($data);
     }
 
     /**
@@ -67,9 +98,23 @@ class DireccionesController extends Controller
      * @param  \App\Models\direcciones  $direcciones
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, direcciones $direcciones)
+    public function update(Request $request)
     {
-        //
+        $obj = DB::table('direcciones')
+        ->where('direcciones.disc_id',request('idPersonaDireccion'))
+        ->where('direcciones.activo',1)
+        ->update(['direcciones.activo'=>0]);
+        
+        $idDireccion=request('idDireccion');
+        $obj=direcciones::findOrFail($idDireccion);
+        $obj->ubigeo_id=request('distrito');
+        $obj->direccion=request('direccion');
+        $obj->numero=request('numero');
+        $obj->activo=request('activo');
+        $obj->save();
+        
+        $data=['Msje'=>'ok'];
+        return response()->json($data);
     }
 
     /**

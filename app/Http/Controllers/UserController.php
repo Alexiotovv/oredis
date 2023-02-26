@@ -116,4 +116,12 @@ class UserController extends Controller
         $usuario=User::findOrFail($id);
         return response()->json($usuario);
     }
+    public function obtenerdistusuarios($id)
+    {
+        $dist=DB::table('users')
+        ->where('users.id','=',$id)
+        ->select('users.zona_dist')
+        ->get();
+        return response()->json($dist);
+    }
 }

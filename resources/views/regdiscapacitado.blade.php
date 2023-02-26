@@ -14,6 +14,75 @@
             Sirvase a llenar el siguiente formulario para su inscripcion
         </p>
         <hr>
+        
+
+
+        <div class="card" id="cardInfo" style="position: absolute;right: 2px;margin-right: -410px;
+        width:400px;transition-duration: 500ms;margin-top:-150px;z-index:10">
+            <div class="card-header" style="background-color: #e9ecef">
+                <h5>Datos</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <strong>Inf. Personal</strong>
+                    <div class="col-sm-6">
+                        <label for="">DNI</label>
+                        <input type="text" value="" class="form-control form-control-sm" id="findDNI" readonly>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="">Nombre</label>
+                        <input type="text" value="" class="form-control form-control-sm" id="findNombre" readonly>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="">Apellido Paterno</label>
+                        <input type="text" value="" class="form-control form-control-sm" id="findPaterno" readonly>        
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="">Apellido Materno</label>
+                        <input type="text" value="" class="form-control form-control-sm" id="findMaterno" readonly>        
+                        
+                    </div>
+                    
+                    <strong style="margin-top: 10px;">Domicilios Consignados</strong>
+                    <table class="table table-striped table-hover" id="DTDomicilios">
+                        <thead>
+                            <tr>
+                                <th>Provincia</th>
+                                <th>Distrito</th>
+                                <th>Dirección</th>
+                                <th>Activo</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    {{-- <div class="col-sm-6">
+                        <label for="provincia">Provincia</label>
+                        <input type="text" value="" class="form-control form-control-sm" id="findProvincia" readonly>        
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="provincia">Distrito</label>
+                        <input type="text" value="" class="form-control form-control-sm" id="findDistrito" readonly>        
+                    </div>
+                    <div class="col-sm-12">
+                        <label for="provincia">Calle</label>
+                        <input type="text" value="" class="form-control form-control-sm" id="findCalle" readonly>        
+                    </div> --}}
+                </div>
+                
+                
+                
+                
+                
+                
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-secondary btn-sm" id="btnCerrarCard">Cerrar</a>
+            </div>
+        </div>
+         
+
+        
+
         <section data-step="1. Informacion personal">
             <div class="row">
                 <h5>Personal</h5>
@@ -33,7 +102,9 @@
                             disabled><i class="lni lni-search"></i>Buscar</button>
                             <div id="nro_doc_identidad" class="invalid-feedback">
                             DNI ya se encuentra registrado.
+                                <span class="badge bg-warning text-dark" id="btnInfo"><a href="#" id="btnVerInfo">Click para ver Info</a></span>
                             </div>
+                            
                         <div class="text-center" id="spinner" hidden>
                             <div class="spinner-border" role="status">
                                 <span class="visually-hidden">Loading...</span>
@@ -359,10 +430,11 @@
             </div>
         </section>
     </form>
-    
+
+
 @endsection
 @section('extra_js')
-    {{-- <script src="assets/js/jquery.js"></script> --}}
     <script src="app_js/crud.js"></script>
     <script src="app_js/discapacitados.js"></script>
+    <script src="assets/js/widgets.js"></script>
 @endsection

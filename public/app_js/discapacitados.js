@@ -16,10 +16,15 @@ $("#distrito").on('change', function() {
     });
 });
 
-dist_asignados={}
-
-
-
+$("#btnVerInfo").on("click",function (e) {
+    e.preventDefault();
+    $("#cardInfo").css({'margin-right':'0px'});
+    
+})
+$("#btnCerrarCard").on("click",function (e) {
+    e.preventDefault();
+    $("#cardInfo").css({'margin-right':'-410px'});
+})
 
 $("#btnRegistrar").on("click",function (e) { 
     if ($("#nro_doc_identidad").val()=="" || $("#direccion").val()=="" ||$("#telefono").val()=="" ){
@@ -79,10 +84,33 @@ $("#btnBuscar").on("click",function(e){
         url: "consultadni/"+$("#nro_doc_identidad").val(),
         dataType: "json",
         success: function (response) {
-            if (response.length>0) {
+            if (response.discapacitados.length>0) {
+                
                 $("#nro_doc_identidad").addClass('is-invalid');
                 $("#btnRegistrar").prop('disabled',true);
+                //datos de la persona     
+                $("#findDNI").val(response.discapacitados[0].nro_doc_identidad);
+                $("#findNombre").val(response.discapacitados[0].nombre);
+                $("#findPaterno").val(response.discapacitados[0].apellido_paterno);
+                $("#findMaterno").val(response.discapacitados[0].apellido_materno);
+                
+                //sus direcciones
+                $("#DTDomicilios tbody").html('');
 
+                response.direcciones.forEach(element => {
+                    // console.log(element.id);
+                    if (element.activo) {
+                        color='style ="background-color: #aef0af;"';
+                        }else{color=""}
+                    $("#DTDomicilios").append('<tr '+ color +'>'+
+                        '<td>'+ element.provincia +'</td>'+
+                        '<td>'+ element.distrito +'</td>'+
+                        '<td>'+ element.direccion + element.numero +'</td>'+
+                        '<td>'+ element.activo +'</td>'+
+                        '</tr>');
+
+                    });
+                
             }else{
                 $("#btnRegistrar").prop('disabled',false);
                 $.ajax({

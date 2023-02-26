@@ -13,8 +13,8 @@
 	<!--plugins-->
 	<link href="/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
 	<link href="/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
-	<link href="/assets/plugins/highcharts/css/highcharts.css" rel="stylesheet" />
-	<link href="/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+	{{-- <link href="/assets/plugins/highcharts/css/highcharts.css" rel="stylesheet" />
+	<link href="/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" /> --}}
 	<link href="/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
 	<!-- loader-->
 	<link href="/assets/css/pace.min.css" rel="stylesheet" />
@@ -53,44 +53,48 @@
                 </div>
             </div>
             <!--navigation-->
-            <ul class="metismenu" id="menu">
-                <li>
-                    <a href="javascript:;" class="has-arrow">
-                        <div class="parent-icon"><i class='bx bx-list-ul'></i>
-                        </div>
-                        <div class="menu-title">Opciones</div>
-                    </a>
-                    <ul>
-                        @if(Auth::user()->is_admin == 2 or Auth::user()->is_admin == 1 )
-                            <li><a href="/CreateDiscapacitados"><i class="bx bx-right-arrow-alt"></i>Registrar Persona</a>
+            @if (Route::has('login'))
+                @auth
+                    <ul class="metismenu" id="menu">
+                        <li>
+                            <a href="javascript:;" class="has-arrow">
+                                <div class="parent-icon"><i class='bx bx-list-ul'></i>
+                                </div>
+                                <div class="menu-title">Opciones</div>
+                            </a>
+                            <ul>
+                                @if(Auth::user()->is_admin == 2 or Auth::user()->is_admin == 1 )
+                                    <li><a href="/CreateDiscapacitados"><i class="bx bx-right-arrow-alt"></i>Registrar Persona</a>
+                                    </li>
+                                @endif
+                                @if(Auth::user()->is_admin == 2 or Auth::user()->is_admin == 1 )
+                                    <li><a href="/editarpersonas"><i class="bx bx-right-arrow-alt"></i>Editar Persona</a>
+                                    </li>
+                                @endif
+                                @if(Auth::user()->is_admin == 1 or Auth::user()->is_admin == 3)
+                                    <li><a href="/registrarvisita"><i class="bx bx-right-arrow-alt"></i>Registrar Visita</a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </li>
+                        
+                        @if(Auth::user()->is_admin == 1)
+                            <li>
+                                <a href="javascript:;" class="has-arrow">
+                                    <div class="parent-icon"><i class='bx bx-cog' ></i>
+                                    </div>
+                                    <div class="menu-title">Admin</div>
+                                </a>
+                                <ul>
+                                    <li><a href="{{route('Usuarios')}}"><i class="bx bx-user"></i>Listar Usuarios</a>
+                                    </li>
+                                </ul>
                             </li>
                         @endif
-                        @if(Auth::user()->is_admin == 2 or Auth::user()->is_admin == 1 )
-                            <li><a href="/editarpersonas"><i class="bx bx-right-arrow-alt"></i>Editar Persona</a>
-                            </li>
-                        @endif
-                        @if(Auth::user()->is_admin == 1 or Auth::user()->is_admin == 3)
-                            <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Registrar Visita</a>
-                            </li>
-                        @endif
-                    </ul>
-                </li>
-                
-                @if(Auth::user()->is_admin == 1)
-                    <li>
-                        <a href="javascript:;" class="has-arrow">
-                            <div class="parent-icon"><i class='bx bx-cog' ></i>
-                            </div>
-                            <div class="menu-title">Admin</div>
-                        </a>
-                        <ul>
-                            <li><a href="{{route('Usuarios')}}"><i class="bx bx-user"></i>Listar Usuarios</a>
-                            </li>
-                        </ul>
-                    </li>
-                @endif
 
-            </ul>
+                    </ul>
+                @endauth
+            @endif
             <!--end navigation-->
         </div>
         <!--end sidebar wrapper -->
@@ -101,27 +105,9 @@
                     <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
                     </div>
                     <div class="top-menu-left d-none d-lg-block">
-                        {{-- <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="app-emailbox.html"><i class='bx bx-envelope'></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="app-chat-box.html"><i class='bx bx-message'></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="app-fullcalender.html"><i class='bx bx-calendar'></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="app-to-do.html"><i class='bx bx-check-square'></i></a>
-                            </li>
-                        </ul> --}}
+
                     </div>
-                    {{-- <div class="search-bar flex-grow-1">
-                        <div class="position-relative search-bar-box">
-                            <input type="text" class="form-control search-control" placeholder="Type to search..."> <span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span>
-                            <span class="position-absolute top-50 search-close translate-middle-y"><i class='bx bx-x'></i></span>
-                        </div>
-                    </div> --}}
+
 
                     <div class="top-menu ms-auto">
                         <ul class="navbar-nav align-items-center">
@@ -133,38 +119,7 @@
                                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">	<i class='bx bx-category'></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    {{-- <div class="row row-cols-3 g-3 p-3">
-                                        <div class="col text-center">
-                                            <div class="app-box mx-auto bg-gradient-cosmic text-white"><i class='bx bx-group'></i>
-                                            </div>
-                                            <div class="app-title">Teams</div>
-                                        </div>
-                                        <div class="col text-center">
-                                            <div class="app-box mx-auto bg-gradient-burning text-white"><i class='bx bx-atom'></i>
-                                            </div>
-                                            <div class="app-title">Projects</div>
-                                        </div>
-                                        <div class="col text-center">
-                                            <div class="app-box mx-auto bg-gradient-lush text-white"><i class='bx bx-shield'></i>
-                                            </div>
-                                            <div class="app-title">Tasks</div>
-                                        </div>
-                                        <div class="col text-center">
-                                            <div class="app-box mx-auto bg-gradient-kyoto text-dark"><i class='bx bx-notification'></i>
-                                            </div>
-                                            <div class="app-title">Feeds</div>
-                                        </div>
-                                        <div class="col text-center">
-                                            <div class="app-box mx-auto bg-gradient-blues text-dark"><i class='bx bx-file'></i>
-                                            </div>
-                                            <div class="app-title">Files</div>
-                                        </div>
-                                        <div class="col text-center">
-                                            <div class="app-box mx-auto bg-gradient-moonlit text-white"><i class='bx bx-filter-alt'></i>
-                                            </div>
-                                            <div class="app-title">Alerts</div>
-                                        </div>
-                                    </div> --}}
+                                    
                                 </div>
                             </li>
                             <li class="nav-item dropdown dropdown-large">
@@ -436,57 +391,51 @@
                             </li>
                         </ul>
                     </div>
-                    
-                    <div class="user-box dropdown">
-                        <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
-                            <div class="user-info ps-3">
-                                <p class="user-name mb-0">{{ auth()->user()->name }}</p>
-                                <p class="designattion mb-0">
-                                    @if(Auth::user()->is_admin == 1)
-                                        Administrador
-                                    @else
-                                        @if(Auth::user()->is_admin == 2)
-                                            Registrador
+                    @if (Route::has('login'))
+                    @auth
+                        <div class="user-box dropdown">
+                            <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
+                                <div class="user-info ps-3">
+                                    <p class="user-name mb-0">{{ auth()->user()->name }}</p>
+                                    <input type="text" id="idUsuario" value="{{auth()->user()->id}}" readonly hidden>
+                                    <input type="text" id="Rol" value="{{auth()->user()->is_admin}}" readonly hidden>
+                                    <p class="designattion mb-0">
+                                        @if(Auth::user()->is_admin == 1)
+                                            Administrador
                                         @else
-                                            @if(Auth::user()->is_admin == 3)
-                                                Visitador
+                                            @if(Auth::user()->is_admin == 2)
+                                                Registrador
+                                            @else
+                                                @if(Auth::user()->is_admin == 3)
+                                                    Visitador
+                                                @endif
                                             @endif
                                         @endif
-                                    @endif
-                                    
-                                </p>
-                            </div>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <a class="dropdown-item" href="javascript:;">
-                                    <i class="bx bx-user"></i>Cuenta
-                                </a>
-                            </li>
-                            {{-- <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-cog"></i><span>Settings</span></a>
-                            </li>
-                            <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-home-circle'></i><span>Dashboard</span></a>
-                            </li>
-                            <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-dollar-circle'></i><span>Earnings</span></a>
-                            </li>
-                            <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-download'></i><span>Downloads</span></a>
-                            </li> --}}
-                            {{-- <li>
-                                <div class="dropdown-divider mb-0"></div>
-                            </li> --}}
+                                        
+                                    </p>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <i class="bx bx-user"></i>Cuenta
+                                    </a>
+                                </li>
 
-                                <form action="login" method="post">
-                                    @method('put')
-                                    @csrf
-                                    <li><button type="submit" class="dropdown-item" href="javascript:;">
-                                        <i class="bx bx-log-in-circle"></i>
-                                        <span>Salir</span></button>
-                                    </li>
-                                </form>
-                            
-                        </ul>
-                    </div>
+                                    <form action="login" method="post">
+                                        @method('put')
+                                        @csrf
+                                        <li><button type="submit" class="dropdown-item" href="javascript:;">
+                                            <i class="bx bx-log-in-circle"></i>
+                                            <span>Salir</span></button>
+                                        </li>
+                                    </form>
+                                
+                            </ul>
+                        </div>
+                        @endauth
+                    @endif
                 </nav>
             </div>
         </header>
@@ -520,6 +469,7 @@
 	<script src="/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
 	<script src="/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
 	<script src="/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+    
 	{{-- <script src="/assets/plugins/highcharts/js/highcharts.js"></script>
 	<script src="/assets/plugins/highcharts/js/exporting.js"></script>
 	<script src="/assets/plugins/highcharts/js/variable-pie.js"></script>
@@ -527,6 +477,8 @@
 	<script src="/assets/plugins/highcharts/js/accessibility.js"></script>
 	<script src="/assets/plugins/apexcharts-bundle/js/apexcharts.min.js"></script> --}}
 	{{-- <script src="/assets/js/index2.js"></script> --}}
+
+
 	<script src="https://unpkg.com/feather-icons"></script>
 	<!--app JS-->
 	<script src="/assets/js/app.js"></script>

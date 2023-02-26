@@ -1,17 +1,102 @@
+
+  $("#formActualiza").keypress(function(e) {
+      if (e.which == 13) {
+          return false;
+      }
+  });
+
+
+
+
+
+//end Buscar el distrito y comparar el discapacitado
+
+distritos={};
+$.ajax({
+    type: "GET",
+    url: "obtenerdistritos",
+    dataType: "json",
+    success: function (response) {
+        distritos=response;
+    }
+});
+
+$("#distrito").on('change', function() {
+  distritos.forEach(element => {
+      if (element.id==$("#distrito").val()) {
+          $("#provincia").val(element.provincia).change();
+      }
+  });
+});
+
+$(document).on('click','.btnEditarDireccion', function(e) {
+  e.preventDefault();
+  fila = $(this).closest("tr");
+  id = (fila).find('td:eq(0)').text();
+  
+  $.ajax({
+    type: "GET",
+    url: "editardireccion/"+id,
+    dataType: "json",
+    success: function (response) {
+      
+      $("#idDireccion").val(response[0].id);
+      $("#provincia").val(response[0].provincia).change();
+      $("#distrito").val(response[0].distritoId).change();
+      $("#direccion").val(response[0].direccion);
+      $("#numero").val(response[0].numero);
+      $("#activo").val(response[0].activo).change();
+    }
+  });
+
+
+  $("#idDireccion").val(id);
+  $("#etiquetaDirecciones").text('Editar Dirección');
+  $("#modalDirecciones").modal('show');
+});
+
+
+
+$("#btnGuardarDireccion").on("click",function (e) {
+  e.preventDefault();
+  ds=$("#formDirecciones").serialize();
+  $("#modalDirecciones").modal('hide');
+
+  if ($("#etiquetaDirecciones").text()=='Nueva Dirección') {
+    mje='Domicilio Registrado';
+    ru='guardardireccion'; 
+    GuardarDireccion(ds,ru,mje);
+    ObtenerDirecciones($("#idPersonaDireccion").val());
+  }else{
+    mje='Domicilio Actualizado';
+    ru='actualizardireccion'; 
+    GuardarDireccion(ds,ru,mje);
+    ObtenerDirecciones($("#idPersonaDireccion").val());
+  }
+    
+ 
+});
+
 $("#btnNuevaDireccion").on('click', function(e) {
   e.preventDefault();
+  $("#etiquetaDirecciones").text('Nueva Dirección');
+  $("#direccion").val('');
+  $("#numero").val('');
+  $("#distrito").val('--').change();
+  $("#provincia").val('--').change();
+  $("#provincia").val(1).change();
   $("#modalDirecciones").modal('show');
 });
 
 $("#btnEnviar").on("click",function (e) {
-  if ($("#nro_doc_identidad").val()=="" || $("#direccion").val()=="" ||$("#telefono").val()==""){
-    //que haga su trabajo los mensajea de html de cada input
+  e.preventDefault();
+  if ($("#nro_doc_identidad").val()=="" ||$("#telefono").val()==""){
+    alert("Ingrese un Dni o telefono");
   }else{
-    e.preventDefault();
     ds=$("#formActualiza").serialize();
     ru='actualizardiscapacitado';
-    mje='Registro Actualizado'    
-    GuardarRegistro(ds,ru,mje);
+    mje='Registro Actualizado'
+    GuardarRegistro(ds,ru,mje,"");
     // setTimeout( function() { window.location.href = "msjeregistrodiscapacitados"; }, 3000 );
   }
 });
@@ -35,7 +120,7 @@ function error(err){
   alert(err);
 }
 
-// function posicion(geolocationPosition) {  
+// function posicion(geolocationPosition) {
 //   let coords=geolocationPosition.coords;
 //   $("#Latitud").val(coords.latitude);
 //   $("#Longitud").val(coords.longitude);
@@ -59,17 +144,18 @@ $("#btnBuscarEditar").on("click",function(e){
     url: "consultadni/"+$("#nro_doc_identidad").val(),
     dataType: "json",
     success: function (response) {
-        if (response.length>0) {
+        if (response.discapacitados.length>0) {
           $.ajax({
             type: "GET",
             url: "editardiscapacitado/"+$("#nro_doc_identidad").val(),
             dataType: "json",
             success: function (response) {
+              $("#idPersonaDireccion").val(response.discapacitados[0].id);//Input del form Direccion
               $("#idPersona").val(response.discapacitados[0].id);
               $("#nro_doc_identidad").addClass('is-valid')
               $("#dni_encontrado").show();
               $("#dni_noencontrado").hide();
-              
+
               $("#nombre").val(response.discapacitados[0].nombre);
               $("#apellido_paterno").val(response.discapacitados[0].apellido_paterno);
               $("#apellido_materno").val(response.discapacitados[0].apellido_materno);
@@ -101,29 +187,13 @@ $("#btnBuscarEditar").on("click",function(e){
               $("#telefono_apoderado").val(response.discapacitados[0].telefono_apoderado);
               $("#tipo_seguro").val(response.discapacitados[0].tipo_seguro).change();
               $("#seguro_salud").val(response.discapacitados[0].seguro_salud);
+              $("#flg_carnet_did").val(response.discapacitados[0].flg_carnet_did);
               $("#fecha_empadronamiento").val(response.discapacitados[0].fecha_empadronamiento);
-              
-              //poniendo en la tabla sus direcciones
-              $("#DTDirecciones tbody").html('');
-              response.direcciones.forEach(element => {
-                if (element.activo) {
-                  color='style ="background-color: #aef0af;"';
-                }else{color=""}
 
-                $("#DTDirecciones").append('<tr '+ color +'>'+
-                '<td>'+ element.id +'</td>'+
-                '<td>'+ 
-                    '<button class="btn btn-outline-warning btnEditarDireccion"><i class="lni lni-pencil"></i></button>' + 
-                    '<button class="btn btn-outline-danger btnEliminar"><i class="lni lni-trash"></i></button>' +
-                '</td>'+
-                '<td>'+ element.provincia +'</td>'+
-                '<td>'+ element.distrito +'</td>'+
-                '<td>'+ element.direccion +'</td>'+
-                '<td>'+ element.numero +'</td>'+
-                '<td>'+ element.activo +'</td>'+
-                '</tr>');  
-              });
-              
+              //poniendo en la tabla sus direcciones
+              ObtenerDirecciones(response.discapacitados[0].id);
+              // console.log(VerificarDistrito());
+
             }
           });
         }else{
@@ -136,6 +206,88 @@ $("#btnBuscarEditar").on("click",function(e){
   });
 
 });
+
+
+//lista los distritos que pertencen al usuario 
+dist_usuario={};
+$.ajax({
+  type: "GET",
+  url: "obtenerdistusuarios/"+$("#idUsuario").val(),
+  dataType: "json",
+  success: function (response) {
+    dist_usuario=(JSON.parse(response[0].zona_dist));
+  }
+});
+//end lista los distritos
+
+
+var usu_puede_editar=false;
+var encontro_dir_activo=false;
+
+function ObtenerDirecciones(idPersona){
+
+  $.ajax({
+    type: "GET",
+    url: "obtenerdirecciones/"+idPersona,
+    dataType: "json",
+    success: function (response) {
+      $("#DTDirecciones tbody").html('');
+      response.forEach(element => {
+        if (element.activo) {
+          encontro_dir_activo=true;
+          color='style ="background-color: #aef0af;"';
+            dist_usuario.forEach( element2 => {
+            if (element2==element.ubigeo_id) {
+                usu_puede_editar=true;
+              }
+            });
+        }else{
+          color="";
+        }
+        $("#DTDirecciones").append('<tr '+ color +'>'+
+        '<td>'+ element.id +'</td>'+
+        '<td>'+
+            '<button class="btn btn-outline-warning btnEditarDireccion"><i class="lni lni-pencil"></i></button>' +
+            // '<button class="btn btn-outline-danger btnEliminar"><i class="lni lni-trash"></i></button>' +
+        '</td>'+
+        '<td>'+ element.provincia +'</td>'+
+        '<td>'+ element.distrito +'</td>'+
+        '<td>'+ element.direccion +'</td>'+
+        '<td>'+ element.numero +'</td>'+
+        '<td>'+ element.activo +'</td>'+
+        '</tr>');
+      });
+      
+      if ($("#Rol").val()=='1') {//pregunta si es admin
+        //activa los botones
+        $("#btnEnviar").prop("disabled",false);
+        $("#btnNuevaDireccion").prop("disabled",false);
+        $(".btnEditarDireccion").prop("disabled",false);
+      }
+      if ($("#Rol").val()=='2') {//Pregunta Si es registador
+        if (encontro_dir_activo==true) {  
+            if (usu_puede_editar) {//Pregunta Si el usu actual puede editar
+              $("#btnEnviar").prop("disabled",false);
+              $("#btnNuevaDireccion").prop("disabled",false);
+              $(".btnEditarDireccion").prop("disabled",false);
+            }else{
+              $("#btnEnviar").prop("disabled",true);
+              $("#btnNuevaDireccion").prop("disabled",true);
+              $(".btnEditarDireccion").prop("disabled",true);
+            }
+        }else{
+          $("#btnEnviar").prop("disabled",false);
+          $("#btnNuevaDireccion").prop("disabled",false);
+        }
+      }
+
+    }
+  });
+
+
+
+}
+
 
 function RecibirRadio(nombre_elemento,valor_guardado,valor) {
     if (valor_guardado==valor) {
@@ -158,19 +310,19 @@ $("#btnBuscarApoderado").on("click",function(e){
       ,
       success: function (response) {
           $("#nombre_apoderado").val(
-              response['nombres']+ " " + 
-              response['apellidoPaterno'] + " " + 
+              response['nombres']+ " " +
+              response['apellidoPaterno'] + " " +
               response['apellidoMaterno']);
 
           $("#spinner_apoderado").prop('hidden',true);
       },
-      error: function (response) {  
+      error: function (response) {
           $("#spinner_apoderado").prop('hidden',true);
       }
   });
 });
 
-$("#nro_doc_identidad").on("keyup",function (e) { 
+$("#nro_doc_identidad").on("keyup",function (e) {
   if (($(this).val().length)>7) {
       $('#btnBuscar').prop('disabled',false);
   }else{
@@ -178,7 +330,7 @@ $("#nro_doc_identidad").on("keyup",function (e) {
       $("#nombre").val('');
       $("#apellido_paterno").val('');
       $("#apellido_materno").val('');
-      
+
       $("#dni_encontrado").hide();
       $("#dni_noencontrado").hide();
       $("#nro_doc_identidad").removeClass('is-valid');
@@ -186,7 +338,7 @@ $("#nro_doc_identidad").on("keyup",function (e) {
   }
 });
 
-$("#dni_apoderado").on("keyup",function (e) { 
+$("#dni_apoderado").on("keyup",function (e) {
   if (($(this).val().length)>7) {
       $('#btnBuscarApoderado').prop('disabled',false);
   }else{
@@ -195,7 +347,7 @@ $("#dni_apoderado").on("keyup",function (e) {
 });
 
 $("#ocupacion").on("keyup",function (){
-  $("#ocupacion").val($("#ocupacion").val().toUpperCase());    
+  $("#ocupacion").val($("#ocupacion").val().toUpperCase());
 })
 
 

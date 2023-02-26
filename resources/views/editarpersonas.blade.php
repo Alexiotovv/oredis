@@ -91,9 +91,13 @@
                     <div class="col-md-3">
                         <h5>Domicilios Asignados</h5>
                     </div>
+
                     <div class="col-md-4">
                         <button class="btn btn-success" id="btnNuevaDireccion"><i class="fadeIn animated bx bx-street-view"></i>Agregar Dirección</button>
+                        <div class="spinner-border" role="status" id="spinnerDireccion" hidden>
+                        </div>
                     </div>
+
                 </div>
                 
                 <table class="table table-stripped" id="DTDirecciones">
@@ -337,7 +341,7 @@
             <div class="row" style="padding-top: 30px;">
 
                 <div class="col-6 text-right">
-                    <button class="btn btn-primary" id="btnEnviar" type="submit"><i
+                    <button class="btn btn-primary" id="btnEnviar"><i
                             class="lni lni-telegram-original"></i> Enviar</button>
                 </div>
             </div>
@@ -345,7 +349,7 @@
 
     </form>
     
-    <form id="formDirecciones">
+    <form id="formDirecciones">@csrf
         <!-- Modal -->
         <div class="modal fade" id="modalDirecciones" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -355,19 +359,22 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" id="idDireccion">
+                        <input type="text" id="idPersonaDireccion" name="idPersonaDireccion" hidden>
+                        <input type="text" id="idDireccion" name="idDireccion" hidden>
                         <div class="row">
                             <div class="col-md-3">
                                 <label class="form-label" for="provincia">Provincia</label>
                                 <select class="form-select" aria-label="Default select example" name="provincia" id="provincia" disabled>
+                                    <option value="--">--</option>
                                     @foreach ($provincias as $prov )
-                                        <option value="">{{$prov->provincia}}</option>
+                                        <option value="{{$prov->provincia}}">{{$prov->provincia}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label" for="distrito">Distrito</label>
                                 <select class="form-select" aria-label="Default select example" name="distrito" id="distrito">
+                                    <option value="--">--</option>
                                     @foreach ($distritos as $dist )
                                         <option value="{{$dist->id}}">{{$dist->ubigeo_distrito}}-{{$dist->distrito}}</option>
                                     @endforeach
@@ -375,24 +382,35 @@
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label" for="direccion">Dirección</label>
-                                <input class="form-control" type="text" value="direccion" name="direccion" id="direccion" placeholder="Direción..." required>
+                                <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Direción..." required>
                             </div>
                             <div class="col-md-2">
-                                <label class="form-label" for="direccion">Número</label>
+                                <label class="form-label" for="numero">Número</label>
                                 <input class="form-control" type="text" name="numero" id="numero" placeholder="Número..." required>
                             </div>
+                            <div class="col-md-2">
+                                <label class="form-label" for="activo">Activo</label>
+                                <select name="activo" id="activo" class="form-select">
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                </select>
+                            </div>
+
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary btnGuardarDireccion">Guardar</button>
+                        <button type="button" class="btn btn-primary" id="btnGuardarDireccion">Guardar</button>
                     </div>
                 </div>
             </div>
         </div>
     </form>
 
-    <script src="assets/js/jquery.js"></script>
+   
+@endsection
+
+@section('extra_js')
     <script src="app_js/crud.js"></script>
     <script src="app_js/editarregistro.js"></script>
 @endsection
