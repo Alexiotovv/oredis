@@ -9,6 +9,9 @@ use App\Http\Controllers\DiscapacitadosController;
 use App\Http\Controllers\UbigeosController;
 use App\Http\Controllers\DireccionesController;
 use App\Http\Controllers\VisitasController;
+use App\Http\Controllers\ReportesController;
+use App\Http\Controllers\NoticiasController;
+
 // use App\Http\Controllers\UserController;
 Route::get('/storage-link', function () {
     $targetFolder = storage_path('app/public');
@@ -67,7 +70,20 @@ Route::get('obtenerdistusuarios/{id}',[UserController::class, 'obtenerdistusuari
 
 
 //visitas
-Route::get('registrarvisita/',[VisitasController::class, 'create'])->name('registrar.visita');
+Route::get('registrarvisita',[VisitasController::class, 'create'])->name('registrar.visita');
+Route::get('obtenerdireccion/{dni}',[VisitasController::class, 'show'])->name('obtener.direccion');
+Route::post('guardarvisita',[VisitasController::class, 'store'])->name('guardar.visita');
+
+Route::get('reportevisitas',[ReportesController::class, 'index'])->name('reporte.visitas');
+Route::get('ListarReporteVisitas',[ReportesController::class, 'show'])->name('Listar.ReporteVisitas');
+
+
+
+//Noticias
+Route::get('noticias',[NoticiasController::class, 'index'])->name('noticias');
+Route::get('createnoticia',[NoticiasController::class, 'create'])->name('create.noticia');
+Route::post('storenoticia',[NoticiasController::class, 'store'])->name('store.noticia');
+
 
 
 Route::post('CreatePublicaciones',[PublicacionesController::class, 'create'])->name('Create.Publicaciones');

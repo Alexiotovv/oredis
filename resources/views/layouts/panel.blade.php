@@ -60,7 +60,7 @@
                             <a href="javascript:;" class="has-arrow">
                                 <div class="parent-icon"><i class='bx bx-list-ul'></i>
                                 </div>
-                                <div class="menu-title">Opciones</div>
+                                <div class="menu-title">Beneficiario</div>
                             </a>
                             <ul>
                                 @if(Auth::user()->is_admin == 2 or Auth::user()->is_admin == 1 )
@@ -75,6 +75,8 @@
                                     <li><a href="/registrarvisita"><i class="bx bx-right-arrow-alt"></i>Registrar Visita</a>
                                     </li>
                                 @endif
+                                <li><a href="reportevisitas"><i class="bx bx-right-arrow-alt"></i>Reporte Visita</a>
+                                </li>
                             </ul>
                         </li>
                         
@@ -83,10 +85,23 @@
                                 <a href="javascript:;" class="has-arrow">
                                     <div class="parent-icon"><i class='bx bx-cog' ></i>
                                     </div>
-                                    <div class="menu-title">Admin</div>
+                                    <div class="menu-title">Admin Usuarios</div>
                                 </a>
                                 <ul>
                                     <li><a href="{{route('Usuarios')}}"><i class="bx bx-user"></i>Listar Usuarios</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:;" class="has-arrow">
+                                    <div class="parent-icon"><i class='bx bx-cog' ></i>
+                                    </div>
+                                    <div class="menu-title">Admin Portal</div>
+                                </a>
+                                <ul>
+                                    <li><a href="noticias"><i class="bx bx-user"></i>Noticias</a>
+                                    </li>
+                                    <li><a href="createnoticia"><i class="bx bx-user"></i>Registrar Noticia</a>
                                     </li>
                                 </ul>
                             </li>

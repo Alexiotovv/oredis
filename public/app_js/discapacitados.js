@@ -39,43 +39,6 @@ $("#btnRegistrar").on("click",function (e) {
     }
 });
 
-// $("#ObtenerUbicacion").on("click",function (e) {
-//     e.preventDefault();
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(posicion,error,options);
-
-//     }else{
-//         alert("No puedes acceder a la ubicación");
-//     }
-// });
-
-// var options={
-//     EnableHighAccuracy:true,
-//     Timeout:500,
-//     MaximunAge:0
-// }
-
-// function error(err){
-//     alert(err);
-// }
-
-// function posicion(geolocationPosition) {  
-//     let coords=geolocationPosition.coords;
-//     $("#latitud").val(coords.latitude);
-//     $("#longitud").val(coords.longitude);
-//     $("#altitud").val(coords.altitude);
-//     $("#latitud").prop('readonly',true);
-//     $("#longitud").prop('readonly',true);
-//     $("#altitud").prop('readonly',true);
-// }
-
-// $("#IngresarManualUbicacion").on("click",function (e) {
-//     $("#Latitud").prop('readonly',false);
-//     $("#Longitud").prop('readonly',false);
-//     $("#Altitud").prop('readonly',false);
-//     $("#Latitud").focus();
-// });
-
 $("#btnBuscar").on("click",function(e){
     
     e.preventDefault();

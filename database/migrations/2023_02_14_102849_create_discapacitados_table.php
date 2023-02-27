@@ -20,9 +20,6 @@ class CreateDiscapacitadosTable extends Migration
             $table->string('apellido_materno', 100)->nullable()->default('');
             $table->string('doc_identidad',10)->nullable()->default('');
             $table->string('nro_doc_identidad',10)->unique();
-            // $table->string('altitud',200)->nullable()->default('');
-            // $table->string('longitud',200)->nullable()->default('');
-            // $table->string('latitud',200)->nullable()->default('');
             $table->string('correo',100)->nullable()->default('');
             $table->string('telefono',100)->nullable()->default('');
             $table->date('fecha_nacimiento');
@@ -46,7 +43,6 @@ class CreateDiscapacitadosTable extends Migration
             $table->string('seguro_salud',100)->nullable()->default('');
             $table->string('fecha_empadronamiento',100)->nullable()->default('');
             $table->string('flg_carnet_did',100)->nullable()->default('');
-            
             $table->tinyInteger('delete')->default(0);
             $table->bigInteger('Usuario')->unsigned();
             $table->foreign('Usuario')->references('id')->on('users')->onDelete('cascade');
