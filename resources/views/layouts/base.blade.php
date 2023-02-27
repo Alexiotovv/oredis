@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>OREDIS</title>
-    <link rel="shortcut icon" href="assetss/images/favicon.ico" type="image/png">
+    <link rel="shortcut icon" href="assetss/images/favicon.png" type="image/png">
     <link rel="stylesheet" href="assetss/css/default.css">
     <link rel="stylesheet" href="assetss/css/style.css">
     <link rel="stylesheet" href="assetss/css/responsive.css">
@@ -49,7 +49,9 @@
     <div class="preloader">
         <div class="loader">
             <div class="pre-shadow"></div>
-            <div class="pre-box"></div>
+            <img src="assetss/images/icon/regionloreto.png" alt="">
+            {{-- <div class="pre-box"></div> --}}
+            
         </div>
     </div>
     {{-- <div class="offcanvas-panel">

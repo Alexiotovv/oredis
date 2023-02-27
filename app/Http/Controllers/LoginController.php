@@ -27,7 +27,6 @@ class LoginController extends Controller
         }else{
             return redirect('home');
         }
-        
     }
 
     public function logout(Request $request)
