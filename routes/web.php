@@ -14,7 +14,7 @@ use App\Http\Controllers\NoticiasController;
 
 // use App\Http\Controllers\UserController;
 Route::get('/storage-link', function () {
-    $targetFolder = storage_path('app/public');
+    $targetFolder = storage_path('/app/public');
     $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
     symlink($targetFolder,$linkFolder);
     echo('listo!');
@@ -23,8 +23,8 @@ Route::get('/storage-link', function () {
     // $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
     // symlink($targetFolder, $linkFolder);
     // echo('listo!');
-
 });
+
 
 Route::get('/', function () {
     return view('home');
