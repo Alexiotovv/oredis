@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\noticias;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Storage;
 
 class NoticiasController extends Controller
 {
@@ -15,11 +16,11 @@ class NoticiasController extends Controller
      */
     public function index()
     {
-        $noticias=DB::table('noticias')
+        $noticias=noticias::where('publicar', '1')
         ->orderByDesc('noticias.id')
         ->paginate(5);
         // ->get();
-        return view('noticias',compact('noticias'));
+        return view('noticias',['noticias'=>$noticias]);
     }
 
     /**
@@ -44,7 +45,8 @@ class NoticiasController extends Controller
         if ($request->hasFile('archivo')){
             $file=request('archivo');
             $archivo=time()."_".$file->getClientOriginalName();
-            $file->storeAs('noticias',time()."_".$file->getClientOriginalName());
+            $file->storeAs('noticias/',$archivo);
+            // Storage::disk('disco-noticias')->put($archivo, 'Contents');
             $obj->archivo = $archivo;
         }
 

@@ -31,7 +31,7 @@
                             <td>{{$pub->Descripcion}}</td>
                             <td>{{$pub->Fecha}}</td>
                             <td>
-                                <a href="{{asset('/storage/noticias/'.$pub->archivo)}}"><img src="{{asset('/storage/noticias/'.$pub->archivo)}}" style="height: 30px;width:30px;"></a>
+                                <a href="{{asset('/storage/noticias/'.$pub['archivo'])}}"><img src="{{asset('/storage/noticias/'.$pub['archivo'])}}" style="height: 30px;width:30px;"></a>
                                 {{-- <img src="{{asset('/storage/publicaciones/'.$pub->Ruta)}}" alt="imagen" style="width: 40px;heigth: 50px;"> --}}
                             </td>
                             <td>{{$pub->publicar}}</td>
