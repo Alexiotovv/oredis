@@ -43,8 +43,8 @@ class NoticiasController extends Controller
         $obj = new noticias();
         if ($request->hasFile('archivo')){
             $file=request('archivo');
-            $archivo="".time()."_".$file->getClientOriginalName();
-            $file->storeAs('public/noticias',time()."_".$file->getClientOriginalName());
+            $archivo=time()."_".$file->getClientOriginalName();
+            $file->storeAs('noticias',time()."_".$file->getClientOriginalName());
             $obj->archivo = $archivo;
         }
 

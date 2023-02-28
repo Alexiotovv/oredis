@@ -18,6 +18,12 @@ Route::get('/storage-link', function () {
     $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
     symlink($targetFolder,$linkFolder);
     echo('listo!');
+
+    // $targetFolder = base_path().'/storage/app/public';
+    // $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
+    // symlink($targetFolder, $linkFolder);
+    // echo('listo!');
+
 });
 
 Route::get('/', function () {
