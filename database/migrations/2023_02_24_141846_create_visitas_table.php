@@ -23,6 +23,7 @@ class CreateVisitasTable extends Migration
             $table->string('comentarios', 250)->nullable()->default('');
             $table->boolean('viveaqui')->default(false);
             $table->bigInteger('Usuario')->unsigned();
+            $table->date('FechaVisita');
             $table->foreign('Usuario')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

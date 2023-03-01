@@ -26,9 +26,11 @@ Route::get('/storage-link', function () {
 });
 
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
+Route::get('/',[paginasController::class, 'inicio'])->name('inicio');
+
 Route::get('login',function(){
     return view('paneladmin');
 })->name('login')->middleware('guest');
@@ -82,8 +84,10 @@ Route::get('obtenerdireccion/{dni}',[VisitasController::class, 'show'])->name('o
 Route::post('guardarvisita',[VisitasController::class, 'store'])->name('guardar.visita');
 
 Route::get('reportevisitas',[ReportesController::class, 'index'])->name('reporte.visitas');
-Route::get('ListarReporteVisitas',[ReportesController::class, 'show'])->name('Listar.ReporteVisitas');
+Route::post('obtenervisitas',[ReportesController::class, 'obtenervisitas'])->name('obtener.visitas');
 
+Route::get('reportebeneficiario',[ReportesController::class, 'indexbeneficiario'])->name('reporte.beneficiario');
+Route::post('obtenerbeneficiario',[ReportesController::class, 'obtenerbeneficiario'])->name('obtener.beneficiario');
 
 
 //Noticias

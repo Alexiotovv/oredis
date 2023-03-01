@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use DB;
 class VisitasController extends Controller
 {
+    
+ 
+    
+    
     /**
      * Display a listing of the resource.
      *
@@ -43,6 +47,7 @@ class VisitasController extends Controller
         $obj->latitud=request('latitud');
         $obj->viveaqui=request('viveaqui');
         $obj->comentarios=request('comentarios');
+        $obj->FechaVisita=request('FechaVisita');
         $obj->Usuario=auth()->user()->id;
         $obj->save();
         $data=['Msje'=>'Ok'];

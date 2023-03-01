@@ -7,6 +7,12 @@ $("#btnGuardarVisita").on("click",function (e) {
         ru="guardarvisita";
         mje="Visita Registrada"
         GuardarRegistro(ds,ru,mje,"");
+        $("#Direccion").val('');
+        $("#dniBuscar").val('');
+        $("#latitud").val('');
+        $("#longitud").val('');
+        $("#altitud").val('');
+        $("#comentarios").val('');
     }
 });
 

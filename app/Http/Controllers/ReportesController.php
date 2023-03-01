@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\reportes;
+use App\Models\visitas;
+use App\Models\ubigeos;
 use Illuminate\Http\Request;
 use DB;
 class ReportesController extends Controller
@@ -12,11 +14,137 @@ class ReportesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+   
+    public function indexbeneficiario(){
+        $distritos=DB::table('ubigeos')->select('ubigeos.distrito','ubigeos.id','ubigeos.ubigeo_distrito')->get();
         
-        return view('reportevisita');
+        $personas=DB::table('discapacitados')
+        ->leftjoin('direcciones','direcciones.disc_id','=','discapacitados.id')
+        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+        ->where('discapacitados.id','=',0)
+        ->select('ubigeos.distrito','discapacitados.nombre',
+        'discapacitados.apellido_paterno',
+        'discapacitados.apellido_materno',
+        'discapacitados.nro_doc_identidad',
+        'discapacitados.telefono',
+        'discapacitados.correo',
+        'discapacitados.fecha_nacimiento',
+        'discapacitados.estado_civil',
+        'discapacitados.sexo',
+        'discapacitados.ocupacion',
+        'discapacitados.grado_instruccion',
+        'discapacitados.flag_certifi_discapacidad',
+        'discapacitados.tipo_discapacidad',
+        'discapacitados.diagnostico_discapacidad',
+        'discapacitados.requiere_ayuda',
+        'discapacitados.tipo_ayuda',
+        'discapacitados.ayuda_mecanica',
+        'discapacitados.nombre_apoderado',
+        'discapacitados.dni_apoderado',
+        'discapacitados.parentesco',
+        'discapacitados.direccion_apoderado',
+        'discapacitados.correo_apoderado',
+        'discapacitados.telefono_apoderado',
+        'discapacitados.tipo_seguro',
+        'discapacitados.seguro_salud',
+        'discapacitados.fecha_empadronamiento',
+        'discapacitados.flg_carnet_did')
+        ->get();
+        return view('reportebeneficiario',compact('distritos','personas'));
     }
+    public function obtenerbeneficiario(Request $request){
+        $distrito=request('distrito');
+
+        $distritos=DB::table('ubigeos')->select('ubigeos.distrito','ubigeos.id','ubigeos.ubigeo_distrito')->get();
+
+        $personas=DB::table('discapacitados')
+        ->leftjoin('direcciones','direcciones.disc_id','=','discapacitados.id')
+        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+        ->where('discapacitados.delete','=',0)
+        ->where('ubigeos.id','=',$distrito)
+        ->select('ubigeos.distrito','discapacitados.nombre',
+        'discapacitados.apellido_paterno',
+        'discapacitados.apellido_materno',
+        'discapacitados.nro_doc_identidad',
+        'discapacitados.telefono',
+        'discapacitados.correo',
+        'discapacitados.fecha_nacimiento',
+        'discapacitados.estado_civil',
+        'discapacitados.sexo',
+        'discapacitados.ocupacion',
+        'discapacitados.grado_instruccion',
+        'discapacitados.flag_certifi_discapacidad',
+        'discapacitados.tipo_discapacidad',
+        'discapacitados.diagnostico_discapacidad',
+        'discapacitados.requiere_ayuda',
+        'discapacitados.tipo_ayuda',
+        'discapacitados.ayuda_mecanica',
+        'discapacitados.nombre_apoderado',
+        'discapacitados.dni_apoderado',
+        'discapacitados.parentesco',
+        'discapacitados.direccion_apoderado',
+        'discapacitados.correo_apoderado',
+        'discapacitados.telefono_apoderado',
+        'discapacitados.tipo_seguro',
+        'discapacitados.seguro_salud',
+        'discapacitados.fecha_empadronamiento',
+        'discapacitados.flg_carnet_did')
+        ->get();
+        return view('reportebeneficiario',compact('distritos','personas'));
+    }
+
+    public function obtenervisitas(Request $request)
+    {
+        $f_incio=request('FechaInicio');
+        $visitas=DB::table('visitas')
+        ->leftjoin('direcciones','direcciones.id','=','visitas.idDireccion')
+        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+        ->leftjoin('discapacitados','discapacitados.id','=','direcciones.disc_id')
+        ->leftjoin('users','users.id','=','visitas.Usuario')
+        ->select('ubigeos.provincia',
+        'ubigeos.distrito',
+        'discapacitados.nombre',
+        'discapacitados.apellido_paterno',
+        'discapacitados.apellido_materno',
+        'visitas.FechaVisita',
+        'direcciones.direccion',
+        'direcciones.numero',
+        'visitas.viveaqui',
+        'users.nombres',
+        'users.apellidos')
+        ->where('visitas.FechaVisita','>=',$f_incio)
+        ->get();
+        // $msje=['Mensaje'=>'ok'];
+        // return response()->json($msje);
+        return view('reportevisita',['visitas'=>$visitas]);
+
+    }
+
+    public function index(Request $request)
+    {
+        $visitas=DB::table('visitas')
+        ->leftjoin('direcciones','direcciones.id','=','visitas.idDireccion')
+        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+        ->leftjoin('discapacitados','discapacitados.id','=','direcciones.disc_id')
+        ->leftjoin('users','users.id','=','visitas.Usuario')
+        ->select('ubigeos.provincia',
+        'ubigeos.distrito',
+        'discapacitados.nombre',
+        'discapacitados.apellido_paterno',
+        'discapacitados.apellido_materno',
+        'visitas.FechaVisita',
+        'direcciones.direccion',
+        'direcciones.numero',
+        'visitas.viveaqui',
+        'users.nombres',
+        'users.apellidos')
+        ->where('visitas.id','=',0)
+        ->get();
+        return view('reportevisita',compact('visitas'));
+    }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -39,35 +167,6 @@ class ReportesController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\reportes  $reportes
-     * @return \Illuminate\Http\Response
-     */
-    public function show(reportes $reportes)
-    {
-        $visitas=DB::table('visitas')
-        ->leftjoin('direcciones','direcciones.id','=','visitas.idDireccion')
-        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
-        ->leftjoin('discapacitados','discapacitados.id','=','direcciones.disc_id')
-        ->leftjoin('users','users.id','=','visitas.Usuario')
-        ->select('discapacitados.nombre',
-        'discapacitados.apellido_paterno',
-        'discapacitados.apellido_materno',
-        'direcciones.direccion',
-        'direcciones.numero',
-        'ubigeos.provincia',
-        'ubigeos.distrito',
-        'visitas.viveaqui',
-        'visitas.created_at',
-        'users.nombres',
-        'users.apellidos',
-        )
-        ->get();
-        return datatables()->of($visitas)->tojson();
-        
-    }
 
     /**
      * Show the form for editing the specified resource.

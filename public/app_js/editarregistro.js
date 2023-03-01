@@ -5,10 +5,6 @@
       }
   });
 
-
-
-
-
 //end Buscar el distrito y comparar el discapacitado
 
 distritos={};

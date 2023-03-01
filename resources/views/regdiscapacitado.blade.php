@@ -5,17 +5,12 @@
 <h5><a href="/home">Inicio / </a><a href="paneladmin">Panel Admin / </a><a href="">Formulario de Registro</a></h5>
 
     <form id="formRegistro">@csrf 
-        {{-- Cuando da clic en enviar permite mostrar los mensajes del html por defecto de required --}}
-        {{-- <button hidden>Guardar Prueba</button> --}}
-        {{-- End Cuando da clic en enviar permite mostrar los mensajes del html por defecto de required --}}
-        
+       
         <h1 class="h3">Formulario de Registro</h1>
         <p class="lead">
             Sirvase a llenar el siguiente formulario para su inscripcion
         </p>
         <hr>
-        
-
 
         <div class="card" id="cardInfo" style="position: absolute;right: 2px;margin-right: -410px;
         width:400px;transition-duration: 500ms;margin-top:-150px;z-index:10">
@@ -55,24 +50,9 @@
                         </thead>
                         <tbody></tbody>
                     </table>
-                    {{-- <div class="col-sm-6">
-                        <label for="provincia">Provincia</label>
-                        <input type="text" value="" class="form-control form-control-sm" id="findProvincia" readonly>        
-                    </div>
-                    <div class="col-sm-6">
-                        <label for="provincia">Distrito</label>
-                        <input type="text" value="" class="form-control form-control-sm" id="findDistrito" readonly>        
-                    </div>
-                    <div class="col-sm-12">
-                        <label for="provincia">Calle</label>
-                        <input type="text" value="" class="form-control form-control-sm" id="findCalle" readonly>        
-                    </div> --}}
+
                 </div>
-                
-                
-                
-                
-                
+
                 
             </div>
             <div class="card-footer">
@@ -397,33 +377,9 @@
                 </div>
             </div>
             <hr>
-            {{-- <div class="row">
-                <div class="content">
-                    <h5>Datos de Geolocalziación</h5>
-                    <a class="btn btn-primary" id="ObtenerUbicacion"><i class="lni lni-search"></i>
-                        Obtener Ubicación</a>
-                    <a class="btn btn-primary" id="IngresarManualUbicacion"><i class="lni lni-write"></i>
-                        Ingresar Manual</a>
-                </div>
-                <div class="col-md-4">
-                    <label for="">Latitud</label>
-                    <input type="text" class="form-control" id="latitud" name="latitud" readonly>
-                </div>
-                <div class="col-md-4">
-                    <label for="">Longitud</label>
-                    <input type="text" class="form-control" id="longitud" name="longitud" readonly>
-                </div>
-                <div class="col-md-4">
-                    <label for="">Altitud</label>
-                    <input type="text" class="form-control" id="altitud" name="altitud" readonly>
-                </div>
-            </div> --}}
+
 
             <div class="row" style="padding-top: 30px;">
-                {{-- <div class="col-6 text-left">
-                    <button class="btn btn-outline-primary" data-prev><i
-                            class="lni lni-arrow-left-circle"></i> Anterior</button>
-                </div> --}}
                 <div class="col-6 text-right">
                     <button class="btn btn-primary" id="btnRegistrar"><i class="lni lni-telegram-original"></i> Enviar</button>
                 </div>

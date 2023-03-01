@@ -121,8 +121,11 @@
         </div>
     </section>
 
+
+    {{-- Seccion Noticias --}}
     <section class="service-area pt-90 pb-80">
         <div class="container">
+            
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title text-center mb-55 wow fadeInUp">
@@ -132,35 +135,39 @@
                     </div>
                 </div>
             </div>
+
             <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="service-item service-style-one mb-40 wow fadeInDown" data-wow-delay=".3s">
-                        <div class="icon">
-                            {{-- <i class="flaticon-strategy"></i> --}}
-                            <img src="assetss/images/noticias/noti_3.jpg" alt="entrega de silla de ruedas">
+                <style>
+                    
+                </style>
+                @foreach ($noticias as $noti)
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="service-item service-style-one mb-40 wow fadeInDown" data-wow-delay=".3s">
+                            <div class="icon">
+                                <img src="{{asset('storage/noticias/'.$noti->archivo)}}" style="heigth:300px" alt="">
+                            </div>
+                            <div class="text">
+                                <h4 class="title">
+                                <a href="#">
+                                    {{$noti->Titulo}}
+                                </a></h4>
+                                <ul class="list-style-two">
+                                    <li style="font-size: 13px;">
+                                        {{!! Str::limit($noti->Descripcion,100)!!}}
+                                    </li>
+                                </ul>
+                                <a href="#" class="btn-link">Leer más</a>
+                            </div>
                         </div>
-                        <div class="text">
-                            <h4 class="title">
-                              <a href="#">
-                                Personas con discapacidad son beneficiadas con 150 sillas de ruedas.
-                              </a></h4>
-                            <ul class="list-style-two">
-                                <li style="font-size: 13px;">El gobierno regional de Loreto, a través de la Oficina Regional de Atención a la Persona con 
-                                  Discapacidad (OREDIS), entregó 150 sillas de ruedas plegables a asociaciones y gobiernos locales 
-                                  que lo solicitaron, con la finalidad de lograr la independencia de cada uno de los beneficiarios.
-                                </li>
-                                {{-- <li>MVP Definition</li>
-                                <li>Product Strategy</li> --}}
-                            </ul>
-                            <a href="#" class="btn-link">Leer más</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                    </div>    
+                @endforeach
+                
+                
+                {{-- <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="service-item service-style-one mb-40 wow fadeInDown" data-wow-delay=".5s">
                         <div class="icon">
-                            {{-- <i class="flaticon-design"></i> --}}
-                            <img src="assetss/images/noticias/noti_2.jpg" alt="entrega de silla de ruedas">
+
+                            <img src="assetss/images/noticias/noti_2.jpg" alt="">
                         </div>
                         <div class="text">
                             <h3 class="title"><a href="#">Gorel celebra el día nacional de la 
@@ -173,50 +180,25 @@
                                    deportivos, conformados por miembros de asociaciones, CEBE's y OMAPED's 
                                    de la provincia de Maynas.
                                 </li>
-                                {{-- <li>MVP Definition</li>
-                                <li>Product Strategy</li> --}}
+
                             </ul>
                             <a href="service-details.html" class="btn-link">Leer más</a>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="service-item service-style-one mb-40 wow fadeInDown" data-wow-delay=".7s">
-                        <div class="icon">
-                            {{-- <i class="flaticon-source-code"></i> --}}
-                            <img src="assetss/images/noticias/noti_1.jpg" alt="entrega de silla de ruedas">
-                        </div>
-                        <div class="text">
-                            <h3 class="title">
-                              <a href="#">
-                                Gorel celebra el día nacional de la persona con discapacidad
-                              </a>
-                            </h3>
-                            <ul class="list-style-two">
-                                <li style="font-size: 13px;">En el Día Nacional de la Persona con Discapacidad y con el objetivo de 
-                                  promover sus derechos en todos los ámbitos de la sociedad, el gobierno
-                                   regional de Loreto a través de la OREDIS, organizó un evento deportivo 
-                                   adaptado, como estrategia para fomentar la inclusión social de estas personas.
-                                </li>
-                                {{-- <li>MVP Definition</li>
-                                <li>Product Strategy</li> --}}
-                            </ul>
-                            <a href="#" class="btn-link">Lee más</a>
-                        </div>
-                    </div>
-                </div>
+                </div> --}}
+
+               
+                
             </div>
         </div>
     </section>
 
-  
 
     <section class="cta-area cta-area-v1 pt-130">
         <div class="container-1450">
             <div class="cta-wrapper dark-blue-bg">
                 <div class="cta-img wow fadeInDown ">
-                  {{-- <img src="assets/images/cta/img-1.jpg" alt=""> --}}
-                  <iframe height="450px;" width="450px;" src="https://scontent.fiqt3-1.fna.fbcdn.net/v/t42.1790-2/245192683_1269416270195466_4783279060783690977_n.mp4?_nc_cat=110&ccb=1-7&_nc_sid=985c63&efg=eyJybHIiOjQ5NiwicmxhIjo1MTIsInZlbmNvZGVfdGFnIjoic3ZlX3NkIn0%3D&_nc_eui2=AeHuW_n_AdYh4rRc5lW3qSJtbYmsnjaksmVtiayeNqSyZYZGxx0249SIBMzI8-bTYVQDcAU_xNzSVoKxGYKJeHec&_nc_ohc=eumFX4oPaFIAX9thZou&rl=496&vabr=276&_nc_ht=scontent.fiqt3-1.fna&edm=AGo2L-IEAAAA&oh=00_AfC9rXnc62IXaSntirbcDIhsqbwwv_ZuviJvPcZNhAbAxA&oe=63F11C81" frameborder="0"></iframe>
+                  <img src="assets/images/cta/img-1.jpg" alt="">
                   
                 </div>
                 <div class="row">

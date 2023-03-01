@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="copyright-text">
-                        <p>&copy; 2022. All rights reserved design by Webtend</p>
+                        <p>&copy; 2024. All rights reserved design by Webtend</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
