@@ -1,8 +1,8 @@
 ---
   deployment:
     tasks:
-      - export DEPLOYPATH=/home/aywsolution/public_html/oredis.aywsolution.com/
+      - export DEPLOYPATH=/home/aywsolutionweli/public_html/oredis.aywsolution.com/
       - /bin/rsync -av public/ $DEPLOYPATH
-      - export DEPLOYPATH=/home/aywsolution/oredis/
+      - export DEPLOYPATH=/home/aywsolutionweli/oredis/
       - /bin/rsync -av ./ $DEPLOYPATH
 
