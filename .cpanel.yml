@@ -2,7 +2,7 @@
   deployment:
     tasks:
       #Para el dominio de aywsolution
-      - export DEPLOYPATH=/home/gorel/public_html/oredis.aywsolution.com/
+      - export DEPLOYPATH=/home/aywsolution/public_html/oredis.aywsolution.com/
       - /bin/rsync -av public/ $DEPLOYPATH
       - export DEPLOYPATH=/home/aywsolution/oredis/
       - /bin/rsync -av ./ $DEPLOYPATH
