@@ -1,8 +1,8 @@
 ---
   deployment:
     tasks:
-      - export DEPLOYPATH=/home/aywsolutionweli/public_html/oredis.aywsolution.com/
+      - export DEPLOYPATH=/home/gorel/public_html/oredis.regionloreto.gob.pe/
       - /bin/rsync -av public/ $DEPLOYPATH
-      - export DEPLOYPATH=/home/aywsolutionweli/oredis/
+      - export DEPLOYPATH=/home/gorel/oredis/
       - /bin/rsync -av ./ $DEPLOYPATH
 
