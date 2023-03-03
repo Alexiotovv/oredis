@@ -45,7 +45,8 @@ class NoticiasController extends Controller
         if ($request->hasFile('archivo')){
             $file=request('archivo');
             $archivo=time()."_".$file->getClientOriginalName();
-            $file->storeAs('public/noticias/',$archivo);
+            $file->storeAs('',$archivo,'pirulo');
+            // Storage::disk('public')->put('storage/noticias',$file);
             $obj->archivo = $archivo;
         }
         
