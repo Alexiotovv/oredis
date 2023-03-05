@@ -4,7 +4,22 @@
 
     <h5><a href="/home">Inicio / </a><a href="paneladmin">Panel Admin / </a><a href="">Noticias</a></h5>
         
-    <h5>Noticias</h5>
+    <h5>Buscar</h5>
+    <form action="{{route('noticias')}}" method="GET">
+    <div class="row" style="margin-bottom: 10px;">
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="txtBuscar" name="txtBuscar" value="{{$texto}}">
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-primary">Filtrar</button>
+            </div>
+        
+    </form>
+        <div class="col-sm-4">
+                <a class="btn btn-warning" href="noticias" >Mostrar Todos</a>
+        </div>
+
+    </div>
     <div class="card">
         <div class="card-body">
             <table class="table mb-0 table-hover">
@@ -20,12 +35,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    
                     @foreach ($noticias as $pub)
                         <tr>
                             <td>{{$pub->id}}</td>
                             <td>
-                                <button class="btn btn-outline-danger btnEliminarPublicacion"><i class="lni lni-trash"></i></button>
-                                <button class="btn btn-outline-warning btnEditarPublicacion"><i class="lni lni-pencil"></i></button>
+                                <button class="btn btn-outline-danger btnEliminarNoticia"><i class="lni lni-trash"></i></button>
+                                <button class="btn btn-outline-warning btnEditarNoticia"><i class="lni lni-pencil"></i></button>
                             </td>
                             <td>{{$pub->Titulo}}</td>
                             <td>{{$pub->Descripcion}}</td>
@@ -43,8 +59,12 @@
         </div>
     </div>
 
+   
+
 @endsection
 
 @section('extra_js')
-    <script src="assets/js/widgets.js"></script>
+    <script src="app_js/crud.js"></script>
+    <script src="app_js/noticias.js"></script>
+    {{-- <script src="assets/js/widgets.js"></script> --}}
 @endsection

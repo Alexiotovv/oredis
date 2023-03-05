@@ -11,6 +11,7 @@ use App\Http\Controllers\DireccionesController;
 use App\Http\Controllers\VisitasController;
 use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\NoticiasController;
+use App\Http\Controllers\ContenidosController;
 
 // use App\Http\Controllers\UserController;
 Route::get('/storage-link', function () {
@@ -18,17 +19,8 @@ Route::get('/storage-link', function () {
     $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
     symlink($targetFolder,$linkFolder);
     echo('listo!');
-
-    // $targetFolder = base_path().'/storage/app/public';
-    // $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
-    // symlink($targetFolder, $linkFolder);
-    // echo('listo!');
 });
 
-
-// Route::get('/', function () {
-//     return view('home');
-// });
 Route::get('/',[paginasController::class, 'inicio'])->name('inicio');
 
 Route::get('login',function(){
@@ -77,6 +69,10 @@ Route::get('obtenerdistusuarios/{id}',[UserController::class, 'obtenerdistusuari
 //end direcciones
 
 
+//contenido portal
+Route::get('editarcontenido',[ContenidosController::class,'edit'])->name('editar.contenido');
+Route::post('actualizarcontenido',[ContenidosController::class,'update'])->name('actualizar.contenido');
+//end contenido portal
 
 //visitas
 Route::get('registrarvisita',[VisitasController::class, 'create'])->name('registrar.visita');
@@ -92,9 +88,13 @@ Route::post('obtenerbeneficiario',[ReportesController::class, 'obtenerbeneficiar
 
 //Noticias
 Route::get('noticias',[NoticiasController::class, 'index'])->name('noticias');
+Route::get('shownoticias',[NoticiasController::class, 'show'])->name('show.noticias');
+Route::get('editnoticia/{id}',[NoticiasController::class, 'edit'])->name('edit.noticia');
+Route::post('updatenoticia',[NoticiasController::class, 'update'])->name('update.noticia');
+Route::get('noticia_independiente/{id}',[NoticiasController::class, 'noticia_independiente'])->name('noticia_independiente');
 Route::get('createnoticia',[NoticiasController::class, 'create'])->name('create.noticia');
 Route::post('storenoticia',[NoticiasController::class, 'store'])->name('store.noticia');
-
+Route::get('destroynoticia/{id}',[NoticiasController::class, 'destroy'])->name('destroy.noticia');
 
 
 Route::post('CreatePublicaciones',[PublicacionesController::class, 'create'])->name('Create.Publicaciones');

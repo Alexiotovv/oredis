@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\reportes;
 use App\Models\visitas;
 use App\Models\ubigeos;
+use App\Models\User;
 use Illuminate\Http\Request;
 use DB;
 class ReportesController extends Controller
@@ -16,8 +17,11 @@ class ReportesController extends Controller
      */
    
     public function indexbeneficiario(){
-        $distritos=DB::table('ubigeos')->select('ubigeos.distrito','ubigeos.id','ubigeos.ubigeo_distrito')->get();
-        
+        $distrito_corresponde=DB::table('users')->where('users.id','=',auth()->user()->id)->get();
+        // dd($distrito_corresponde[0]->zona_dist);
+
+        $distritos=DB::table('ubigeos')->whereIn('ubigeos.id',json_decode($distrito_corresponde[0]->zona_dist))->select('ubigeos.distrito','ubigeos.id','ubigeos.ubigeo_distrito')->get();
+        // dd($distritos);
         $personas=DB::table('discapacitados')
         ->leftjoin('direcciones','direcciones.disc_id','=','discapacitados.id')
         ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
@@ -54,9 +58,12 @@ class ReportesController extends Controller
     }
     public function obtenerbeneficiario(Request $request){
         $distrito=request('distrito');
+        $distrito_corresponde=DB::table('users')->where('users.id','=',auth()->user()->id)->get();
+        // dd($distrito_corresponde[0]->zona_dist);
 
-        $distritos=DB::table('ubigeos')->select('ubigeos.distrito','ubigeos.id','ubigeos.ubigeo_distrito')->get();
-
+        $distritos=DB::table('ubigeos')->whereIn('ubigeos.id',json_decode($distrito_corresponde[0]->zona_dist))->select('ubigeos.distrito','ubigeos.id','ubigeos.ubigeo_distrito')->get();
+        // dd($distritos);
+        // $distritos=$distrito_corresponde[0];
         $personas=DB::table('discapacitados')
         ->leftjoin('direcciones','direcciones.disc_id','=','discapacitados.id')
         ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')

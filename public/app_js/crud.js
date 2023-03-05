@@ -39,7 +39,7 @@ function GuardarRegistro(ds,ru,mje,dt){
 };
 
 ///FUNCION ELIMINAR REGISTRO
-function EliminarRegistro(ru,mje){
+function EliminarRegistro(ru,mje,ru_despues){
   Swal.fire({
       title: 'Estás seguro?', text: "Confirma para poder eliminar el registro!",
       icon: 'Mensaje', showCancelButton: true, confirmButtonColor: '#3085d6',
@@ -57,6 +57,9 @@ function EliminarRegistro(ru,mje){
                       title: mje,
                       showConfirmButton: false,
                       timer: 1500});
+                    if (ru_despues!=='') {
+                        setTimeout( function() { window.location.href = ru_despues }, 1500 );
+                    }
                 //   $(dt).DataTable().ajax.reload();
               },
               error: function(response) {

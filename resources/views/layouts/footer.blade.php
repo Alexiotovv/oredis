@@ -22,9 +22,9 @@
                     <div class="widget footer-nav-widget mb-40 wow fadeInUp" data-wow-delay=".15s">
                         <h4 class="widget-title">Contacto</h4>
                         <ul class="widget-nav">
-                            <li><a href="#">999999</a></li>
-                            <li><a href="#">mail@gmail.com</a></li>
-                            <li><a href="#">Av. quiñonemz</a></li>
+                            <li><a href="#">{{$obj->telefono}}</a></li>
+                            <li><a href="#">{{$obj->correo}}</a></li>
+                            <li><a href="#">{{$obj->direccion}}</a></li>
                             
                         </ul>
                     </div>
@@ -33,10 +33,9 @@
                     <div class="widget footer-nav-widget mb-40 wow fadeInUp" data-wow-delay=".20s">
                         <h4 class="widget-title">Enlaces de Interés</h4>
                         <ul class="widget-nav">
-                            <li><a href="#">regionloreto.gob.pe</a></li>
-                            <li><a href="#">ordeis.regionloreto.gob.pe</a></li>
-                            {{-- <li><a href="#">Meet The Team</a></li> --}}
-                            
+                            <li><a href="{{$obj->enlace1}}">{{$obj->nombre_enlace1}}</a></li>
+                            <li><a href="{{$obj->enlace2}}">{{$obj->nombre_enlace2}}</a></li>
+                            <li><a href="{{$obj->enlace3}}">{{$obj->nombre_enlace3}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -53,24 +52,6 @@
                         </ul>
                     </div>
                 </div>
-                {{-- <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="widget newsletter-widget mb-40 wow fadeInUp" data-wow-delay=".30s">
-                        <div class="newsletter-content">
-                            <h3>Subscribe Our
-                                Newsletter</h3>
-                            <p>Natus errorsit voluptatem accusa dolore
-                                mque quae <a href="#">abillo inventore verita</a> achitec
-                                beatae vitae dicta sunt explicabo.</p>
-                            <form>
-                                <div class="form_group">
-                                    <input type="email" class="form_control" placeholder="Email Address"
-                                        name="email" required>
-                                    <button class="main-btn">Sign Up</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
         

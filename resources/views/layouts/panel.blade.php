@@ -5,33 +5,33 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-    <link rel="stylesheet" href="assets/plugins/notifications/css/lobibox.min.css" />
-	<link href="/assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-	<link href="/assets/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/plugins/notifications/css/lobibox.min.css" />
+	<link href="../assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
 	<!--favicon-->
 	<link rel="icon" href="/assets/images/favicon-32x32.png" type="image/png" />
 	<!--plugins-->
-	<link href="/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
-	<link href="/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+	<link href="../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+	<link href="../assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
 	{{-- <link href="/assets/plugins/highcharts/css/highcharts.css" rel="stylesheet" />
 	<link href="/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" /> --}}
-	<link href="/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
 	<!-- loader-->
-	<link href="/assets/css/pace.min.css" rel="stylesheet" />
-	<script src="/assets/js/pace.min.js"></script>
+	<link href="../assets/css/pace.min.css" rel="stylesheet" />
+	<script src="../assets/js/pace.min.js"></script>
 	<!-- Bootstrap CSS -->
-	<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/assets/css/bootstrap-extended.css" rel="stylesheet">
+	<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/css/bootstrap-extended.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-	<link href="/assets/css/app.css" rel="stylesheet">
-	<link href="/assets/css/icons.css" rel="stylesheet">
+	<link href="../assets/css/app.css" rel="stylesheet">
+	<link href="../assets/css/icons.css" rel="stylesheet">
 	<!-- Theme Style CSS -->
-	<link rel="stylesheet" href="/assets/css/dark-theme.css" />
-	<link rel="stylesheet" href="/assets/css/semi-dark.css" />
-	<link rel="stylesheet" href="/assets/css/header-colors.css" />
-	<link href="/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../assets/css/dark-theme.css" />
+	<link rel="stylesheet" href="../assets/css/semi-dark.css" />
+	<link rel="stylesheet" href="../assets/css/header-colors.css" />
+	<link href="./assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 	<script src="https://unpkg.com/feather-icons"></script>
-	<link href="/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+	<link href="/..assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 
     @yield('extra_css')
 	<title>Panel Administración</title>
@@ -44,7 +44,7 @@
         <div class="sidebar-wrapper" data-simplebar="true">
             <div class="sidebar-header">
                 <div>
-                    <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+                    <img src="../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
                 </div>
                 <div>
                     <h4 class="logo-text">OREDIS</h4>
@@ -75,9 +75,9 @@
                                     <li><a href="/registrarvisita"><i class="bx bx-right-arrow-alt"></i>Registrar Visita</a>
                                     </li>
                                 @endif
-                                <li><a href="reportevisitas"><i class="bx bx-right-arrow-alt"></i>Reporte Visita</a>
+                                <li><a href="/reportevisitas"><i class="bx bx-right-arrow-alt"></i>Reporte Visita</a>
                                 </li>
-                                <li><a href="reportebeneficiario"><i class="bx bx-right-arrow-alt"></i>Reporte Beneficiario</a>
+                                <li><a href="/reportebeneficiario"><i class="bx bx-right-arrow-alt"></i>Reporte Beneficiario</a>
                                 </li>
                             </ul>
                         </li>
@@ -101,9 +101,11 @@
                                     <div class="menu-title">Admin Portal</div>
                                 </a>
                                 <ul>
-                                    <li><a href="noticias"><i class="bx bx-user"></i>Noticias</a>
+                                    <li><a href="{{route('editar.contenido')}}"><i class="bx bx-user"></i>Contenido</a>
                                     </li>
-                                    <li><a href="createnoticia"><i class="bx bx-user"></i>Registrar Noticia</a>
+                                    <li><a href="/noticias"><i class="bx bx-user"></i>Noticias</a>
+                                    </li>
+                                    <li><a href="/createnoticia"><i class="bx bx-user"></i>Registrar Noticia</a>
                                     </li>
                                 </ul>
                             </li>
@@ -271,7 +273,7 @@
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="assets/images/avatars/avatar-1.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="../assets/images/avatars/avatar-1.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <h6 class="msg-name">Daisy Anderson <span class="msg-time float-end">5 sec
@@ -283,7 +285,7 @@
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="assets/images/avatars/avatar-2.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="../assets/images/avatars/avatar-2.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <h6 class="msg-name">Althea Cabardo <span class="msg-time float-end">14
@@ -295,7 +297,7 @@
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="assets/images/avatars/avatar-3.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="../assets/images/avatars/avatar-3.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <h6 class="msg-name">Oscar Garner <span class="msg-time float-end">8 min
@@ -307,7 +309,7 @@
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="assets/images/avatars/avatar-4.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="../assets/images/avatars/avatar-4.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <h6 class="msg-name">Katherine Pechon <span class="msg-time float-end">15
@@ -319,7 +321,7 @@
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="assets/images/avatars/avatar-5.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="../assets/images/avatars/avatar-5.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <h6 class="msg-name">Amelia Doe <span class="msg-time float-end">22 min
@@ -331,7 +333,7 @@
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="assets/images/avatars/avatar-6.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="../assets/images/avatars/avatar-6.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <h6 class="msg-name">Cristina Jhons <span class="msg-time float-end">2 hrs
@@ -343,7 +345,7 @@
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="assets/images/avatars/avatar-7.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="../assets/images/avatars/avatar-7.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <h6 class="msg-name">James Caviness <span class="msg-time float-end">4 hrs
@@ -355,7 +357,7 @@
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="assets/images/avatars/avatar-8.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="../assets/images/avatars/avatar-8.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <h6 class="msg-name">Peter Costanzo <span class="msg-time float-end">6 hrs
@@ -367,7 +369,7 @@
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="assets/images/avatars/avatar-9.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="../assets/images/avatars/avatar-9.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <h6 class="msg-name">David Buckley <span class="msg-time float-end">2 hrs
@@ -379,7 +381,7 @@
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="assets/images/avatars/avatar-10.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="../assets/images/avatars/avatar-10.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <h6 class="msg-name">Thomas Wheeler <span class="msg-time float-end">2 days
@@ -391,7 +393,7 @@
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="assets/images/avatars/avatar-11.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="../assets/images/avatars/avatar-11.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <h6 class="msg-name">Johnny Seitz <span class="msg-time float-end">5 days
@@ -412,7 +414,7 @@
                     @auth
                         <div class="user-box dropdown">
                             <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
+                                <img src="../assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
                                 <div class="user-info ps-3">
                                     <p class="user-name mb-0">{{ auth()->user()->name }}</p>
                                     <input type="text" id="idUsuario" value="{{auth()->user()->id}}" readonly hidden>
@@ -478,14 +480,14 @@
 	
 
 
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
 	<!--plugins-->
-	<script src="/assets/js/jquery.min.js"></script>
-	<script src="/assets/plugins/simplebar/js/simplebar.min.js"></script>
-	<script src="/assets/plugins/metismenu/js/metisMenu.min.js"></script>
-	<script src="/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-	<script src="/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
-	<script src="/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/plugins/simplebar/js/simplebar.min.js"></script>
+	<script src="../assets/plugins/metismenu/js/metisMenu.min.js"></script>
+	<script src="../assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+	<script src="../assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+	<script src="../assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
     
 	{{-- <script src="/assets/plugins/highcharts/js/highcharts.js"></script>
 	<script src="/assets/plugins/highcharts/js/exporting.js"></script>
@@ -498,15 +500,15 @@
 
 	<script src="https://unpkg.com/feather-icons"></script>
 	<!--app JS-->
-	<script src="/assets/js/app.js"></script>
+	<script src="../assets/js/app.js"></script>
 
-	<script src="/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-	<script src="/assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
-	<script src="/assets/plugins/select2/js/select2.min.js"></script>
+	<script src="../assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+	<script src="../assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+	<script src="../assets/plugins/select2/js/select2.min.js"></script>
 	<!--notification js -->
-	<script src="assets/plugins/notifications/js/lobibox.min.js"></script>
-	<script src="assets/plugins/notifications/js/notifications.min.js"></script>
-	<script src="assets/plugins/notifications/js/notification-custom-script.js"></script>
+	<script src="..assets/plugins/notifications/js/lobibox.min.js"></script>
+	<script src="..assets/plugins/notifications/js/notifications.min.js"></script>
+	<script src="..assets/plugins/notifications/js/notification-custom-script.js"></script>
 
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

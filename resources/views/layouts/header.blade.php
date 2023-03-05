@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="primary-menu">
                 <div class="site-branding">
-                    <a href="index-2.html" class="brand-logo"><img src="assetss/images/logo/logo-1.png"
+                    <a href="index-2.html" class="brand-logo"><img src="../assetss/images/icon/regionloreto.png"
                             alt="Site Logo"></a>
                 </div>
                 <div class="nav-menu">
@@ -23,7 +23,7 @@
 
                     <nav class="main-menu">
                         <ul>
-                            <li class="menu-item has-children"><a href="#" class="active nav-link">Inicio</a>
+                            <li class="menu-item has-children"><a href="/home" class="active nav-link">Inicio</a>
                                 {{-- <ul class="sub-menu">
                                     <li class="has-children"><a href="#">Multipage</a>
                                         <ul class="sub-menu">
@@ -43,7 +43,7 @@
                                     </li>
                                 </ul> --}}
                             </li>
-                            <li class="menu-item has-children"><a href="#" class="nav-link">Noticias</a>
+                            <li class="menu-item has-children"><a href="/shownoticias" class="nav-link">Noticias</a>
                                 {{-- <ul class="sub-menu">
                                     <li><a href="services.html">Our Service</a></li>
                                     <li><a href="service-details.html">Service Details</a></li>
@@ -101,7 +101,7 @@
                 </div>
                 <div class="header-right-nav">
                     <ul>
-                        <li class="bar-item"><a href="#"><img src="assetss/images/dot.png"
+                        <li class="bar-item"><a href="#"><img src="../assetss/images/dot.png"
                                     alt="dot"></a></li>
                         <li class="navbar-toggle-btn">
                             <div class="navbar-toggler">

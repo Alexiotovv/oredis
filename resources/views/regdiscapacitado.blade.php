@@ -112,7 +112,7 @@
            
                 <div class="col-md-3">
                     <label class="form-label" for="correo">Correo</label>
-                    <input class="form-control" type="email" name="correo" placeholder="Correo...">
+                    <input class="form-control" type="email" name="correo" id="correo" placeholder="Correo...">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="telefono">teléfono</label>
@@ -122,10 +122,10 @@
                 <div class="col-md-4">
                     <label class="form-label" for="estado_civil">Estado civil</label>
                     <select class="form-select" aria-label="Default select example" name="estado_civil">
-                        <option value="SOLTERO">SOLTERO</option>
-                        <option value="CASADO">CASADO</option>
-                        <option value="VIUDO">VIUDO</option>
-                        <option value="DIVORCIADO">DIVORCIADO</option>
+                        <option value="SOLTERO">SOLTERO(A)</option>
+                        <option value="CASADO">CASADO(A)</option>
+                        <option value="VIUDO">VIUDO(A)</option>
+                        <option value="DIVORCIADO">DIVORCIADO(A)</option>
                     </select>
                 </div>
                 <div class="col-md-4">
@@ -217,7 +217,6 @@
                     <label class="form-label" for="tipo_discapacidad">Tipo de discapacidad</label>
                     <select class="form-select" aria-label="Default select example"
                         name="tipo_discapacidad">
-                        <option selected>Seleccione el tipo</option>
                         <option value="FISICA">FÍSICA O MOTORA</option>
                         <option value="INTELECTUAL">INTELECTUAL</option>
                         <option value="MENTAL">MENTAL O PSÍQUICO </option>
@@ -226,6 +225,7 @@
                         <option value="SENSORIAL">SENSORIAL</option>
                         <option value="AUDITIVA">AUDITIVA</option>
                         <option value="VISUAL">VISUAL</option>
+                        <option value="OTRO">OTRO</option>
                     </select>
                 </div>
                 <div class="col-md-4">
@@ -234,7 +234,6 @@
                         discapacidad</label>
                     <select class="form-select" aria-label="Default select example"
                         name="diagnostico_discapacidad">
-                        <option selected>Seleccione el grado</option>
                         <option value="LEVE">LEVE</option>
                         <option value="MODERADO">MODERADO</option>
                         <option value="SEVERO">SEVERO</option>
@@ -278,7 +277,6 @@
                     <label class="form-label" for="ayuda_mecanica">Seleccione el equipo</label>
                     <select class="form-select" aria-label="Default select example" name="ayuda_mecanica"
                         required>
-                        <option selected>Seleccione el equipo</option>
                         <option value="SILLA DE RUEDAS">SILLA DE RUEDAS</option>
                         <option value="BASTONES ORTOPEDICOS">BASTONES ORTOPÉDICOS</option>
                         <option value="MULETAS">MULETAS</option>
@@ -321,7 +319,6 @@
                     <label class="form-label" for="parentesco">Parentesco de Apoderado</label>
                     <select class="form-select" aria-label="Default select example" name="parentesco"
                         required>
-                        <option selected>Seleccione el equipo</option>
                         <option value="PADRE">PADRE</option>
                         <option value="MADRE">MADRE</option>
                         <option value="TIO">TIO(a)</option>
@@ -332,12 +329,12 @@
                 </div>
                 <div class="col-md-4">
                     <label class="form-label" for="correo_apoderado">Correo apoderado</label>
-                    <input class="form-control" type="email" name="correo_apoderado"
+                    <input class="form-control" type="email" name="correo_apoderado" id="correo_apoderado"
                         placeholder="Correo de apoderado...">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label" for="telefono_apoderado">Teléfono apoderado</label>
-                    <input class="form-control" type="number" name="telefono_apoderado"
+                    <input class="form-control" type="number" name="telefono_apoderado" id="telefono_apoderado"
                         placeholder="Teléfono de apoderado...">
                 </div>
                 <div class="col-md-4">
@@ -367,7 +364,7 @@
                 </div>
                 <div class="col-md-4">
                     <label class="form-label" for="flg_carnet_did` bigint">Nro de D.I.D</label>
-                    <input class="form-control" type="number" name="flg_carnet_did"
+                    <input class="form-control" type="number" name="flg_carnet_did" id="flg_carnet_did"
                         placeholder="Nro de D.I.D...">
                 </div>
                 <div class="col-md-4">

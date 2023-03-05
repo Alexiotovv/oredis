@@ -35,6 +35,23 @@ $("#btnRegistrar").on("click",function (e) {
         ru='guardardiscapacitado';
         mje='Registro Guardado'
         GuardarRegistro(ds,ru,mje);
+        $("#nro_doc_identidad").val('');
+        $("#nombres").val('');
+        $("#apellido_paterno").val('');
+        $("#apellido_materno").val('');
+        $("#correo").val('');
+        $("#telefono").val('');
+        $("#direccion").val('');
+        $("#numero").val('');
+        $("#ocupacion").val('');
+        $("#nombre_apoderado").val('');
+        $("#dni_apoderado").val('');
+        $("#correo_apoderado").val('');
+        $("#direccion_apoderado").val('');
+        $("#telefono_apoderado").val('');
+        $("#flg_carnet_did").val('');
+        
+        
         // setTimeout( function() { window.location.href = "msjeregistrodiscapacitados"; }, 3000 );
     }
 });
