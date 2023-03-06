@@ -57,11 +57,9 @@
             </div>
             <div class="card-footer">
                 <a class="btn btn-secondary btn-sm" id="btnCerrarCard">Cerrar</a>
+                <a href="" class="btn btn-warning btn-sm" id="btnInformacionCompleta"><i class="lni lni-eye"></i> Ver información Completa</a>
             </div>
         </div>
-         
-
-        
 
         <section data-step="1. Informacion personal">
             <div class="row">

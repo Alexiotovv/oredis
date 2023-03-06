@@ -65,7 +65,7 @@ $("#btnBuscar").on("click",function(e){
         dataType: "json",
         success: function (response) {
             if (response.discapacitados.length>0) {
-                
+                $("#btnInformacionCompleta").prop('href',"/informacioncompleta/"+ response.discapacitados[0].id);
                 $("#nro_doc_identidad").addClass('is-invalid');
                 $("#btnRegistrar").prop('disabled',true);
                 //datos de la persona     

@@ -17,19 +17,16 @@
 
 
                     <div class="col-lg-8">
-                        <div class="text">
-                            <h4 class="title" style="text-align: center">                        
-                                {{$noticias->Titulo}}
-                            </h4>
-                            <hr>
-                            <ul class="">
-                                <li style="font-size: 16px;">
-                                    <p>{{$noticias->Descripcion}}</p>
-                                </li>
-                            </ul>
-                            {{-- <a href="noticia_independiente/{{$noti->id}}" class="btn-link">Leer más</a> --}}
-                        </div>
+                        <h4 class="title" style="text-align: center">
+                            {{$noticias->Titulo}} 
+                        </h4>Fecha: {{$noticias->Fecha}}
+                        <hr>
+                        {!!$noticias->Descripcion!!}
+                        {{-- <a href="noticia_independiente/{{$noti->id}}" class="btn-link">Leer más</a> --}}
                     </div>
+                        
+                        
+                    
             </div>
         </div>
     </section>    

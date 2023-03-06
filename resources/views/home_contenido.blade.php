@@ -96,7 +96,7 @@
                                     {{ Str::limit($noti->Descripcion,100)}}
                                 </li>
                             </ul>
-                            <a href="#" class="btn-link">Leer más</a>
+                            <a target="_blank" href="/noticia_independiente/{{$noti->id}}" class="btn-link">Leer más</a>
                         </div>
                     </div>
                 </div>    

@@ -56,6 +56,8 @@ Route::get('msjeregistrodiscapacitados',[DiscapacitadosController::class, 'mensa
 Route::get('consultadni/{dni}',[DiscapacitadosController::class, 'consultadni'])->name('consulta.dni');
 Route::get('editardiscapacitado/{id}',[DiscapacitadosController::class, 'edit'])->name('editar.discapacitado');
 Route::get('editarpersonas',[DiscapacitadosController::class, 'editarpersonas'])->name('editar.personas');
+
+Route::get('informacioncompleta/{id}',[DiscapacitadosController::class, 'show'])->name('informacion.completa');
 //End Discapacitado
 
 //direcciones

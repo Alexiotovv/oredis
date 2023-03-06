@@ -119,9 +119,14 @@ class DiscapacitadosController extends Controller
      * @param  \App\Models\discapacitados  $discapacitados
      * @return \Illuminate\Http\Response
      */
-    public function show(discapacitados $discapacitados)
+    public function show($id)
     {
-        //
+        $disc = DB::table('discapacitados')
+        ->select('discapacitados.*')
+        ->where('discapacitados.id','=',$id)
+        ->get();
+        // dd();
+        return view('informacion_completa',['disc'=>$disc[0]]);
     }
 
     /**
