@@ -44,9 +44,13 @@
                 <button class="btn btn-primary">Guardar</button>
             </div>
         </div>
-    
-        
 </form>
+
+    @section('extra_js')
+        <script src="../app_js/noticias.js"></script>
+    @endsection
+
   @endsection
 @endauth
 @endif
+
