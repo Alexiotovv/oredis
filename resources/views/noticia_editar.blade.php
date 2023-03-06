@@ -32,7 +32,7 @@
             </div>
             <div class="col-md-6">
                 <label for="">Seleccione Archivo</label>
-                <input type="file" class="form-control-file" name="archivo" required>
+                <input type="file" class="form-control-file" name="archivo">
                 {{-- <label for="">Nombre Actual archivo<strong>{{$obj->archivo}}</strong></label> --}}
             </div>
             <div class="col-md-10">
