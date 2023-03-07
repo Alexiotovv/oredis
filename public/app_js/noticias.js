@@ -1,6 +1,5 @@
 $('#Descripcion').on("keyup",function () {
-    alert("presionaste");
-    // $("#descripcion_cant").text($('#Descripcion').val().length);
+    $("#descripcion_cant").text($('#Descripcion').val().length);
 });
 
 $(document).on("click",".btnEditarNoticia",function (e) {

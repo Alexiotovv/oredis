@@ -64,20 +64,20 @@
                             </a>
                             <ul>
                                 @if(Auth::user()->is_admin == 2 or Auth::user()->is_admin == 1 )
-                                    <li><a href="/CreateDiscapacitados"><i class="bx bx-right-arrow-alt"></i>Registrar Persona</a>
+                                    <li><a href="{{route('Create.Discapacitados')}}"><i class="bx bx-right-arrow-alt"></i>Registrar Persona</a>
                                     </li>
                                 @endif
                                 @if(Auth::user()->is_admin == 2 or Auth::user()->is_admin == 1 )
-                                    <li><a href="/editarpersonas"><i class="bx bx-right-arrow-alt"></i>Editar Persona</a>
+                                    <li><a href="{{route('editar.personas')}}"><i class="bx bx-right-arrow-alt"></i>Editar Persona</a>
                                     </li>
                                 @endif
                                 @if(Auth::user()->is_admin == 1 or Auth::user()->is_admin == 3)
-                                    <li><a href="/registrarvisita"><i class="bx bx-right-arrow-alt"></i>Registrar Visita</a>
+                                    <li><a href="{{route('registrar.visita')}}"><i class="bx bx-right-arrow-alt"></i>Registrar Visita</a>
                                     </li>
                                 @endif
-                                <li><a href="/reportevisitas"><i class="bx bx-right-arrow-alt"></i>Reporte Visita</a>
+                                <li><a href="{{route('reporte.visitas')}}"><i class="bx bx-right-arrow-alt"></i>Reporte Visita</a>
                                 </li>
-                                <li><a href="/reportebeneficiario"><i class="bx bx-right-arrow-alt"></i>Reporte Beneficiario</a>
+                                <li><a href="{{route('reporte.beneficiario')}}"><i class="bx bx-right-arrow-alt"></i>Reporte Beneficiario</a>
                                 </li>
                             </ul>
                         </li>
@@ -103,9 +103,9 @@
                                 <ul>
                                     <li><a href="{{route('editar.contenido')}}"><i class="bx bx-user"></i>Contenido</a>
                                     </li>
-                                    <li><a href="/noticias"><i class="bx bx-user"></i>Noticias</a>
+                                    <li><a href="{{route('noticias')}}"><i class="bx bx-user"></i>Noticias</a>
                                     </li>
-                                    <li><a href="/createnoticia"><i class="bx bx-user"></i>Registrar Noticia</a>
+                                    <li><a href="{{route('create.noticia')}}"><i class="bx bx-user"></i>Registrar Noticia</a>
                                     </li>
                                 </ul>
                             </li>

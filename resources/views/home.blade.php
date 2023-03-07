@@ -97,7 +97,7 @@
                                 </a></h4>
                                 <ul class="list-style-two">
                                     <li style="font-size: 13px;">
-                                        {{ Str::limit($noti->Descripcion,100)}}
+                                        {{Str::limit($noti->Descripcion,100)}}
                                     </li>
                                 </ul>
                                 <a target="_blank" href="/noticia_independiente/{{$noti->id}}" class="btn-link">Leer más</a>

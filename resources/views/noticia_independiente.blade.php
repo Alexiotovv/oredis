@@ -21,7 +21,7 @@
                             {{$noticias->Titulo}} 
                         </h4>Fecha: {{$noticias->Fecha}}
                         <hr>
-                        {!!$noticias->Descripcion!!}
+                        {{$noticias->Descripcion}}
                         {{-- <a href="noticia_independiente/{{$noti->id}}" class="btn-link">Leer más</a> --}}
                     </div>
                         

@@ -49,13 +49,12 @@
 
 @section('extra_js')
     <script src="assets/js/widgets.js"></script>
-    
-    <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+    {{-- <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
     <script>
         tinymce.init({
           selector: '#Descripcion'
         });
-    </script>
+    </script> --}}
     <script src="../app_js/noticias.js"></script>
     <script>
         var fecha = new Date();
