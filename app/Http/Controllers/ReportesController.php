@@ -147,7 +147,7 @@ class ReportesController extends Controller
         'users.apellidos')
         ->where('visitas.id','=',0)
         ->get();
-        return view('reportevisita',compact('visitas'));
+        return view('reportevisita',['visitas'=>$visitas]);
     }
 
 
