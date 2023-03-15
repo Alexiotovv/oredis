@@ -39,6 +39,8 @@
                             <th>apellido_paterno</th>
                             <th>apellido_materno</th>
                             <th>nro_doc_identidad</th>
+                            <th>distrito</th>
+                            <th>dirección</th>
                             <th>telefono</th>
                             <th>correo</th>
                             <th>fecha_nacimiento</th>
@@ -48,6 +50,8 @@
                             <th>grado_instruccion</th>
                             <th>flag_certifi_discapacidad</th>
                             <th>tipo_discapacidad</th>
+                            <th>Nro_carnet</th>
+                            <th>Fecha_Vcmto.</th>
                             <th>diagnostico_discapacidad</th>
                             <th>requiere_ayuda</th>
                             <th>tipo_ayuda</th>
@@ -61,7 +65,7 @@
                             <th>tipo_seguro</th>
                             <th>seguro_salud</th>
                             <th>fecha_empadronamiento</th>
-                            <th>flg_carnet_did</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -73,6 +77,8 @@
                             <td>{{$per->apellido_paterno}}</td>
                             <td>{{$per->apellido_materno}}</td>
                             <td>{{$per->nro_doc_identidad}}</td>
+                            <td>{{$per->distrito}}</td>
+                            <td>{{$per->direccion}}</td>
                             <td>{{$per->telefono}}</td>
                             <td>{{$per->correo}}</td>
                             <td>{{$per->fecha_nacimiento}}</td>
@@ -82,6 +88,8 @@
                             <td>{{$per->grado_instruccion}}</td>
                             <td>{{$per->flag_certifi_discapacidad}}</td>
                             <td>{{$per->tipo_discapacidad}}</td>
+                            <td>{{$per->flg_carnet_did}}</td>
+                            <td>{{$per->fecha_caducidad_carnet}}</td>
                             <td>{{$per->diagnostico_discapacidad}}</td>
                             <td>{{$per->requiere_ayuda}}</td>
                             <td>{{$per->tipo_ayuda}}</td>
@@ -95,7 +103,7 @@
                             <td>{{$per->tipo_seguro}}</td>
                             <td>{{$per->seguro_salud}}</td>
                             <td>{{$per->fecha_empadronamiento}}</td>
-                            <td>{{$per->flg_carnet_did}}</td>
+                            
                         </tr>
                         @endforeach
                     

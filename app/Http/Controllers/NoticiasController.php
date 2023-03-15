@@ -102,6 +102,7 @@ class NoticiasController extends Controller
             $obj=contenidos::find($dato[0]->id);
         }
         
+        
         return view('noticia_independiente',['noticias'=>$noticias,'obj'=>$obj]);
     }
 
@@ -144,6 +145,15 @@ class NoticiasController extends Controller
         $obj=noticias::find($id);
         $obj->delete();
         $data=['msje'=>'ok'];
+        return response()->json($data);
+    }
+
+    public function bannermodal($id,$valor)
+    {
+        $obj=noticias::findOrFail($id);
+        $obj->modal=$valor;
+        $obj->save();
+        $data=['Mensaje'=>'Ok'];
         return response()->json($data);
     }
 }

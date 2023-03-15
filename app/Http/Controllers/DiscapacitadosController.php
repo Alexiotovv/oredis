@@ -68,6 +68,7 @@ class DiscapacitadosController extends Controller
         $obj->ocupacion=request('ocupacion');#
         $obj->grado_instruccion=request('grado_instruccion');#
         $obj->flag_certifi_discapacidad=request('flag_certifi_discapacidad');#
+        $obj->fecha_caducidad_carnet=request('fecha_caducidad_carnet');#
         $obj->tipo_discapacidad=request('tipo_discapacidad');#
         $obj->diagnostico_discapacidad=request('diagnostico_discapacidad');#
         $obj->requiere_ayuda=request('requiere_ayuda');
@@ -182,7 +183,8 @@ class DiscapacitadosController extends Controller
 
         $discapacitados = DB::table('discapacitados')
         ->select('discapacitados.id','discapacitados.nro_doc_identidad',
-        'discapacitados.nombre','discapacitados.apellido_paterno','discapacitados.apellido_materno')
+        'discapacitados.nombre','discapacitados.apellido_paterno','discapacitados.apellido_materno',
+        'discapacitados.tipo_discapacidad')
         ->where('discapacitados.nro_doc_identidad','=',$dni)
         ->get();
 
@@ -228,6 +230,7 @@ class DiscapacitadosController extends Controller
         $obj->ocupacion=request('ocupacion');#
         $obj->grado_instruccion=request('grado_instruccion');#
         $obj->flag_certifi_discapacidad=request('flag_certifi_discapacidad');#
+        $obj->fecha_caducidad_carnet=request('fecha_caducidad_carnet');#
         $obj->tipo_discapacidad=request('tipo_discapacidad');#
         $obj->diagnostico_discapacidad=request('diagnostico_discapacidad');#
         $obj->requiere_ayuda=request('requiere_ayuda');

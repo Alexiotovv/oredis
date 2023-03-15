@@ -156,6 +156,7 @@ $("#btnBuscarEditar").on("click",function(e){
               $("#apellido_paterno").val(response.discapacitados[0].apellido_paterno);
               $("#apellido_materno").val(response.discapacitados[0].apellido_materno);
               $("#doc_identidad").val(response.discapacitados[0].doc_identidad).change();
+              $("#fecha_caducidad_carnet").val(response.discapacitados[0].fecha_caducidad_carnet);
               // $("#direccion").val(response[0].direccion);
               // $("#distrito").val(response[0].ubigeo_id);
               // $("#altitud").val(response[0].altitud);

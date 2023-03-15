@@ -31,7 +31,9 @@
                         <th scope="col">Descripción</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Archivo</th>
+                        <th scope="col">BannerModal</th>
                         <th scope="col">Publicado</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -49,6 +51,16 @@
                             <td>
                                 <a href="{{asset('storage/noticias/'.$pub['archivo'])}}"><img src="{{asset('storage/noticias/'.$pub['archivo'])}}" style="height: 30px;width:30px;"></a>
                                 {{-- <img src="{{asset('/storage/publicaciones/'.$pub->Ruta)}}" alt="imagen" style="width: 40px;heigth: 50px;"> --}}
+                            </td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    @if ($pub->modal)
+                                        <input class="form-check-input chkbanner" type="checkbox" id="bannerModal" checked>
+                                    @else
+                                        <input class="form-check-input chkbanner" type="checkbox" id="bannerModal">
+                                    @endif
+                                    
+                                </div>
                             </td>
                             <td>{{$pub->publicar}}</td>
                         </tr>

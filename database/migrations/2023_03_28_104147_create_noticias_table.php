@@ -19,6 +19,7 @@ class CreateNoticiasTable extends Migration
             $table->text('Descripcion')->nullable();
             $table->date('Fecha')->nullable();
             $table->boolean('publicar')->nullable()->default(false);
+            $table->boolean('modal')->nullable()->default(false);
             $table->string('archivo', 250)->nullable()->default('');
             $table->timestamps();
         });

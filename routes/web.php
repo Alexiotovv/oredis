@@ -21,15 +21,15 @@ Route::get('/storage-link', function () {
     echo('listo!');
 });
 
-Route::get('/',[paginasController::class, 'inicio'])->name('inicio');
+Route::get('/',[paginasController::class, 'home'])->name('local.home');
 
 Route::get('login',function(){
     return view('paneladmin');
 })->name('login')->middleware('guest');
 
-Route::get('home',function(){
-    return view('home');
-})->middleware('auth')->name('home');
+// Route::get('home',function(){
+//     return view('home');
+// })->middleware('auth')->name('home');
 
 Route::get('register',function(){
     return view('register');
@@ -98,12 +98,15 @@ Route::get('createnoticia',[NoticiasController::class, 'create'])->name('create.
 Route::post('storenoticia',[NoticiasController::class, 'store'])->name('store.noticia');
 Route::get('destroynoticia/{id}',[NoticiasController::class, 'destroy'])->name('destroy.noticia');
 
+Route::get('noticia/bannermodal/{id}/estado/{valor}',[NoticiasController::class, 'bannermodal'])->name('noticia.bannermodal');
 
 Route::post('CreatePublicaciones',[PublicacionesController::class, 'create'])->name('Create.Publicaciones');
 Route::get('CrearPublicaciones',[PublicacionesController::class, 'CrearPublicaciones'])->name('Crear.Publicaciones');
 Route::post('ActualizarPublicaciones',[PublicacionesController::class, 'ActualizarPublicaciones'])->name('Actualizar.Publicaciones');
 Route::get('EditarPublicaciones/{id}',[PublicacionesController::class, 'EditarPublicaciones'])->name('Editar.Publicaciones');
 Route::get('appListPublicaciones',[PublicacionesController::class, 'ListarPublicaciones'])->name('appList.Publicaciones');
+
+
 
 //DescargandoArchivos
 Route::get('descargarfile/{NombreArchivo}',[PublicacionesController::class, 'DevuelveArchivo'])->name('descargar.file');

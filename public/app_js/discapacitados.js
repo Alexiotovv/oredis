@@ -8,6 +8,25 @@ $.ajax({
     }
 });
 
+$("#SinDocumento").on("click",function () { 
+    if ($("#SinDocumento").prop('checked')) {
+        $("#nro_doc_identidad").attr('readonly', true);
+        $("#nombres").attr('readonly', false);
+        $("#apellido_paterno").attr('readonly', false);
+        $("#apellido_materno").attr('readonly', false);
+        $("#nro_doc_identidad").val('');
+        $("#nro_doc_identidad").removeClass('is-invalid');
+        $("#nombres").focus();
+    }else{
+        $("#nro_doc_identidad").attr('readonly', false);
+        $("#nombres").attr('readonly', true);
+        $("#apellido_paterno").attr('readonly', true);
+        $("#apellido_materno").attr('readonly', true);
+        $("#nro_doc_identidad").focus();
+    }
+})
+
+
 $("#distrito").on('change', function() {
     distritos.forEach(element => {
         if (element.id==$("#distrito").val()) {
@@ -73,7 +92,7 @@ $("#btnBuscar").on("click",function(e){
                 $("#findNombre").val(response.discapacitados[0].nombre);
                 $("#findPaterno").val(response.discapacitados[0].apellido_paterno);
                 $("#findMaterno").val(response.discapacitados[0].apellido_materno);
-                
+                $("#tipoDiscapacidad").val(response.discapacitados[0].tipo_discapacidad);
                 //sus direcciones
                 $("#DTDomicilios tbody").html('');
 

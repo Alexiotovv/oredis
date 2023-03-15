@@ -30,12 +30,15 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="">Apellido Paterno</label>
-                        <input type="text" value="" class="form-control form-control-sm" id="findPaterno" readonly>        
+                        <input type="text" value="" class="form-control form-control-sm" id="findPaterno" readonly>
                     </div>
                     <div class="col-sm-6">
                         <label for="">Apellido Materno</label>
-                        <input type="text" value="" class="form-control form-control-sm" id="findMaterno" readonly>        
-                        
+                        <input type="text" value="" class="form-control form-control-sm" id="findMaterno" readonly>
+                    </div>
+                    <div class="col-sm-12">
+                        <label for="">Tipo de Discapacidad</label>
+                        <input type="text" value="" class="form-control form-control-sm" id="tipoDiscapacidad" readonly>
                     </div>
                     
                     <strong style="margin-top: 10px;">Domicilios Consignados</strong>
@@ -50,10 +53,7 @@
                         </thead>
                         <tbody></tbody>
                     </table>
-
                 </div>
-
-                
             </div>
             <div class="card-footer">
                 <a class="btn btn-secondary btn-sm" id="btnCerrarCard">Cerrar</a>
@@ -72,7 +72,15 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label" for="nro_doc_identidad">Nro de documento</label>
+                    <div class="input-group lg-3">
+                        <label class="form-label" for="nro_doc_identidad" style="margin-right: 10px;">Nro de documento </label>
+                        
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="SinDocumento">
+                            <label class="form-check-label" for="SinDocumento">Sin Documento</label>
+                        </div>
+                    </div>
+
                     <div class="input-group lg-3">
                         {{-- <input type="text" class="form-control" id="validationServer03" name="nro_doc_identidad" aria-describedby="validationServer03Feedback" required> --}}
                         <input type="text" class="form-control" id="nro_doc_identidad" name="nro_doc_identidad"  required>
@@ -211,7 +219,15 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    
+                    <label class="form-label" for="flg_carnet_did` bigint">Nro de D.I.D</label>
+                    <input class="form-control" type="number" name="flg_carnet_did" id="flg_carnet_did"
+                        placeholder="Nro de D.I.D...">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="fecha_caducidad_carnet">Fecha de Caducidad</label>
+                    <input class="form-control" type="date" name="fecha_caducidad_carnet" id="fecha_caducidad_carnet" placeholder="Fecha Caducidad">
+                </div>
+                <div class="col-md-4">    
                     <label class="form-label" for="tipo_discapacidad">Tipo de discapacidad</label>
                     <select class="form-select" aria-label="Default select example"
                         name="tipo_discapacidad">
@@ -227,7 +243,6 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    
                     <label class="form-label" for="diagnostico_discapacidad">Diagnostico de
                         discapacidad</label>
                     <select class="form-select" aria-label="Default select example"
@@ -360,11 +375,7 @@
                         <option value="OTRO">Otro</option>
                     </select>
                 </div>
-                <div class="col-md-4">
-                    <label class="form-label" for="flg_carnet_did` bigint">Nro de D.I.D</label>
-                    <input class="form-control" type="number" name="flg_carnet_did" id="flg_carnet_did"
-                        placeholder="Nro de D.I.D...">
-                </div>
+                
                 <div class="col-md-4">
                     <label class="form-label" for="fecha_empadronamiento">fecha de empadronamiento</label>
                     <input class="form-control" type="date" name="fecha_empadronamiento"

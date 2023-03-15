@@ -19,7 +19,7 @@ class CreateDiscapacitadosTable extends Migration
             $table->string('apellido_paterno', 100)->nullable()->default('');
             $table->string('apellido_materno', 100)->nullable()->default('');
             $table->string('doc_identidad',10)->nullable()->default('');
-            $table->string('nro_doc_identidad',10)->unique();
+            $table->string('nro_doc_identidad',10)->nullable()->unique();
             $table->string('correo',100)->nullable()->default('');
             $table->string('telefono',100)->nullable()->default('');
             $table->date('fecha_nacimiento');
@@ -28,6 +28,7 @@ class CreateDiscapacitadosTable extends Migration
             $table->string('ocupacion',100)->nullable()->default('');
             $table->string('grado_instruccion',100)->nullable()->default('');
             $table->string('flag_certifi_discapacidad',5)->nullable()->default('');
+            $table->date('fecha_caducidad_carnet')->nullable();
             $table->string('tipo_discapacidad',50)->nullable()->default('');
             $table->string('diagnostico_discapacidad',50)->nullable()->default('');
             $table->string('requiere_ayuda',2)->nullable()->default('');

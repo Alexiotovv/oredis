@@ -12,12 +12,12 @@
           <span data-depth=".5"><img src="assetss/images/hero/hero-one-img-1.jpg" class="wow fadeInLeft" alt="hero image">
           </span>
         </div> --}}
+
         <div class="hero-img hero-img-two scene">
           <span data-depth=".2">
             <img src="{{asset('storage/contenido/'.$obj->foto_banner)}}" class="wow fadeInLeft" alt="hero image">
           </span>
         </div>
-       
 
         <div class="container" style="margin-top: -140px;">
           <div class="row">
@@ -112,9 +112,7 @@
     <section class="cta-area cta-area-v1 pt-130">
         <div class="container-1450">
             <div class="cta-wrapper dark-blue-bg">
-                <div class="cta-img wow fadeInDown ">
-                  <img src="assets/images/cta/img-1.jpg" alt="">
-                  
+                <div class="cta-img wow fadeInDown">
                 </div>
                 <div class="row">
                     <div class="col-xl-8 col-lg-8">
@@ -137,6 +135,47 @@
             </div>
         </div>
     </section>
+
+    @if ($bannerModal !== null)
+    <div class="modal fade" id="modalBanner" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h5 class="modal-title" id="exampleModalLabel">{{$bannerModal->Titulo}}</h5>
+                        </div>
+                        <div class="col-sm-6">
+                            <p style="font-size:13px;">{{$bannerModal->Fecha}}</p>
+                        </div>
+                    </div>
+                        
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    {{Str::limit($bannerModal->Descripcion,100)}}
+                    
+                </div>
+                <div class="modal-footer">
+                    <a href="/noticia_independiente/{{$bannerModal->id}}" class="btn btn-info">Leer Más...</a>
+                </div>
+
+            </div>
+            </div>
+        </div>
+    @endif
+
+    <script src="../assets/js/jquery.js"></script>
+    <script>
+            function banner() { 
+                $("#modalBanner").modal('show');
+             }
+            setTimeout(banner, 2000);
+        
+    </script>
 @endsection
 
 @section('pie_pagina')

@@ -157,7 +157,14 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-
+                    <label class="form-label" for="flg_carnet_did bigint">Nro de D.I.D</label>
+                    <input class="form-control" type="number" name="flg_carnet_did" id="flg_carnet_did" placeholder="Nro de D.I.D...">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="fecha_caducidad_carnet">Fecha de Caducidad</label>
+                    <input class="form-control" type="date" name="fecha_caducidad_carnet" id="fecha_caducidad_carnet" placeholder="Fecha Caducidad">
+                </div>
+                <div class="col-md-4">
                     <label class="form-label" for="tipo_discapacidad">Tipo de discapacidad</label>
                     <select class="form-select" aria-label="Default select example" name="tipo_discapacidad" id="tipo_discapacidad">
                         <option selected>Seleccione el tipo</option>
@@ -305,10 +312,7 @@
                         <option value="OTRO">Otro</option>
                     </select>
                 </div>
-                <div class="col-md-4">
-                    <label class="form-label" for="flg_carnet_did bigint">Nro de D.I.D</label>
-                    <input class="form-control" type="number" name="flg_carnet_did" id="flg_carnet_did" placeholder="Nro de D.I.D...">
-                </div>
+                
                 <div class="col-md-4">
                     <label class="form-label" for="fecha_empadronamiento">fecha de empadronamiento</label>
                     <input class="form-control" type="date" name="fecha_empadronamiento" id="fecha_empadronamiento"

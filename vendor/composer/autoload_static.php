@@ -568,6 +568,8 @@ class ComposerStaticInitd85d19bdc5bcb4b3b687f59d03f75b9e
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\BannermodalController' => __DIR__ . '/../..' . '/app/Http/Controllers/BannermodalController.php',
+        'App\\Http\\Controllers\\ContenidosController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContenidosController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DireccionesController' => __DIR__ . '/../..' . '/app/Http/Controllers/DireccionesController.php',
         'App\\Http\\Controllers\\DiscapacitadosController' => __DIR__ . '/../..' . '/app/Http/Controllers/DiscapacitadosController.php',
@@ -591,6 +593,7 @@ class ComposerStaticInitd85d19bdc5bcb4b3b687f59d03f75b9e
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\bannermodals' => __DIR__ . '/../..' . '/app/Models/bannermodals.php',
         'App\\Models\\contenidos' => __DIR__ . '/../..' . '/app/Models/contenidos.php',
         'App\\Models\\direcciones' => __DIR__ . '/../..' . '/app/Models/direcciones.php',
         'App\\Models\\discapacitados' => __DIR__ . '/../..' . '/app/Models/discapacitados.php',
