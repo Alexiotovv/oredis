@@ -89,6 +89,11 @@
             e.preventDefault();
             $("#modalLogin").modal('show');
           });
+          $("#btnLogin2").on('click', function(e) {
+            e.preventDefault();
+            $("#modalLogin").modal('show');
+          });
+          
         </script>
 
 </body>

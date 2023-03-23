@@ -51,7 +51,7 @@
                             <th>flag_certifi_discapacidad</th>
                             <th>tipo_discapacidad</th>
                             <th>Nro_carnet</th>
-                            <th>Fecha_Vcmto.</th>
+                            <th>Fecha_Vcmto_Carnet</th>
                             <th>diagnostico_discapacidad</th>
                             <th>requiere_ayuda</th>
                             <th>tipo_ayuda</th>

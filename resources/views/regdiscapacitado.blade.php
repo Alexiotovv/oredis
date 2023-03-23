@@ -116,11 +116,11 @@
                         placeholder="Apellido paterno..." readonly required>
                 </div>
            
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label class="form-label" for="correo">Correo</label>
                     <input class="form-control" type="email" name="correo" id="correo" placeholder="Correo...">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label class="form-label" for="telefono">teléfono</label>
                     <input class="form-control" maxlength="12" type="number" id="telefono" name="telefono"
                         placeholder="Teléfono..." required>
@@ -147,12 +147,40 @@
                         id="fecha_nacimiento">
                         <br>
                 </div>
+
+                <div class="col-md-4">
+                    <label class="form-label" for="seguro_salud">¿Cuenta con seguro de salud?</label>
+                    <div class="form-check form-check-inline">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="seguro_salud"
+                                id="flg_carnet_didRadio1" value="SI" checked>
+                            <label class="form-check-label" for="inlineRadio1">SÍ</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="seguro_salud"
+                                id="flg_carnet_didRadio2" value="NO">
+                            <label class="form-check-label" for="inlineRadio2">NO</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label" for="tipo_seguro">Tipo de seguro</label>
+                    <select class="form-select" aria-label="Default select example" name="tipo_seguro">
+                        <option value="--">--</option>
+                        <option value="SIS">SIS</option>
+                        <option value="ESSALUD">EsSalud</option>
+                        <option value="EPS">Empresas prestadoras de Salud(EPS)</option>
+                        <option value="OTRO">Otro</option>
+                    </select>
+                </div>
                 
                 <hr>
                 <h5>Domicilio</h5>
                 <div class="col-md-3">
                     <label class="form-label" for="provincia">Provincia</label>
                     <select class="form-select" aria-label="Default select example" name="provincia" id="provincia" disabled>
+                        <option value="--">--</option>
                         @foreach ($provincias as $prov )
                             <option value="{{$prov->provincia}}">{{$prov->provincia}}</option>
                         @endforeach
@@ -161,6 +189,7 @@
                 <div class="col-md-3">
                     <label class="form-label" for="distrito">Distrito</label>
                     <select class="form-select" aria-label="Default select example" name="distrito" id="distrito">
+                        <option value="--">--</option>
                       @foreach ($distritos as $dist)
                         <option value="{{$dist->id}}">{{$dist->ubigeo_distrito}}-{{$dist->distrito}}</option>
                       @endforeach
@@ -191,6 +220,8 @@
                     <label class="form-label" for="Grado de instrucción">Grado de instrucción</label>
                     <select class="form-select" aria-label="Default select example"
                         name="grado_instruccion">
+                        <option value="--">--</option>
+                        <option value="PRIMARIA">SIN ESTUDIOS</option>
                         <option value="PRIMARIA">PRIMARIA</option>
                         <option value="SECUNDARIA">SECUNDARIA</option>
                         <option value="TECNICO">TECNICO</option>
@@ -198,6 +229,7 @@
                         <option value="EGRESADO UNIVERSITARIO">EGRESADO UNIVERSITARIO</option>
                         <option value="PROFESIONAL UNIVERSITARIO TITULADO">PROFESIONAL TITULADO</option>
                         <option value="POSTGRADO">ESTUDIOS DE POSTGRADO</option>
+                        <option value="OTRO">OTRO</option>
                     </select>
                 </div>
             </div>
@@ -219,13 +251,13 @@
                     </select>
                 </div>
                 <div class="col-md-4">
+                    <label class="form-label" for="fecha_caducidad_carnet">Fecha de Caducidad</label>
+                    <input class="form-control" type="date" name="fecha_caducidad_carnet" id="fecha_caducidad_carnet" placeholder="Fecha Caducidad">
+                </div>
+                <div class="col-md-4">
                     <label class="form-label" for="flg_carnet_did` bigint">Nro de D.I.D</label>
                     <input class="form-control" type="number" name="flg_carnet_did" id="flg_carnet_did"
                         placeholder="Nro de D.I.D...">
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label" for="fecha_caducidad_carnet">Fecha de Caducidad</label>
-                    <input class="form-control" type="date" name="fecha_caducidad_carnet" id="fecha_caducidad_carnet" placeholder="Fecha Caducidad">
                 </div>
                 <div class="col-md-4">    
                     <label class="form-label" for="tipo_discapacidad">Tipo de discapacidad</label>
@@ -286,7 +318,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4" id="seleccione_equipo">
+                <div class="col-md-4">
                     <label class="form-label" for="ayuda_mecanica">Seleccione el equipo</label>
                     <select class="form-select" aria-label="Default select example" name="ayuda_mecanica"
                         required>
@@ -297,10 +329,16 @@
                         <option value="OTROS">OTROS</option>
                     </select>
                 </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="TieneApoderado">Tiene algún apoderado o representante?</label>
+                    <select id="TieneApoderado" class="form-select">
+                        <option value="NO" default>NO</option>
+                        <option value="SI">SI</option>
+                    </select>
+                </div>
             </div>
             <hr>
-            <div class="row">
-                
+            <div class="row" id="DatosApoderado" hidden>
                 <h5>Datos del Apoderado</h5>
                 <div class="col-md-6">
                     <label class="form-label" for="nombre_apoderado">Nombre completo de apoderado</label>
@@ -332,6 +370,7 @@
                     <label class="form-label" for="parentesco">Parentesco de Apoderado</label>
                     <select class="form-select" aria-label="Default select example" name="parentesco"
                         required>
+                        <option value="PADRE">--</option>
                         <option value="PADRE">PADRE</option>
                         <option value="MADRE">MADRE</option>
                         <option value="TIO">TIO(a)</option>
@@ -343,38 +382,15 @@
                 <div class="col-md-4">
                     <label class="form-label" for="correo_apoderado">Correo apoderado</label>
                     <input class="form-control" type="email" name="correo_apoderado" id="correo_apoderado"
-                        placeholder="Correo de apoderado...">
+                    placeholder="Correo de apoderado...">
                 </div>
+                
                 <div class="col-md-4">
                     <label class="form-label" for="telefono_apoderado">Teléfono apoderado</label>
                     <input class="form-control" type="number" name="telefono_apoderado" id="telefono_apoderado"
                         placeholder="Teléfono de apoderado...">
                 </div>
-                <div class="col-md-4">
-                <label class="form-label" for="seguro_salud">¿Cuenta con seguro de salud?</label>
-                <div class="form-check form-check-inline">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="seguro_salud"
-                            id="flg_carnet_didRadio1" value="SI" checked>
-                        <label class="form-check-label" for="inlineRadio1">SÍ</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="seguro_salud"
-                            id="flg_carnet_didRadio2" value="NO">
-                        <label class="form-check-label" for="inlineRadio2">NO</label>
-                    </div>
-                </div>
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label" for="tipo_seguro">Tipo de seguro</label>
-                    <select class="form-select" aria-label="Default select example" name="tipo_seguro">
-                        <option selected>Seleccione el tipo</option>
-                        <option value="SIS">SIS</option>
-                        <option value="ESSALUD">EsSalud</option>
-                        <option value="EPS">Empresas prestadoras de Salud(EPS)</option>
-                        <option value="OTRO">Otro</option>
-                    </select>
-                </div>
+                
                 
                 <div class="col-md-4">
                     <label class="form-label" for="fecha_empadronamiento">fecha de empadronamiento</label>

@@ -1,3 +1,11 @@
+$("#TieneApoderado").on('change', function() {
+    if ($(this).val()=='SI') {
+        $("#DatosApoderado").attr('hidden',false);
+    }else{
+        $("#DatosApoderado").attr('hidden',true);
+    }
+});
+
 distritos={}
 $.ajax({
     type: "GET",

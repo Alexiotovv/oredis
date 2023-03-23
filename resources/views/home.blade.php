@@ -29,7 +29,7 @@
                         <p class="wow fadeInDown" data-wow-delay="1s">
                             {{$obj->pie_banner}}
                         </p>
-                        <a href="contact.html" class="main-btn arrow-btn wow fadeInUp" data-wow-delay=".5s">Acceder</a>
+                        <a href="#" id="btnLogin2" class="main-btn arrow-btn wow fadeInUp" data-wow-delay=".5s">Acceder</a>
                     </div>
                 </div>
             </div>
