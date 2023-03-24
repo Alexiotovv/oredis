@@ -58,31 +58,38 @@
                         </div>
 
                     </div>
-                    
-
                     <label for="">Comentarios</label>
                     <textarea name="comentarios" id="comentarios" cols="30" rows="10" class="form-control" style="height: 60px;"></textarea>
+
                     </div>
-                    <button class="btn btn-success" id="btnGuardarVisita" type="submit">Guardar Visita</button>
+                    <div class="col-md-12">
+                        <br>
+                        <button class="btn btn-success" id="btnGuardarVisita" type="submit" style="width:100%">Guardar Visita</button>
+                    </div>
                 </form>
             </div>
         </div>
                 
-        <div class="row">
+
             {{-- <iframe src="" 
             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade" id="mapa"></iframe> --}}
-            <div class="col-md-12" style="margin-left: 15px;padding-right:15px;">
-                <div id="map" style="height: 300px;"></div>
-            </div>
+           
 
             {{-- <div class="col-md-12">
                 <div id="mapita" style="width: 100%;height: 350px;"></div>
             </div> --}}
 
 
-        </div>    
+     
     </form>
+    <div class="row">
+        <div class="col-md-12" style="padding-left: 30px;padding-right:30px;">
+            <div id="map" style="height: 400px;"></div>
+            <br><br><br>
+        </div>
+        
+    </div>
 @endsection
 
 @section('extra_js')
@@ -90,7 +97,6 @@
     <script src="app_js/visitas.js"></script>
     {{-- <script src="https://maps.googleapis.com/maps/api/js?key=&callback=iniciarMapa"></script> --}}
     
-
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
      crossorigin=""></script>
