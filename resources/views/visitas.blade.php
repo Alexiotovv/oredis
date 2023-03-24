@@ -83,9 +83,6 @@
 
         </div>    
     </form>
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-    crossorigin=""></script>
 @endsection
 
 @section('extra_js')
