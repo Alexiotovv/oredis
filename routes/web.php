@@ -42,68 +42,68 @@ Route::get('/home',[paginasController::class, 'home'])->name('home');
 Route::get('/direcciones',[paginasController::class, 'direcciones'])->name('direcciones');
 // Route::get('/misionvision',[paginasController::class, 'misionvision'])->name('misionvision');
 // Route::get('pagpublicaciones',[paginasController::class, 'pagpublicaciones'])->name('pagpublicaciones');
-Route::get('/paneladmin',[paginasController::class, 'paneladmin'])->name('paneladmin');
+Route::get('/paneladmin',[paginasController::class, 'paneladmin'])->middleware(['auth'])->name('paneladmin');
 //Apps
 // Route::get('/appPublicaciones',[PublicacionesController::class, 'index'])->name('appPublicaciones');
 
 Route::get('obtenerdistritos',[UbigeosController::class, 'show'])->name('obtener.distritos');
 
 //Discapacitado
-Route::get('CreateDiscapacitados',[DiscapacitadosController::class, 'create'])->name('Create.Discapacitados');
-Route::post('guardardiscapacitado',[DiscapacitadosController::class, 'store'])->name('guardar.discapacitado');
-Route::post('actualizardiscapacitado',[DiscapacitadosController::class, 'update'])->name('actualizar.discapacitado');
-Route::get('msjeregistrodiscapacitados',[DiscapacitadosController::class, 'mensaje'])->name('msjeregistro.discapacitados');
-Route::get('consultadni/{dni}',[DiscapacitadosController::class, 'consultadni'])->name('consulta.dni');
-Route::get('editardiscapacitado/{id}',[DiscapacitadosController::class, 'edit'])->name('editar.discapacitado');
-Route::get('editarpersonas',[DiscapacitadosController::class, 'editarpersonas'])->name('editar.personas');
+Route::get('CreateDiscapacitados',[DiscapacitadosController::class, 'create'])->middleware(['auth'])->name('Create.Discapacitados');
+Route::post('guardardiscapacitado',[DiscapacitadosController::class, 'store'])->middleware(['auth'])->name('guardar.discapacitado');
+Route::post('actualizardiscapacitado',[DiscapacitadosController::class, 'update'])->middleware(['auth'])->name('actualizar.discapacitado');
+Route::get('msjeregistrodiscapacitados',[DiscapacitadosController::class, 'mensaje'])->middleware(['auth'])->name('msjeregistro.discapacitados');
+Route::get('consultadni/{dni}',[DiscapacitadosController::class, 'consultadni'])->middleware(['auth'])->name('consulta.dni');
+Route::get('editardiscapacitado/{id}',[DiscapacitadosController::class, 'edit'])->middleware(['auth'])->name('editar.discapacitado');
+Route::get('editarpersonas',[DiscapacitadosController::class, 'editarpersonas'])->middleware(['auth'])->name('editar.personas');
 
-Route::get('informacioncompleta/{id}',[DiscapacitadosController::class, 'show'])->name('informacion.completa');
+Route::get('informacioncompleta/{id}',[DiscapacitadosController::class, 'show'])->middleware(['auth'])->name('informacion.completa');
 //End Discapacitado
 
 //direcciones
-Route::post('guardardireccion',[DireccionesController::class, 'store'])->name('guardar.direccion');
-Route::post('actualizardireccion',[DireccionesController::class, 'update'])->name('actualizar.direccion');
-Route::get('obtenerdirecciones/{idPersona}',[DireccionesController::class, 'show'])->name('obtener.direcciones');
-Route::get('editardireccion/{id}',[DireccionesController::class, 'edit'])->name('editar.direccion');
+Route::post('guardardireccion',[DireccionesController::class, 'store'])->middleware(['auth'])->name('guardar.direccion');
+Route::post('actualizardireccion',[DireccionesController::class, 'update'])->middleware(['auth'])->name('actualizar.direccion');
+Route::get('obtenerdirecciones/{idPersona}',[DireccionesController::class, 'show'])->middleware(['auth'])->name('obtener.direcciones');
+Route::get('editardireccion/{id}',[DireccionesController::class, 'edit'])->middleware(['auth'])->name('editar.direccion');
 
 
-Route::get('obtenerdistusuarios/{id}',[UserController::class, 'obtenerdistusuarios'])->name('obtenerdist.usuarios');
+Route::get('obtenerdistusuarios/{id}',[UserController::class, 'obtenerdistusuarios'])->middleware(['auth'])->name('obtenerdist.usuarios');
 //end direcciones
 
 
 //contenido portal
-Route::get('editarcontenido',[ContenidosController::class,'edit'])->name('editar.contenido');
-Route::post('actualizarcontenido',[ContenidosController::class,'update'])->name('actualizar.contenido');
+Route::get('editarcontenido',[ContenidosController::class,'edit'])->middleware(['auth'])->name('editar.contenido');
+Route::post('actualizarcontenido',[ContenidosController::class,'update'])->middleware(['auth'])->name('actualizar.contenido');
 //end contenido portal
 
 //visitas
-Route::get('registrarvisita',[VisitasController::class, 'create'])->name('registrar.visita');
-Route::get('obtenerdireccion/{dni}',[VisitasController::class, 'show'])->name('obtener.direccion');
-Route::post('guardarvisita',[VisitasController::class, 'store'])->name('guardar.visita');
+Route::get('registrarvisita',[VisitasController::class, 'create'])->middleware(['auth'])->name('registrar.visita');
+Route::get('obtenerdireccion/{dni}',[VisitasController::class, 'show'])->middleware(['auth'])->name('obtener.direccion');
+Route::post('guardarvisita',[VisitasController::class, 'store'])->middleware(['auth'])->name('guardar.visita');
 
-Route::get('reportevisitas',[ReportesController::class, 'index'])->name('reporte.visitas');
-Route::post('obtenervisitas',[ReportesController::class, 'obtenervisitas'])->name('obtener.visitas');
+Route::get('reportevisitas',[ReportesController::class, 'index'])->middleware(['auth'])->name('reporte.visitas');
+Route::post('obtenervisitas',[ReportesController::class, 'obtenervisitas'])->middleware(['auth'])->name('obtener.visitas');
 
-Route::get('reportebeneficiario',[ReportesController::class, 'indexbeneficiario'])->name('reporte.beneficiario');
-Route::post('obtenerbeneficiario',[ReportesController::class, 'obtenerbeneficiario'])->name('obtener.beneficiario');
+Route::get('reportebeneficiario',[ReportesController::class, 'indexbeneficiario'])->middleware(['auth'])->name('reporte.beneficiario');
+Route::post('obtenerbeneficiario',[ReportesController::class, 'obtenerbeneficiario'])->middleware(['auth'])->name('obtener.beneficiario');
 
 
 //Noticias
 Route::get('noticias',[NoticiasController::class, 'index'])->name('noticias');
 Route::get('shownoticias',[NoticiasController::class, 'show'])->name('show.noticias');
-Route::get('editnoticia/{id}',[NoticiasController::class, 'edit'])->name('edit.noticia');
-Route::post('updatenoticia',[NoticiasController::class, 'update'])->name('update.noticia');
+Route::get('editnoticia/{id}',[NoticiasController::class, 'edit'])->middleware(['auth'])->name('edit.noticia');
+Route::post('updatenoticia',[NoticiasController::class, 'update'])->middleware(['auth'])->name('update.noticia');
 Route::get('noticia_independiente/{id}',[NoticiasController::class, 'noticia_independiente'])->name('noticia_independiente');
-Route::get('createnoticia',[NoticiasController::class, 'create'])->name('create.noticia');
-Route::post('storenoticia',[NoticiasController::class, 'store'])->name('store.noticia');
-Route::get('destroynoticia/{id}',[NoticiasController::class, 'destroy'])->name('destroy.noticia');
+Route::get('createnoticia',[NoticiasController::class, 'create'])->middleware(['auth'])->name('create.noticia');
+Route::post('storenoticia',[NoticiasController::class, 'store'])->middleware(['auth'])->name('store.noticia');
+Route::get('destroynoticia/{id}',[NoticiasController::class, 'destroy'])->middleware(['auth'])->name('destroy.noticia');
 
 Route::get('noticia/bannermodal/{id}/estado/{valor}',[NoticiasController::class, 'bannermodal'])->name('noticia.bannermodal');
 
-Route::post('CreatePublicaciones',[PublicacionesController::class, 'create'])->name('Create.Publicaciones');
-Route::get('CrearPublicaciones',[PublicacionesController::class, 'CrearPublicaciones'])->name('Crear.Publicaciones');
-Route::post('ActualizarPublicaciones',[PublicacionesController::class, 'ActualizarPublicaciones'])->name('Actualizar.Publicaciones');
-Route::get('EditarPublicaciones/{id}',[PublicacionesController::class, 'EditarPublicaciones'])->name('Editar.Publicaciones');
+Route::post('CreatePublicaciones',[PublicacionesController::class, 'create'])->middleware(['auth'])->name('Create.Publicaciones');
+Route::get('CrearPublicaciones',[PublicacionesController::class, 'CrearPublicaciones'])->middleware(['auth'])->name('Crear.Publicaciones');
+Route::post('ActualizarPublicaciones',[PublicacionesController::class, 'ActualizarPublicaciones'])->middleware(['auth'])->name('Actualizar.Publicaciones');
+Route::get('EditarPublicaciones/{id}',[PublicacionesController::class, 'EditarPublicaciones'])->middleware(['auth'])->name('Editar.Publicaciones');
 Route::get('appListPublicaciones',[PublicacionesController::class, 'ListarPublicaciones'])->name('appList.Publicaciones');
 
 
@@ -117,11 +117,11 @@ Route::post("verificanombre",[UserController::class,'verificanombre'])->name('ve
 Route::post("verificaemail",[UserController::class,'verificaemail'])->name('verificaemail');
 Route::post("login",[LoginController::class, 'login']);
 Route::put('login', [LoginController::class, 'logout']);
-Route::get("Usuarios",[UserController::class, "Usuarios"])->name('Usuarios');
-Route::post("ActualizaUsuario",[UserController::class, "ActualizaUsuario"])->name('Actualiza.Usuario');
-Route::get("EditarUsuario/{id}",[UserController::class, "EditarUsuario"])->name('Editar.Usuario');
-Route::get("ListarUsuarios",[UserController::class, "ListarUsuarios"])->name('Listar.Usuarios');
-Route::post("ActualizaContrasena",[UserController::class, "ActualizaContrasena"])->name('Actualiza.Contrasena');
+Route::get("Usuarios",[UserController::class, "Usuarios"])->middleware(['auth'])->name('Usuarios');
+Route::post("ActualizaUsuario",[UserController::class, "ActualizaUsuario"])->middleware(['auth'])->name('Actualiza.Usuario');
+Route::get("EditarUsuario/{id}",[UserController::class, "EditarUsuario"])->middleware(['auth'])->name('Editar.Usuario');
+Route::get("ListarUsuarios",[UserController::class, "ListarUsuarios"])->middleware(['auth'])->name('Listar.Usuarios');
+Route::post("ActualizaContrasena",[UserController::class, "ActualizaContrasena"])->middleware(['auth'])->name('Actualiza.Contrasena');
 //END USUARIOS
 
 

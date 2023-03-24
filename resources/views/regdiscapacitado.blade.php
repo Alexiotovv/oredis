@@ -245,9 +245,10 @@
                     <label class="form-label" for="flag_certifi_discapacidad">¿Cuenta con certificado de
                         discapacidad?</label>
                     <select class="form-select" aria-label="Default select example"
-                        name="flag_certifi_discapacidad">
-                        <option value="SI" selected>SÍ</option>
-                        <option value="NO">NO</option>
+                        name="flag_certifi_discapacidad" id="flag_certifi_discapacidad">
+                        <option value="--">--</option>
+                        <option value="SI">SÍ</option>
+                        <option value="NO" selected>NO</option>
                     </select>
                 </div>
                 <div class="col-md-4">
@@ -363,12 +364,12 @@
                 </div>
                 <div class="col-md-4">
                     <label class="form-label" for="direccion_apoderado">Dirección de apoderado</label>
-                    <input class="form-control" type="text" name="direccion_apoderado"
+                    <input class="form-control" type="text" name="direccion_apoderado" id="direccion_apoderado"
                         placeholder="Dirección de apoderado...">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label" for="parentesco">Parentesco de Apoderado</label>
-                    <select class="form-select" aria-label="Default select example" name="parentesco"
+                    <select class="form-select" aria-label="Default select example" name="parentesco" id="parentesco"
                         required>
                         <option value="PADRE">--</option>
                         <option value="PADRE">PADRE</option>

@@ -40,17 +40,17 @@
                             <a class="btn btn-primary" id="ObtenerUbicacion"><i class="lni lni-map-marker"></i></a>
                             <a class="btn btn-danger" id="IngresarManualUbicacion"><i class="lni lni-pencil-alt"></i></a>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="">Latitud</label>
                             <input type="text" class="form-control" id="latitud" name="latitud" readonly>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                             <label for="">Longitud</label>
                             <input type="text" class="form-control" id="longitud" name="longitud" readonly>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3" hidden>
                             <label for="">Altitud</label>
-                            <input type="text" class="form-control" id="altitud" name="altitud" readonly>
+                            <input type="text" class="form-control" id="altitud" name="altitud" hidden readonly>
                         </div>
 
                     </div>
@@ -65,9 +65,12 @@
         </div>
                 
         <div class="row">
-            <iframe src="" 
+            {{-- <iframe src="" 
             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade" id="mapa"></iframe>
+            referrerpolicy="no-referrer-when-downgrade" id="mapa"></iframe> --}}
+            <div class="col-md-12">
+                <div id="mapa" style="width: 100%;height: 350px;"></div>
+            </div>
         </div>    
     </form>
 
@@ -76,6 +79,8 @@
 @section('extra_js')
     <script src="app_js/crud.js"></script>
     <script src="app_js/visitas.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=iniciarMapa"></script>
+    {{-- <script src="https://maps.googleapis.com/maps/api/js"></script> --}}
     <script src="assets/js/widgets.js"></script>
     <script>
         var fecha = new Date();

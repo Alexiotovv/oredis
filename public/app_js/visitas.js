@@ -27,13 +27,46 @@ $("#btnBuscarDireccion").on("click",function (e){
             $("#Direccion").val(response[0].direccion+ ' '+response[0].numero);
             $("#idDireccion").val(response[0].idDireccion);
         },
-        
     });
 })
 
+function iniciarMapa(lati,longi) { 
+    var latitud = -3.7510642;
+    var longitud = -73.2630891;
+    if (lati=='' && longi=='') {
+        latitud=lati
+        longitud=longi
+    }
+    
+    coordenadas={
+        lng: longitud,
+        lat: latitud
+    }
+    generarMapa(coordenadas)
+ }
+
+function generarMapa(coordenadas) { 
+    var mapa = new google.maps.Map(
+        document.getElementById('mapa'),
+        {
+            zoom: 18,
+            center: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+        }
+    );
+    marcador = new google.maps.Marker({
+        map:mapa,
+        draggable: true,
+        position: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+    });
+    marcador.addListener('dragend',function (event) { 
+        document.getElementById("latitud").value = this.getPosition().lat();
+        document.getElementById("longitud").value = this.getPosition().lng();
+    });
+
+}
+
 
 $("#ObtenerUbicacion").on("click",function (e) {
-
     e.preventDefault();
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(posicion,error,options);
@@ -41,6 +74,7 @@ $("#ObtenerUbicacion").on("click",function (e) {
     }else{
         alert("No puedes acceder a la ubicación");
     }
+
 });
 
 var options={
@@ -53,23 +87,43 @@ function error(err){
     alert(err);
 }
 
+
 function posicion(geolocationPosition) {  
     let coords=geolocationPosition.coords;
     $("#latitud").val(coords.latitude);
     $("#longitud").val(coords.longitude);
-    $("#altitud").val(coords.altitude);
+    // $("#altitud").val(coords.altitude);
     $("#latitud").prop('readonly',true);
     $("#longitud").prop('readonly',true);
-    $("#altitud").prop('readonly',true);
 
-    src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d591.8374011667854!2d"+ coords.longitude +"!3d"+ coords.latitude +"!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1677511264404!5m2!1ses-419!2spe";
-    $("#mapa").attr("src",src);
+    // $("#altitud").prop('readonly',true);
+        
+        // "https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d497.6434321545103!2d-73.27377632106065!3d-3.7780779910876934      !3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1679600481647!5m2!1ses-419!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    // src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d995.6434321545103!2d"+ coords.longitude +"!3d"+ coords.latitude +"!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1679600481647!5m2!1ses-419!2spe";
+    // $("#mapa").attr("src",src);
+
+    iniciarMapa(coords.latitude, coords.longitude);
     
 }
+
+function initMap() {
+    navigator.geolocation.getCurrentPosition(function(pos) {
+      // Creamos un objeto mapa y lo situamos en coordenadas actuales
+     var map = new google.maps.Map(document.getElementById('mapa'),
+     {
+       center: {lat: pos.coords.latitude, lng: pos.coords.longitude},
+       scrollwheel: false,
+       zoom: 8
+      }
+     );
+    })
+   }
+
+
 
 $("#IngresarManualUbicacion").on("click",function (e) {
     $("#latitud").prop('readonly',false);
     $("#longitud").prop('readonly',false);
-    $("#altitud").prop('readonly',false);
+    // $("#altitud").prop('readonly',false);
     $("#latitud").focus();
 });
