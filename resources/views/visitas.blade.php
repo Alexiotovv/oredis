@@ -1,5 +1,9 @@
 @extends('layouts.panel')
-
+@section('extra_css')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+@endsection
 @section('content')
 
     <h5><a href="/home">Inicio / </a><a href="paneladmin">Panel Admin / </a><a href="">Formulario de Visitas</a></h5>
@@ -68,19 +72,32 @@
             {{-- <iframe src="" 
             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade" id="mapa"></iframe> --}}
-            <div class="col-md-12">
-                <div id="mapa" style="width: 100%;height: 350px;"></div>
+            <div class="col-md-12" style="margin-left: 15px;padding-right:15px;">
+                <div id="map" style="height: 300px;"></div>
             </div>
+
+            {{-- <div class="col-md-12">
+                <div id="mapita" style="width: 100%;height: 350px;"></div>
+            </div> --}}
+
+
         </div>    
     </form>
-
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+    crossorigin=""></script>
 @endsection
 
 @section('extra_js')
     <script src="app_js/crud.js"></script>
     <script src="app_js/visitas.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=iniciarMapa"></script>
-    {{-- <script src="https://maps.googleapis.com/maps/api/js"></script> --}}
+    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=&callback=iniciarMapa"></script> --}}
+    
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+    
     <script src="assets/js/widgets.js"></script>
     <script>
         var fecha = new Date();

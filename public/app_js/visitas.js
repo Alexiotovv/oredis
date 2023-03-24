@@ -102,22 +102,23 @@ function posicion(geolocationPosition) {
     // src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d995.6434321545103!2d"+ coords.longitude +"!3d"+ coords.latitude +"!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1679600481647!5m2!1ses-419!2spe";
     // $("#mapa").attr("src",src);
 
-    iniciarMapa(coords.latitude, coords.longitude);
-    
-}
+    var map = L.map('map').setView([coords.latitude,coords.longitude], 16);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 25,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
 
-function initMap() {
-    navigator.geolocation.getCurrentPosition(function(pos) {
-      // Creamos un objeto mapa y lo situamos en coordenadas actuales
-     var map = new google.maps.Map(document.getElementById('mapa'),
-     {
-       center: {lat: pos.coords.latitude, lng: pos.coords.longitude},
-       scrollwheel: false,
-       zoom: 8
-      }
-     );
-    })
-   }
+    var marker = L.marker([coords.latitude,coords.longitude],{draggable: true}).addTo(map);
+    
+    marker.on("drag", function () { 
+        $("#latitud").val(marker.getLatLng().lat);
+        $("#longitud").val(marker.getLatLng().lng);
+     });
+}
+// getLatLng() devuelve la posición del marcador
+
+    
+
 
 
 

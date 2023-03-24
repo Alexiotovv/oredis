@@ -33,6 +33,7 @@
 	<script src="https://unpkg.com/feather-icons"></script>
 	<link href="/..assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 
+
     @yield('extra_css')
 	<title>Panel Administración</title>
 </head>
