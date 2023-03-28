@@ -10,6 +10,16 @@ $.ajax({
     }
 });
 
+$(document).on("click",".btnEliminarSocio",function (e) { 
+    e.preventDefault();
+    fila = $(this).closest("tr");
+    id = (fila).find('td:eq(0)').text();
+    ru="/socios/destroy/"+id;
+    mje="Socio Eliminado";
+    dt="#DTListaSocios";
+    ru_despues="";
+    EliminarRegistro(ru,mje,dt,ru_despues)
+ })
 
 $(document).on("click",".btnEditarSocio",function (e) { 
     e.preventDefault();

@@ -104,8 +104,11 @@ class AsociacionessociosController extends Controller
      * @param  \App\Models\asociacionessocios  $asociacionessocios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(asociacionessocios $asociacionessocios)
+    public function destroy($id)
     {
-        //
+        $obj = asociacionessocios::findOrFail($id);
+        $obj->delete();
+        $data=['Msje'=>'ok'];
+        return response()->json($data);
     }
 }

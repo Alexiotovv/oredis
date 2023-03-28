@@ -65,6 +65,7 @@ Route::post('/socios/store',[AsociacionessociosController::class, 'store'])->nam
 Route::get('/socios/show/{id}',[AsociacionessociosController::class, 'show'])->name('socios.show');
 Route::get('/socios/edit/{id}',[AsociacionessociosController::class, 'edit'])->name('socios.edit');
 Route::post('/socios/update',[AsociacionessociosController::class, 'update'])->name('socios.update');
+Route::get('/socios/destroy/{id}',[AsociacionessociosController::class, 'destroy'])->name('socios.destroy');
 //end socios
 
 //Discapacitado
