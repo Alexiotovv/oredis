@@ -124,4 +124,9 @@ class UserController extends Controller
         ->get();
         return response()->json($dist);
     }
+
+    public function ManualUsuario(Request $request)
+    {
+        
+    }
 }

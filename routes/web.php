@@ -51,6 +51,7 @@ Route::get('/paneladmin',[paginasController::class, 'paneladmin'])->middleware([
 Route::get('/obtenerdistritos',[UbigeosController::class, 'show'])->name('obtener.distritos');
 
 
+
 //asociaciones
 Route::get('/asociaciones/index',[AsociacionesController::class, 'index'])->name('asociaciones.index');
 Route::get('/asociaciones/show',[AsociacionesController::class, 'show'])->name('asociaciones.show');

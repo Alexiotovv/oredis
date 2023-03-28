@@ -129,19 +129,22 @@
                         @endif
 
                     </ul>
+                    
                 @endauth
             @endif
             <!--end navigation-->
+            
         </div>
         <!--end sidebar wrapper -->
         <!--start header -->
         <header>
             <div class="topbar d-flex align-items-center">
+                
                 <nav class="navbar navbar-expand">
                     <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
                     </div>
                     <div class="top-menu-left d-none d-lg-block">
-
+                        <a href="https://oredis.regionloreto.gob.pe/manualdeusuariov1.0.pdf" download="" target="_blank">Manual de Usuario<i class='bx bx-download'></i></a>
                     </div>
 
 
@@ -491,6 +494,8 @@
         <footer class="page-footer">
             <p class="mb-0">Copyright © 2023. All right reserved.</p>
         </footer>
+
+
     </div>
     <!--end wrapper-->
 
