@@ -202,9 +202,14 @@ $("#dni_apoderado").on("keyup",function (e) {
     }
 });
 
+
 $("#ocupacion").on("keyup",function (){
     $("#ocupacion").val($("#ocupacion").val().toUpperCase());    
-})
+});
+
+
+
+
 var fecha = new Date();
 document.getElementById("fecha_empadronamiento").value = fecha.toJSON().slice(0, 10);
 document.getElementById("fecha_nacimiento").value = fecha.toJSON().slice(0, 10);

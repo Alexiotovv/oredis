@@ -59,6 +59,8 @@ class ReportesController extends Controller
         ->get();
         return view('reportebeneficiario',compact('distritos','personas'));
     }
+
+
     public function obtenerbeneficiario(Request $request){
         $distrito=request('distrito');
         $distrito_corresponde=DB::table('users')->where('users.id','=',auth()->user()->id)->get();
@@ -67,11 +69,17 @@ class ReportesController extends Controller
         $distritos=DB::table('ubigeos')->whereIn('ubigeos.id',json_decode($distrito_corresponde[0]->zona_dist))->select('ubigeos.distrito','ubigeos.id','ubigeos.ubigeo_distrito')->get();
         // dd($distritos);
         // $distritos=$distrito_corresponde[0];
+        
+        // $todos=request("todos");
+        // if ($todos) {
+            
+        // }
+        
         $personas=DB::table('discapacitados')
         ->leftjoin('direcciones','direcciones.disc_id','=','discapacitados.id')
         ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
         ->where('discapacitados.delete','=',0)
-        ->where('ubigeos.id','=',$distrito)
+        ->whereIn('ubigeos.id',$distrito)
         ->select('ubigeos.distrito','discapacitados.nombre',
         'discapacitados.apellido_paterno',
         'discapacitados.apellido_materno',
@@ -103,6 +111,8 @@ class ReportesController extends Controller
         'discapacitados.fecha_empadronamiento',
         'discapacitados.flg_carnet_did')
         ->get();
+
+
         return view('reportebeneficiario',compact('distritos','personas'));
     }
 

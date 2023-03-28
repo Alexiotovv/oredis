@@ -6,32 +6,32 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
     <link rel="stylesheet" href="../assets/plugins/notifications/css/lobibox.min.css" />
-	<link href="../assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-	<link href="../assets/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
+	<link href="../../../assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
+	<link href="../../../assets/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
 	<!--favicon-->
-	<link rel="icon" href="/assets/images/favicon-32x32.png" type="image/png" />
+	<link rel="icon" href="../../../assets/images/favicon-32x32.png" type="image/png" />
 	<!--plugins-->
-	<link href="../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
-	<link href="../assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+	<link href="../../../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+	<link href="../../../assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
 	{{-- <link href="/assets/plugins/highcharts/css/highcharts.css" rel="stylesheet" />
 	<link href="/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" /> --}}
-	<link href="../assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+	<link href="../../../assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
 	<!-- loader-->
-	<link href="../assets/css/pace.min.css" rel="stylesheet" />
-	<script src="../assets/js/pace.min.js"></script>
+	<link href="../../../assets/css/pace.min.css" rel="stylesheet" />
+	<script src="../../../assets/js/pace.min.js"></script>
 	<!-- Bootstrap CSS -->
-	<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../assets/css/bootstrap-extended.css" rel="stylesheet">
+	<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../assets/css/bootstrap-extended.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-	<link href="../assets/css/app.css" rel="stylesheet">
-	<link href="../assets/css/icons.css" rel="stylesheet">
+	<link href="../../../assets/css/app.css" rel="stylesheet">
+	<link href="../../../assets/css/icons.css" rel="stylesheet">
 	<!-- Theme Style CSS -->
-	<link rel="stylesheet" href="../assets/css/dark-theme.css" />
-	<link rel="stylesheet" href="../assets/css/semi-dark.css" />
-	<link rel="stylesheet" href="../assets/css/header-colors.css" />
-	<link href="./assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../../../assets/css/dark-theme.css" />
+	<link rel="stylesheet" href="../../../assets/css/semi-dark.css" />
+	<link rel="stylesheet" href="../../../assets/css/header-colors.css" />
+	<link href="../../../assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 	<script src="https://unpkg.com/feather-icons"></script>
-	<link href="/..assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+	<link href="../../../assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 
 
     @yield('extra_css')
@@ -108,6 +108,22 @@
                                     </li>
                                     <li><a href="{{route('create.noticia')}}"><i class="bx bx-user"></i>Registrar Noticia</a>
                                     </li>
+                                </ul>
+                            </li>
+                            
+                            <li>
+                                <a href="javascript:;" class="has-arrow">
+                                    <div class="parent-icon"><i class='bx bx-cog' ></i>
+                                    </div>
+                                    <div class="menu-title">Asociaciones</div>
+                                </a>
+                                <ul>
+                                    <li><a href="{{route('asociaciones.index')}}"><i class="bx bx-user"></i>Listar Asociaciones</a>
+                                    </li>
+                                    {{-- <li><a href="{{route('noticias')}}"><i class="bx bx-user"></i></a>
+                                    </li>
+                                    <li><a href="{{route('create.noticia')}}"><i class="bx bx-user"></i>Registrar Noticia</a>
+                                    </li> --}}
                                 </ul>
                             </li>
                         @endif
@@ -503,9 +519,9 @@
 	<!--app JS-->
 	<script src="../assets/js/app.js"></script>
 
-	<script src="../assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-	<script src="../assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
-	<script src="../assets/plugins/select2/js/select2.min.js"></script>
+	<script src="../../../assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+	<script src="../../../assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+	<script src="../../../assets/plugins/select2/js/select2.min.js"></script>
 	<!--notification js -->
 	<script src="..assets/plugins/notifications/js/lobibox.min.js"></script>
 	<script src="..assets/plugins/notifications/js/notifications.min.js"></script>

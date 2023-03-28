@@ -27,7 +27,6 @@ function GuardarRegistro(ds,ru,mje,dt){
                 }else{
                     $(dt).DataTable().ajax.reload();
                 }
-                    
                 
             },
             error: function(response) {
@@ -39,7 +38,7 @@ function GuardarRegistro(ds,ru,mje,dt){
 };
 
 ///FUNCION ELIMINAR REGISTRO
-function EliminarRegistro(ru,mje,ru_despues){
+function EliminarRegistro(ru,mje,dt,ru_despues){
   Swal.fire({
       title: 'Estás seguro?', text: "Confirma para poder eliminar el registro!",
       icon: 'Mensaje', showCancelButton: true, confirmButtonColor: '#3085d6',
@@ -60,7 +59,11 @@ function EliminarRegistro(ru,mje,ru_despues){
                     if (ru_despues!=='') {
                         setTimeout( function() { window.location.href = ru_despues }, 1500 );
                     }
-                //   $(dt).DataTable().ajax.reload();
+                    if (dt=='') {
+                        //No hace nada
+                    }else{
+                        $(dt).DataTable().ajax.reload();
+                    }
               },
               error: function(response) {
                   Swal.fire('OPS!', 'Hubo un error!', 'error');

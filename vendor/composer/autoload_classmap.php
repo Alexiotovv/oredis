@@ -8,7 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
-    'App\\Http\\Controllers\\BannermodalController' => $baseDir . '/app/Http/Controllers/BannermodalController.php',
+    'App\\Http\\Controllers\\AsociacionesController' => $baseDir . '/app/Http/Controllers/AsociacionesController.php',
     'App\\Http\\Controllers\\ContenidosController' => $baseDir . '/app/Http/Controllers/ContenidosController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\DireccionesController' => $baseDir . '/app/Http/Controllers/DireccionesController.php',
@@ -33,6 +33,8 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
+    'App\\Models\\asociaciones' => $baseDir . '/app/Models/asociaciones.php',
+    'App\\Models\\asociacionessocios' => $baseDir . '/app/Models/asociacionessocios.php',
     'App\\Models\\bannermodals' => $baseDir . '/app/Models/bannermodals.php',
     'App\\Models\\contenidos' => $baseDir . '/app/Models/contenidos.php',
     'App\\Models\\direcciones' => $baseDir . '/app/Models/direcciones.php',

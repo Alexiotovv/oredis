@@ -12,6 +12,8 @@ use App\Http\Controllers\VisitasController;
 use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\NoticiasController;
 use App\Http\Controllers\ContenidosController;
+use App\Http\Controllers\AsociacionesController;
+use App\Http\Controllers\AsociacionessociosController;
 
 // use App\Http\Controllers\UserController;
 Route::get('/storage-link', function () {
@@ -46,7 +48,24 @@ Route::get('/paneladmin',[paginasController::class, 'paneladmin'])->middleware([
 //Apps
 // Route::get('/appPublicaciones',[PublicacionesController::class, 'index'])->name('appPublicaciones');
 
-Route::get('obtenerdistritos',[UbigeosController::class, 'show'])->name('obtener.distritos');
+Route::get('/obtenerdistritos',[UbigeosController::class, 'show'])->name('obtener.distritos');
+
+
+//asociaciones
+Route::get('/asociaciones/index',[AsociacionesController::class, 'index'])->name('asociaciones.index');
+Route::get('/asociaciones/show',[AsociacionesController::class, 'show'])->name('asociaciones.show');
+Route::post('/asociaciones/store',[AsociacionesController::class, 'store'])->name('asociaciones.store');
+Route::post('/asociaciones/update',[AsociacionesController::class, 'update'])->name('asociaciones.update');
+Route::get('/asociaciones/destroy/{id}',[AsociacionesController::class, 'destroy'])->name('asociaciones.destroy');
+Route::get('/asociaciones/edit/{id}',[AsociacionesController::class, 'edit'])->name('asociaciones.edit');
+//end asociaciones
+
+//socios
+Route::post('/socios/store',[AsociacionessociosController::class, 'store'])->name('socios.store');
+Route::get('/socios/show/{id}',[AsociacionessociosController::class, 'show'])->name('socios.show');
+Route::get('/socios/edit/{id}',[AsociacionessociosController::class, 'edit'])->name('socios.edit');
+Route::post('/socios/update',[AsociacionessociosController::class, 'update'])->name('socios.update');
+//end socios
 
 //Discapacitado
 Route::get('CreateDiscapacitados',[DiscapacitadosController::class, 'create'])->middleware(['auth'])->name('Create.Discapacitados');

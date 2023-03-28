@@ -7,9 +7,14 @@
         {{-- method="POST" action="{{route('registrar.visita')}}" --}}
         @csrf
         <div class="row">
-            <div class="col-md-4">
-                <label for="">Seleccione un Distrito</label>
-                <select name="distrito" id="distrito" class="form-select">
+            <div class="col-md-8">
+                {{-- <div class="form-check form-switch"> --}}
+                    <label class="form-check-label" for="chkDistrito">Seleccione uno o varios Distritos</label>
+                    {{-- <input class="form-check-input chkDistrito" type="checkbox" id="chkDistrito" name="chkDistrito"> --}}
+                    
+                {{-- </div> --}}
+                
+                <select id="distrito" name="distrito[]" class="multiple-select" multiple="multiple">
                     @foreach ($distritos as $dist)
                         <option value="{{$dist->id}}">{{$dist->ubigeo_distrito}}-{{$dist->distrito}}</option>
                     @endforeach
@@ -26,7 +31,8 @@
             </div>
         </div>    
     </form>
-    
+    <br>
+
     <div class="card">
         <div class="card-body">
  
@@ -125,12 +131,26 @@
         $(document).ready(function() {
         var table = $('#example2').DataTable( {
             lengthChange: false,
-            buttons: [ 'copy', 'excel', 'pdf', 'print'],
+            buttons: [ 'excel', 'pdf', 'print'],
             order:[0]
         }
         );
             table.buttons().container()
                 .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
         } );
+    </script>
+    <script>
+        $('.single-select').select2({
+        theme: 'bootstrap4',
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        allowClear: Boolean($(this).data('allow-clear')),
+        });
+        $('.multiple-select').select2({
+            theme: 'bootstrap4',
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            allowClear: Boolean($(this).data('allow-clear')),
+        });
     </script>
 @endsection
