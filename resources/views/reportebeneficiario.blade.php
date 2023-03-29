@@ -8,12 +8,12 @@
         @csrf
         <div class="row">
             <div class="col-md-8">
-                {{-- <div class="form-check form-switch"> --}}
-                    <label class="form-check-label" for="chkDistrito">Seleccione uno o varios Distritos</label>
-                    {{-- <input class="form-check-input chkDistrito" type="checkbox" id="chkDistrito" name="chkDistrito"> --}}
+                <div class="form-check form-switch">
+                    <label class="form-check-label" for="chkDistrito">Seleccionar Todos</label>
+                    <input class="form-check-input chkDistrito" type="checkbox" id="chkDistrito" name="chkDistrito">
                     
-                {{-- </div> --}}
-                
+                </div>
+                <label for="">Seleccione uno o varios Distritos</label>
                 <select id="distrito" name="distrito[]" class="multiple-select" multiple="multiple">
                     @foreach ($distritos as $dist)
                         <option value="{{$dist->id}}">{{$dist->ubigeo_distrito}}-{{$dist->distrito}}</option>
@@ -124,7 +124,8 @@
 
 @section('extra_js')
     {{-- <script src="app_js/crud.js"></script>--}}
-    <script src="app_js/reportevisitas.js"></script>
+    {{-- <script src="app_js/reportevisitas.js"></script> --}}
+    <script src="app_js/reportebeneficiario.js"></script>
     <script src="assets/js/widgets.js"></script>
 
     <script>

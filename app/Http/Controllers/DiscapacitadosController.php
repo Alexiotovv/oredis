@@ -84,7 +84,7 @@ class DiscapacitadosController extends Controller
         $obj->seguro_salud=request('seguro_salud');
         $obj->fecha_empadronamiento=request('fecha_empadronamiento');
         $obj->flg_carnet_did=request('flg_carnet_did');
-
+        $obj->comentario=request('comentario');
         $obj->Usuario=auth()->user()->id;
         $obj->save();
         
@@ -126,8 +126,15 @@ class DiscapacitadosController extends Controller
         ->select('discapacitados.*')
         ->where('discapacitados.id','=',$id)
         ->get();
-        // dd();
-        return view('informacion_completa',['disc'=>$disc[0]]);
+        $dire = DB::table('discapacitados')
+        ->leftjoin('direcciones','direcciones.disc_id','=','discapacitados.id')
+        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+        ->select('ubigeos.provincia','ubigeos.distrito','direcciones.direccion','direcciones.numero')
+        ->where('discapacitados.id','=',$id)
+        ->where('direcciones.activo','=',true)
+        ->get();
+
+        return view('informacion_completa',['disc'=>$disc[0],'dire'=>$dire[0]]);
     }
 
     /**
@@ -246,6 +253,7 @@ class DiscapacitadosController extends Controller
         $obj->seguro_salud=request('seguro_salud');
         $obj->fecha_empadronamiento=request('fecha_empadronamiento');
         $obj->flg_carnet_did=request('flg_carnet_did');
+        $obj->comentario=request('comentario');
         $obj->save();
         $data=['Mensaje'=>'ok'];
         return response()->json($data);

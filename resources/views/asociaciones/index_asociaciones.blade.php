@@ -61,7 +61,14 @@
 
     <script src="../../../app_js/crud.js"></script>    
     <script src="../../../app_js/asociaciones.js"></script>
-    
+
+    <script>
+        $("#btnImprimir").on("click",function (e) { 
+            e.preventDefault();
+            window.print()
+        });
+    </script>
+
     
 
     <script>

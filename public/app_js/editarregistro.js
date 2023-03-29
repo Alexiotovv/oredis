@@ -186,7 +186,7 @@ $("#btnBuscarEditar").on("click",function(e){
               $("#seguro_salud").val(response.discapacitados[0].seguro_salud);
               $("#flg_carnet_did").val(response.discapacitados[0].flg_carnet_did);
               $("#fecha_empadronamiento").val(response.discapacitados[0].fecha_empadronamiento);
-
+              $("#comentario").val(response.discapacitados[0].comentario);
               //poniendo en la tabla sus direcciones
               ObtenerDirecciones(response.discapacitados[0].id);
               // console.log(VerificarDistrito());

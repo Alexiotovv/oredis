@@ -569,6 +569,7 @@ class ComposerStaticInitd85d19bdc5bcb4b3b687f59d03f75b9e
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AsociacionesController' => __DIR__ . '/../..' . '/app/Http/Controllers/AsociacionesController.php',
+        'App\\Http\\Controllers\\AsociacionessociosController' => __DIR__ . '/../..' . '/app/Http/Controllers/AsociacionessociosController.php',
         'App\\Http\\Controllers\\ContenidosController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContenidosController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DireccionesController' => __DIR__ . '/../..' . '/app/Http/Controllers/DireccionesController.php',

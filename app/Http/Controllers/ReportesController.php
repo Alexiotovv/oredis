@@ -66,7 +66,10 @@ class ReportesController extends Controller
         $distrito_corresponde=DB::table('users')->where('users.id','=',auth()->user()->id)->get();
         // dd($distrito_corresponde[0]->zona_dist);
 
-        $distritos=DB::table('ubigeos')->whereIn('ubigeos.id',json_decode($distrito_corresponde[0]->zona_dist))->select('ubigeos.distrito','ubigeos.id','ubigeos.ubigeo_distrito')->get();
+        $distritos=DB::table('ubigeos')
+        ->whereIn('ubigeos.id',json_decode($distrito_corresponde[0]->zona_dist))
+        ->select('ubigeos.distrito','ubigeos.id','ubigeos.ubigeo_distrito')
+        ->get();
         // dd($distritos);
         // $distritos=$distrito_corresponde[0];
         

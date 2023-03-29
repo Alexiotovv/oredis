@@ -84,7 +84,7 @@ function LimpiarFormulario() {
     $("#telefono_apoderado").val('');
     $("#flg_carnet_did").val('');
     $("#parentesco").val('');
-    
+    $("#comentario").val('');
     $("#provincia").val('--').change();
     $("#distrito").val('--').change();
     $("#grado_instruccion").val('--').change();

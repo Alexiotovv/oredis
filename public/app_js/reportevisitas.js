@@ -1,12 +1,4 @@
-$("#chkDistrito").on("click",function (){
-  
-  if ($("#chkDistrito").prop('checked')) {
-      $("#distrito").attr('disabled',true);
-  }else{
-      $("#distrito").attr('disabled',false);
-  }
-  
-});
+
 
 // $("#btnBuscarVisitas").on("click",function (e) {
 //     e.preventDefault();

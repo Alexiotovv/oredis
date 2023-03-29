@@ -10,6 +10,8 @@ $.ajax({
     }
 });
 
+
+
 $(document).on("click",".btnEliminarSocio",function (e) { 
     e.preventDefault();
     fila = $(this).closest("tr");
@@ -48,7 +50,25 @@ $(document).on("click",".btnListarsocios",function (e) {
     e.preventDefault();
     fila = $(this).closest("tr");
     id = (fila).find('td:eq(0)').text();
-    nombre = (fila).find('td:eq(4)').text();
+    
+    mdDistrito = (fila).find('td:eq(2)').text();
+    mdProvincia = (fila).find('td:eq(3)').text();
+    mdNombre = (fila).find('td:eq(4)').text();
+    mdSiglas=(fila).find('td:eq(5)').text();
+    mdNPartida=(fila).find('td:eq(6)').text();
+    mdDireccion=(fila).find('td:eq(7)').text();
+    mdCelular=(fila).find('td:eq(8)').text();
+    mdCorreo=(fila).find('td:eq(9)').text();
+
+    $("#mdProvincia").val(mdProvincia);
+    $("#mdDistrito").val(mdDistrito);
+    $("#mdNombre").val(mdNombre);
+    $("#mdSiglas").val(mdSiglas);
+    $("#mdNPartida").val(mdNPartida);
+    $("#mdDireccion").val(mdDireccion);
+    $("#mdCelular").val(mdCelular);
+    $("#mdCorreo").val(mdCorreo);
+
     $("#DTListaSocios").DataTable({
         "destroy":true,
         "method":"GET",
@@ -65,8 +85,8 @@ $(document).on("click",".btnListarsocios",function (e) {
             {data:'correo_socio'},
             {data:'tipo_discapacidad'},
         ],order:[0],
-        // buttons:['excel','pdf'],
-        // dom: 'Bfrtip',
+        buttons:[],
+        dom: 'Bfrtip',
     });
     $("#etiquetaListarSocio").text('Socios Registrados');
     $("#modalListarSocios").modal('show');

@@ -3,6 +3,7 @@
 @auth
   @extends('layouts.panel')
   @section('content')
+
     <h5><a href="/home">Inicio / </a><a href="/paneladmin">Panel Admin / </a><a href="#">Información Completa</a> </h5>
 
     <div id="seleccion">
@@ -58,6 +59,20 @@
                         <label for="">Ocupación</label>
                         <input type="text" class="form-control form-control-sm" value="{{$disc->ocupacion}}" readonly>
                     </div>
+                    <div class="col-sm-3">
+                        <label for="">Provincia</label>
+                        <input type="text" class="form-control form-control-sm" value="{{$dire->provincia}}" readonly>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="">Distrito</label>
+                        <input type="text" class="form-control form-control-sm" value="{{$dire->distrito}}" readonly>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="">Dirección</label>
+                        <input type="text" class="form-control form-control-sm" value="{{$dire->direccion}} {{$dire->numero}}" readonly>
+                    </div>
+                    
+
                     {{-- 12 --}}
                 </div>
             </div>
@@ -136,6 +151,7 @@
         {{-- <script src="../app_js/jspdf.min.js"></script> --}}
     </div>
 
+    @endsection
     @section('extra_js')
         <script>
             // function imprSelec(nombre) {
@@ -148,36 +164,62 @@
             //}
 
             $("#btnImprimir").on('click', function(e) {
+                e.preventDefault();
+                $("header").css('display', 'none');
+                $(".sidebar-wrapper").css('display', 'none');
+                $("footer").css('display', 'none');
+                $("#btnImprimir").css('display','none');
                 imprSelec("seleccion");
             });
             function imprSelec(nombreDiv) {
-                var contenido = document.getElementById(nombreDiv).innerHTML;
-                var contenidoOriginal= document.body.innerHTML;
-                document.body.innerHTML = contenido;
                 window.print();
-                document.body.innerHTML = contenidoOriginal;
+                $("header").css('display', '');
+                $(".sidebar-wrapper").css('display', '');
+                $("footer").css('display', '');
+                $("#btnImprimir").css('display','');
+                // var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+                // mywindow.document.write('<html><head>');
+                // // mywindow.document.write(document.getElementById("css").innerHTML);
+                // mywindow.document.write('</head>');
+                // // mywindow.document.write('<style></style>');
+                // mywindow.document.write('<body>');
+                // mywindow.document.write(document.getElementById(nombreDiv).innerHTML);
+                // mywindow.document.write('</body></html>');
+                // mywindow.document.close(); // necesario para IE >= 10
+                // mywindow.focus(); // necesario para IE >= 10
+                // mywindow.print();
+                // mywindow.close();
+                // return true;
+            
+            
+
+                ////////////////////////////////////////////////777777
+                // var ventana = window.open('', 'PRINT', 'height=400,width=600');
+                // ventana.document.write('<html><head><title>' + document.title + '</title>');
+                // ventana.document.write('<link rel="stylesheet" href="style.css">'); //Aquí agregué la hoja de estilos
+                // ventana.document.write('</head><body >');
+                // ventana.document.write(nombreDiv.innerHTML);
+                // ventana.document.write('</body></html>');
+                // ventana.document.close();
+                // ventana.focus();
+                // ventana.onload = function() {
+                    //     ventana.print();
+                    //     ventana.close();
+                    // };
+                    // return true;
+                /////////////////////////////////////////////////////////////
+                // var contenido = document.getElementById(nombreDiv).innerHTML;
+                // var contenidoOriginal= document.body.innerHTML;
+                // document.body.innerHTML = contenido;
+                // window.print();
+                // document.body.innerHTML = contenidoOriginal;
+                            
             }
             
-            // $("#btnImprimir").on('click', function(e) {
-            //     e.preventDefault()
-            //     var doc = new jsPDF();
-            //     var elementHTML = $('#seleccion').html();
-            //     var specialElementHandlers = {
-            //         '#elementH': function (element, renderer) {
-            //             return true;
-            //         }
-            //     };
-            //     doc.fromHTML(elementHTML, 15, 15, {
-            //         'width': 170,
-            //         'elementHandlers': specialElementHandlers
-            //     });
-            //     // Save the PDF
-            //     doc.save('sample-document.pdf');
-            // });
+           
 
         </script>
     @endsection
-  @endsection
 @endauth
 @endif
 

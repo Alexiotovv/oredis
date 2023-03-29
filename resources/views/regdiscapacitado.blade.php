@@ -398,6 +398,12 @@
                     <input class="form-control" type="date" name="fecha_empadronamiento"
                         id="fecha_empadronamiento" placeholder="Fecha empadronamiento...">
                 </div>
+                
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="fecha_empadronamiento">Comentario</label>
+                <textarea class="form-control" type="date" name="comentario"
+                    id="comentario" placeholder="escribre un comentario" maxlength="249"></textarea>
             </div>
             <hr>
 
