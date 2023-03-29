@@ -66,8 +66,13 @@ class AsociacionesController extends Controller
     {
         $obj=DB::table('asociaciones')
         ->leftjoin('ubigeos','ubigeos.id','=','asociaciones.idUbigeos')
+        ->leftjoin('asociacionessocios','asociacionessocios.idasociaciones','=','asociaciones.id')
         ->where('asociaciones.status','=',1)
-        ->select('asociaciones.*','ubigeos.provincia','ubigeos.distrito')
+        ->orwhere('asociacionessocios.tipo_socio','=','PRESIDENTE')
+        ->orwhere('asociacionessocios.tipo_socio','=','')
+        ->select('asociaciones.*','asociacionessocios.nombre_socio',
+        'asociacionessocios.apellido_socio','ubigeos.provincia',
+        'ubigeos.distrito')
         ->get();
         return datatables()->of($obj)->tojson();
     }

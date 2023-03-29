@@ -110,7 +110,8 @@ $("#btnGuardaSocio").on("click",function (e) {
     dt="";
     if ($("#etiquetaSocio").text()=='Registrar Socio') {
         ru="/socios/store";
-        mje="Socio Registrado";    
+        mje="Socio Registrado";
+        dt="#DTAsociaciones";
     }else{
         ru="/socios/update";
         mje="Socio Actualizado";
@@ -140,6 +141,15 @@ $("#DTAsociaciones").DataTable({
         <button class='btn btn-outline-primary btnListarsocios'><i class='fadeIn animated bx bx-list-ol'></i></button>"},
         {data:'provincia'},
         {data:'distrito'},
+        {data: '-',
+            render: function ( data, type, row ) {
+                if (row.nombre_socio==null) {
+                    return ' ';
+                }else{
+                    return row.nombre_socio + ' ' + row.apellido_socio;
+                }
+            }
+        },
         {data:'nombre_organizacion'},
         {data:'siglas_asociacion'},
         {data:'partida_registral'},

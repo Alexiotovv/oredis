@@ -17,6 +17,7 @@
                             <th>Acciones</th>
                             <th>Provincia</th>
                             <th>Distrito</th>
+                            <th>Presidente</th>
                             <th>Nombre</th>
                             <th>Siglas</th>
                             <th>N° Partida</th>
