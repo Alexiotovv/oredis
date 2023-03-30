@@ -87,10 +87,12 @@ function GuardarDireccion(ds,ru,mje) {
         ,
         success: function (response) {
           round_success_noti(mje);
+        //   alert("entra success");
           $("#spinnerDireccion").prop('hidden',true);
+          
         },
         error: function (response) {
-          $("#spinnerDireccion").prop('hidden',true);
+          $("#spinnerDireccion").prop('hidden',false);
          }
       });
 }

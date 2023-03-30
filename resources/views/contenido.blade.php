@@ -2,7 +2,7 @@
 @auth
   @extends('layouts.panel')
   @section('content')
-    <h5><a href="/home">Inicio / </a><a href="paneladmin">Panel Admin / </a><a href="paneladmin">Contenido / </a></h5>
+    <h5><a href="/home">Inicio / </a><a href="/paneladmin">Panel Admin / </a><a href="#">Contenido / </a></h5>
     <h5 style="text-align: center">Personaliza el contenido de la página</h5>  
     {{-- @if ($message==1)
     <div class="alert alert-success border-0 bg-success alert-dismissible fade show">

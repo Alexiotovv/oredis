@@ -169,6 +169,66 @@ class ReportesController extends Controller
         return view('reportevisita',['visitas'=>$visitas]);
     }
 
+    public function obtenerVisitaDistrito(Request $request)
+    {
+        $distrito=request('distrito');
+        $distrito_corresponde=DB::table('users')->where('users.id','=',auth()->user()->id)->get();
+        // dd($distrito_corresponde[0]->zona_dist);
+
+        $distritos=DB::table('ubigeos')
+        ->whereIn('ubigeos.id',json_decode($distrito_corresponde[0]->zona_dist))
+        ->select('ubigeos.distrito','ubigeos.id','ubigeos.ubigeo_distrito')
+        ->get();
+
+        $visitas=DB::table('visitas')
+        ->leftjoin('direcciones','direcciones.id','=','visitas.idDireccion')
+        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+        ->leftjoin('discapacitados','discapacitados.id','=','direcciones.disc_id')
+        ->leftjoin('users','users.id','=','visitas.Usuario')
+        ->select('ubigeos.provincia',
+        'ubigeos.distrito',
+        'discapacitados.nombre',
+        'discapacitados.apellido_paterno',
+        'discapacitados.apellido_materno',
+        'visitas.FechaVisita',
+        'direcciones.direccion',
+        'direcciones.numero',
+        'visitas.viveaqui',
+        'users.nombres',
+        'users.apellidos')
+        ->whereIn('ubigeos.id',$distrito)
+        ->get();
+        return view('reporte_visitas.visitas_distritos',['visitas'=>$visitas,'distritos'=>$distritos]);
+    }
+    
+    
+    public function indexVisitaDistrito(Request $request)
+    {
+        $distrito_corresponde=DB::table('users')->where('users.id','=',auth()->user()->id)->get();
+        // dd($distrito_corresponde[0]->zona_dist);
+
+        $distritos=DB::table('ubigeos')->whereIn('ubigeos.id',json_decode($distrito_corresponde[0]->zona_dist))->select('ubigeos.distrito','ubigeos.id','ubigeos.ubigeo_distrito')->get();
+
+        $visitas=DB::table('visitas')
+        ->leftjoin('direcciones','direcciones.id','=','visitas.idDireccion')
+        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+        ->leftjoin('discapacitados','discapacitados.id','=','direcciones.disc_id')
+        ->leftjoin('users','users.id','=','visitas.Usuario')
+        ->select('ubigeos.provincia',
+        'ubigeos.distrito',
+        'discapacitados.nombre',
+        'discapacitados.apellido_paterno',
+        'discapacitados.apellido_materno',
+        'visitas.FechaVisita',
+        'direcciones.direccion',
+        'direcciones.numero',
+        'visitas.viveaqui',
+        'users.nombres',
+        'users.apellidos')
+        ->where('visitas.id','=',0)
+        ->get();
+        return view('reporte_visitas.visitas_distritos',['visitas'=>$visitas,'distritos'=>$distritos]);
+    }
 
 
 

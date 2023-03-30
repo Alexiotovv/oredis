@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 
-    <h5><a href="/home">Inicio / </a><a href="paneladmin">Panel Admin / </a><a href="">Formulario de Visitas</a></h5>
+    <h5><a href="/home">Inicio / </a><a href="/paneladmin">Panel Admin / </a><a href="#">Formulario de Visitas</a></h5>
     
     <form id="formGuardarVisita" >@csrf
         {{-- action="guardarvisita" method="POST" --}}

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h5><a href="/home">Inicio / </a><a href="paneladmin">Panel Admin / </a><a href="">Registrar Noticias</a></h5>
+    <h5><a href="/home">Inicio / </a><a href="/paneladmin">Panel Admin / </a><a href="#">Registrar Noticias</a></h5>
         
     <h5>Registro de Noticias</h5>
     <div class="card">

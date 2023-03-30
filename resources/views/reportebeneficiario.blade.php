@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h5><a href="/home">Inicio / </a><a href="paneladmin">Panel Admin / </a><a href="">Reporte de Beneficiario</a></h5>
+    <h5><a href="/home">Inicio / </a><a href="/paneladmin">Panel Admin / </a><a href="">Reporte de Beneficiario</a></h5>
     <form id="formBuscarVisitas" method="POST" action="obtenerbeneficiario">
         {{-- method="POST" action="{{route('registrar.visita')}}" --}}
         @csrf

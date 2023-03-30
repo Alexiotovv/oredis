@@ -6,8 +6,8 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="home">Inicio</a></li>
-        <li class="breadcrumb-item"><a href="paneladmin">Panel Admin</a></li>
+        <li class="breadcrumb-item"><a href="/home">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="/paneladmin">Panel Admin</a></li>
         <li class="breadcrumb-item active" aria-current="page">Listar Usuarios</li>
         </ol>
     </nav>

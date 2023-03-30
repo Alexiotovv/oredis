@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h5><a href="/home">Inicio / </a><a href="paneladmin">Panel Admin / </a><a href="">Formulario de Registro</a></h5>
+<h5><a href="/home">Inicio / </a><a href="/paneladmin">Panel Admin / </a><a href="#">Formulario de Registro</a></h5>
 
     <form id="formRegistro">@csrf 
        

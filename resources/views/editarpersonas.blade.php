@@ -1,5 +1,10 @@
 @extends('layouts.panel')
 
+
+@section('extra_css')
+    
+@endsection
+
 @section('content')
     <form id="formActualiza">@csrf
         {{--  --}}
@@ -421,6 +426,7 @@
 @endsection
 
 @section('extra_js')
+
     <script src="app_js/crud.js"></script>
     <script src="app_js/editarregistro.js"></script>
 @endsection

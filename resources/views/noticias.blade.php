@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h5><a href="/home">Inicio / </a><a href="paneladmin">Panel Admin / </a><a href="">Noticias</a></h5>
+    <h5><a href="/home">Inicio / </a><a href="/paneladmin">Panel Admin / </a><a href="">Noticias</a></h5>
         
     <h5>Buscar</h5>
     <form action="{{route('noticias')}}" method="GET">
@@ -16,7 +16,7 @@
         
     </form>
         <div class="col-sm-4">
-                <a class="btn btn-warning" href="noticias" >Mostrar Todos</a>
+                <a class="btn btn-warning" href="/noticias" >Mostrar Todos</a>
         </div>
 
     </div>

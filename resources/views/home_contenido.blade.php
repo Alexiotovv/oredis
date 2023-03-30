@@ -71,7 +71,7 @@
                 <div class="section-title text-center mb-55 wow fadeInUp">
                     <span class="sub-title st-one">Noticias</span>
                     <h2>Últimas Noticias</h2>
-                    <p><a href="shownoticias"> Ver Todas las Noticias</a></p>
+                    <p><a href="/shownoticias"> Ver Todas las Noticias</a></p>
                 </div>
             </div>
         </div>
