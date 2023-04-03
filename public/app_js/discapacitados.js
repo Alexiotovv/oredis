@@ -16,6 +16,25 @@ $.ajax({
     }
 });
 
+
+$("#IngresoManual").on("click",function () { 
+    if ($("#IngresoManual").prop('checked')){
+        $("#nombres").attr('readonly', false);
+        $("#apellido_paterno").attr('readonly', false);
+        $("#apellido_materno").attr('readonly', false);
+        $("#nro_doc_identidad").val('');
+        $("#nro_doc_identidad").removeClass('is-invalid');
+        $("#SinDocumento").prop('checked',false)
+        $("#nro_doc_identidad").focus();
+    }else{
+        $("#nro_doc_identidad").attr('readonly', false);
+        $("#nombres").attr('readonly', true);
+        $("#apellido_paterno").attr('readonly', true);
+        $("#apellido_materno").attr('readonly', true);
+        $("#nro_doc_identidad").focus();
+    }
+})
+
 $("#SinDocumento").on("click",function () { 
     if ($("#SinDocumento").prop('checked')) {
         $("#nro_doc_identidad").attr('readonly', true);
@@ -24,6 +43,7 @@ $("#SinDocumento").on("click",function () {
         $("#apellido_materno").attr('readonly', false);
         $("#nro_doc_identidad").val('');
         $("#nro_doc_identidad").removeClass('is-invalid');
+        $("#IngresoManual").prop('checked',false)
         $("#nombres").focus();
     }else{
         $("#nro_doc_identidad").attr('readonly', false);

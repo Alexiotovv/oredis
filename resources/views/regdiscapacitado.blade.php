@@ -101,7 +101,16 @@
                     
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label" for="Nombre">Nombre</label>
+                    <div class="input-group lg-3">
+                        <label class="form-label" for="Nombre">Nombre</label>
+                        <br>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="IngresoManual">
+                            <label class="form-check-label" for="IngresoManual">Ingreso Manual</label>
+                        </div>
+                    </div>
+
+
                     <input class="form-control" type="text" name="nombres" placeholder="Nombre..."
                         id="nombres" readonly required>
                 </div>

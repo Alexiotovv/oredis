@@ -87,17 +87,17 @@
   {{-- <script src="bootstrap-5.3.0/js/jquery.js"></script> --}}
 
   <script src="../assets/js/jquery.js"></script>
-        <script>
-          $("#btnLogin").on('click', function(e) {
-            e.preventDefault();
-            $("#modalLogin").modal('show');
-          });
-          $("#btnLogin2").on('click', function(e) {
-            e.preventDefault();
-            $("#modalLogin").modal('show');
-          });
-          
-        </script>
+  <script>
+    $("#btnLogin").on('click', function(e) {
+      e.preventDefault();
+      $("#modalLogin").modal('show');
+    });
+    $("#btnLogin2").on('click', function(e) {
+      e.preventDefault();
+      $("#modalLogin").modal('show');
+    });
+    
+  </script>
 
 </body>
 

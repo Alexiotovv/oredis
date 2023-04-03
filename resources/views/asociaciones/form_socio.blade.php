@@ -29,7 +29,8 @@
                                 <label for="">Tipo</label>
                                 <select name="tipo_socio" id="tipo_socio" class="form-select">
                                     <option value="PRESIDENTE">PRESIDENTE</option>
-                                    <option value="INTEGRANTE">INTEGRANTE</option>
+                                    <option value="DIRECTIVO">DIRECTIVO</option>
+                                    <option value="SOCIO">SOCIO</option>
                                 </select>
                             </div>
                             <div class="col-md-4">

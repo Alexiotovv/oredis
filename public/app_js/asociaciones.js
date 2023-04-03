@@ -53,12 +53,12 @@ $(document).on("click",".btnListarsocios",function (e) {
     
     mdDistrito = (fila).find('td:eq(2)').text();
     mdProvincia = (fila).find('td:eq(3)').text();
-    mdNombre = (fila).find('td:eq(4)').text();
-    mdSiglas=(fila).find('td:eq(5)').text();
-    mdNPartida=(fila).find('td:eq(6)').text();
-    mdDireccion=(fila).find('td:eq(7)').text();
-    mdCelular=(fila).find('td:eq(8)').text();
-    mdCorreo=(fila).find('td:eq(9)').text();
+    mdNombre = (fila).find('td:eq(5)').text();
+    mdSiglas=(fila).find('td:eq(6)').text();
+    mdNPartida=(fila).find('td:eq(7)').text();
+    mdDireccion=(fila).find('td:eq(8)').text();
+    mdCelular=(fila).find('td:eq(9)').text();
+    mdCorreo=(fila).find('td:eq(10)').text();
 
     $("#mdProvincia").val(mdProvincia);
     $("#mdDistrito").val(mdDistrito);

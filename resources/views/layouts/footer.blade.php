@@ -33,9 +33,9 @@
                     <div class="widget footer-nav-widget mb-40 wow fadeInUp" data-wow-delay=".20s">
                         <h4 class="widget-title">Enlaces de Interés</h4>
                         <ul class="widget-nav">
-                            <li><a href="{{$obj->enlace1}}">{{$obj->nombre_enlace1}}</a></li>
-                            <li><a href="{{$obj->enlace2}}">{{$obj->nombre_enlace2}}</a></li>
-                            <li><a href="{{$obj->enlace3}}">{{$obj->nombre_enlace3}}</a></li>
+                            <li><a target="_blank" href="{{$obj->enlace1}}">{{$obj->nombre_enlace1}}</a></li>
+                            <li><a target="_blank" href="{{$obj->enlace2}}">{{$obj->nombre_enlace2}}</a></li>
+                            <li><a target="_blank" href="{{$obj->enlace3}}">{{$obj->nombre_enlace3}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -44,10 +44,10 @@
                         <h4 class="widget-title">Síguenos en</h4>
                         <ul class="social-nav">
                             {{-- <li><a href="#"><i class="fab fa-dribbble"></i>Dribbble</a></li> --}}
-                            <li><a href="#"><i class="fab fa-instagram"></i>Instagram</a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i>Twitter</a></li>
+                            {{-- <li><a href="#"><i class="fab fa-instagram"></i>Instagram</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i>Twitter</a></li> --}}
                             {{-- <li><a href="#"><i class="fab fa-behance"></i>Behance</a></li> --}}
-                            <li><a href="#"><i class="fab fa-facebook-f"></i>Facebook</a></li>
+                            <li><a target="_blank" href="https://web.facebook.com/people/Oficina-Regional-de-Atenci%C3%B3n-a-la-Persona-con-Discapacidad/100066896655137/"><i class="fab fa-facebook-f"></i>Facebook</a></li>
                             {{-- <li><a href="#"><i class="fab fa-medium-m"></i>Medium</a></li> --}}
                         </ul>
                     </div>
