@@ -70,7 +70,14 @@ class ContactosController extends Controller
     {
         //
     }
-
+    public function status($id,$valor)
+    {
+        $obj=contactos::findOrFail($id);
+        $obj->status=$valor;
+        $obj->save();
+        $data=['Mensaje'=>'Ok'];
+        return response()->json($data);
+    }
     /**
      * Update the specified resource in storage.
      *

@@ -55,6 +55,7 @@ Route::get('/contacto/show',[ContactosController::class, 'show'])->name('contact
 Route::get('/contacto/create',[ContactosController::class, 'create'])->name('contacto.create');
 Route::post('/contacto/store',[ContactosController::class,'store'])->name('contacto.store');
 Route::get('/contacto/index',[ContactosController::class, 'index'])->name('contacto.index');
+Route::get('/contacto/status/{id}/atendido/{valor}',[ContactosController::class, 'status'])->name('contacto.status');
 
 //asociaciones
 Route::get('/asociaciones/index',[AsociacionesController::class, 'index'])->middleware(['auth'])->name('asociaciones.index');
