@@ -71,7 +71,7 @@
                                     @if (Route::has('login'))
                                         @auth
                                         <li><a href="/paneladmin">PanelAdmin</a></li>
-                                        <form action="login" method="post">
+                                        <form action="/login" method="post">
                                             @method('put')
                                             @csrf
                                             <li><a href="#" style="margin-left:0px;"><button type="submit"
