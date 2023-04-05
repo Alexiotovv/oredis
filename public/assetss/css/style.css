@@ -1460,7 +1460,8 @@ button {
 
 .hero-banner-v1 {
     z-index: 1;
-    padding: 255px 0 180px
+    padding: 255px 0 180px;
+    background: url(../images/hero/portada1.jpg);
 }
 
 .hero-banner-v1:after {
@@ -1524,7 +1525,7 @@ button {
 
 .hero-banner-v1 .hero-img.hero-img-two {
     bottom: 80px;
-    right: 150px
+    right: 80px
 }
 
 .hero-banner-v1 .hero-img.hero-img-two img {
@@ -1541,7 +1542,7 @@ button {
 }
 
 .hero-banner-v1 .shape-one {
-    top: 190px;
+    top: 180px;
     left: 130px
 }
 

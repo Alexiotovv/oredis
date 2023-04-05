@@ -6,16 +6,16 @@
 
 @section('contenido')
      <section class="hero-banner-v1 position-relative">
-        <div class="bg-one"></div>
-        <div class="bg-two"></div>
+        {{-- <div class="bg-one"></div>
+        <div class="bg-two"></div> --}}
         {{-- <div class="hero-img hero-img-one scene">
           <span data-depth=".5"><img src="assetss/images/hero/hero-one-img-1.jpg" class="wow fadeInLeft" alt="hero image">
           </span>
         </div> --}}
 
         <div class="hero-img hero-img-two scene">
-          <span data-depth=".2">
-            <img src="{{asset('storage/contenido/'.$obj->foto_banner)}}" class="wow fadeInLeft" alt="hero image">
+          <span data-depth=".5">
+            <img style="width: 90%" src="{{asset('storage/contenido/'.$obj->foto_banner)}}" class="wow fadeInLeft" alt="hero image">
           </span>
         </div>
 
@@ -23,10 +23,10 @@
           <div class="row">
             <div class="col-xl-8 col-lg-12">
                     <div class="hero-content">
-                        <h1 class="wow fadeInUp" data-wow-delay=".5s">
+                        <h1 class="wow fadeInUp" data-wow-delay=".5s" style="color: white">
                             {{$obj->texto_banner}}
                         </h1>
-                        <p class="wow fadeInDown" data-wow-delay="1s">
+                        <p class="wow fadeInDown" data-wow-delay="1s" style="color: white">
                             {{$obj->pie_banner}}
                         </p>
                         <a href="#" id="btnLogin2" class="main-btn arrow-btn wow fadeInUp" data-wow-delay=".5s">Acceder</a>
