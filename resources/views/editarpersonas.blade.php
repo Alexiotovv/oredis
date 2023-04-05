@@ -73,6 +73,7 @@
                 <div class="col-md-4">
                     <label class="form-label" for="estado_civil">Estado civil</label>
                     <select class="form-select" aria-label="Default select example" name="estado_civil" id="estado_civil">
+                        <option value="--">--</option>
                         <option value="SOLTERO">SOLTERO</option>
                         <option value="CASADO">CASADO</option>
                         <option value="VIUDO">VIUDO</option>
@@ -82,6 +83,7 @@
                 <div class="col-md-4">
                     <label class="form-label" for="sexo">Sexo</label>
                     <select class="form-select" aria-label="Default select example" name="sexo" id="sexo">
+                        <option value="--">--</option>
                         <option value="M">MASCULINO</option>
                         <option value="F">FEMENINO</option>
                     </select>
@@ -91,6 +93,34 @@
                     <input type="date" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento">
                     <br>
                 </div>
+
+                <div class="col-md-4">
+                    <label class="form-label" for="seguro_salud">¿Cuenta con seguro de salud?</label>
+                    <div class="form-check form-check-inline">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="seguro_salud" id="seguro_saludRadio1"
+                                value="SI" checked>
+                            <label class="form-check-label" for="inlineRadio1">SÍ</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="seguro_salud" id="seguro_saludRadio2"
+                                value="NO">
+                            <label class="form-check-label" for="inlineRadio2">NO</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label" for="tipo_seguro">Tipo de seguro</label>
+                    <select class="form-select" aria-label="Default select example" name="tipo_seguro" id="tipo_seguro">
+                        <option selected value="--">--</option>
+                        <option value="SIS">SIS</option>
+                        <option value="ESSALUD">EsSalud</option>
+                        <option value="EPS">Empresas prestadoras de Salud(EPS)</option>
+                        <option value="OTRO">Otro</option>
+                    </select>
+                </div>
+
                 <hr>
                 <div class="row">
                     <div class="col-md-3">
@@ -137,6 +167,7 @@
                 <div class="col-md-6">
                     <label class="form-label" for="Grado de instrucción">Grado de instrucción</label>
                     <select class="form-select" aria-label="Default select example" name="grado_instruccion" id="grado_instruccion">
+                        <option value="--">--</option>
                         <option value="PRIMARIA">PRIMARIA</option>
                         <option value="SECUNDARIA">SECUNDARIA</option>
                         <option value="TECNICO">TECNICO</option>
@@ -157,7 +188,8 @@
                     <label class="form-label" for="flag_certifi_discapacidad">¿Cuenta con certificado de
                         discapacidad?</label>
                     <select class="form-select" aria-label="Default select example" name="flag_certifi_discapacidad" id="flag_certifi_discapacidad">
-                        <option value="SI" selected>SÍ</option>
+                        <option value="--" selected>--</option>
+                        <option value="SI">SÍ</option>
                         <option value="NO">NO</option>
                     </select>
                 </div>
@@ -172,7 +204,7 @@
                 <div class="col-md-4">
                     <label class="form-label" for="tipo_discapacidad">Tipo de discapacidad</label>
                     <select class="form-select" aria-label="Default select example" name="tipo_discapacidad" id="tipo_discapacidad">
-                        <option selected>Seleccione el tipo</option>
+                        <option value="--" selected>--</option>
                         <option value="FISICA">FÍSICA O MOTORA</option>
                         <option value="INTELECTUAL">INTELECTUAL</option>
                         <option value="MENTAL">MENTAL O PSÍQUICO </option>
@@ -187,7 +219,7 @@
                     <label class="form-label" for="diagnostico_discapacidad">Diagnostico de
                         discapacidad</label>
                     <select class="form-select" aria-label="Default select example" name="diagnostico_discapacidad" id="diagnostico_discapacidad" required>
-                        <option selected>Seleccione el grado</option>
+                        <option value="--" selected>--</option>
                         <option value="LEVE">LEVE</option>
                         <option value="MODERADO">MODERADO</option>
                         <option value="SEVERO">SEVERO</option>
@@ -230,7 +262,7 @@
                 <div class="col-md-4" id="seleccione_equipo">
                     <label class="form-label" for="ayuda_mecanica">Seleccione el equipo</label>
                     <select class="form-select" aria-label="Default select example" name="ayuda_mecanica" id="ayuda_mecanica" required>
-                        <option selected>Seleccione el equipo</option>
+                        <option value ="--" selected>--</option>
                         <option value="SILLA DE RUEDAS">SILLA DE RUEDAS</option>
                         <option value="BASTONES ORTOPEDICOS">BASTONES ORTOPÉDICOS</option>
                         <option value="MULETAS">MULETAS</option>
@@ -271,7 +303,7 @@
                 <div class="col-md-4">
                     <label class="form-label" for="parentesco">Parentesco de Apoderado</label>
                     <select class="form-select" aria-label="Default select example" name="parentesco" id="parentesco" required>
-                        <option selected>Seleccione el equipo</option>
+                        <option value="--" selected>--</option>
                         <option value="PADRE">PADRE</option>
                         <option value="MADRE">MADRE</option>
                         <option value="TIO">TIO(a)</option>
@@ -289,33 +321,6 @@
                     <label class="form-label" for="telefono_apoderado">Teléfono apoderado</label>
                     <input class="form-control" type="number" name="telefono_apoderado" id="telefono_apoderado"
                         placeholder="Teléfono de apoderado...">
-                </div>
-
-                <div class="col-md-4">
-                    <label class="form-label" for="seguro_salud">¿Cuenta con seguro de salud?</label>
-                    <div class="form-check form-check-inline">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="seguro_salud" id="seguro_saludRadio1"
-                                value="SI" checked>
-                            <label class="form-check-label" for="inlineRadio1">SÍ</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="seguro_salud" id="seguro_saludRadio2"
-                                value="NO">
-                            <label class="form-check-label" for="inlineRadio2">NO</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <label class="form-label" for="tipo_seguro">Tipo de seguro</label>
-                    <select class="form-select" aria-label="Default select example" name="tipo_seguro" id="tipo_seguro">
-                        <option selected>Seleccione el tipo</option>
-                        <option value="SIS">SIS</option>
-                        <option value="ESSALUD">EsSalud</option>
-                        <option value="EPS">Empresas prestadoras de Salud(EPS)</option>
-                        <option value="OTRO">Otro</option>
-                    </select>
                 </div>
                 
                 <div class="col-md-4">

@@ -4,7 +4,6 @@
           return false;
       }
   });
-
 //end Buscar el distrito y comparar el discapacitado
 
 distritos={};
@@ -70,7 +69,6 @@ $("#btnGuardarDireccion").on("click",function (e) {
     ObtenerDirecciones($("#idPersonaDireccion").val());
   }
     
- 
 });
 
 $("#btnNuevaDireccion").on('click', function(e) {
@@ -115,23 +113,6 @@ var options={
 function error(err){
   alert(err);
 }
-
-// function posicion(geolocationPosition) {
-//   let coords=geolocationPosition.coords;
-//   $("#Latitud").val(coords.latitude);
-//   $("#Longitud").val(coords.longitude);
-//   $("#Altitud").val(coords.altitude);
-//   $("#Latitud").prop('readonly',true);
-//   $("#Longitud").prop('readonly',true);
-//   $("#Altitud").prop('readonly',true);
-// }
-
-// $("#IngresarManualUbicacion").on("click",function (e) {
-//   $("#Latitud").prop('readonly',false);
-//   $("#Longitud").prop('readonly',false);
-//   $("#Altitud").prop('readonly',false);
-//   $("#Latitud").focus();
-// });
 
 $("#btnBuscarEditar").on("click",function(e){
   e.preventDefault();
@@ -198,6 +179,44 @@ $("#btnBuscarEditar").on("click",function(e){
           $("#dni_noencontrado").show();
           $("#nro_doc_identidad").removeClass('is-valid');
           $("#nro_doc_identidad").addClass('is-invalid');
+
+
+          $("#nombre").val("");
+          $("#apellido_paterno").val("");
+          $("#apellido_materno").val("");
+          $("#doc_identidad").val("DNI").change();
+          $("#fecha_caducidad_carnet").val("dd/mm/aaaa");
+          // $("#direccion").val(response[0].direccion);
+          // $("#distrito").val(response[0].ubigeo_id);
+          // $("#altitud").val(response[0].altitud);
+          // $("#longitud").val(response[0].longitud);
+          // $("#latitud").val(response[0].latitud);
+          $("#correo").val("");
+          $("#telefono").val("");
+          $("#fecha_nacimiento").val("dd/mm/aaaa");
+          $("#estado_civil").val('--').change();
+          $("#sexo").val("--").change();
+          $("#ocupacion").val("");
+          $("#grado_instruccion").val("--").change();
+          $("#flag_certifi_discapacidad").val("--").change();
+          $("#tipo_discapacidad").val("--").change();
+          $("#diagnostico_discapacidad").val("--").change();
+          //RecibirRadio(nombre del elemento, valor guardado que viene, valor del primer radio);
+          // RecibirRadio("requiere_ayuda",response.discapacitados[0].requiere_ayuda,'SI');
+          // RecibirRadio("tipo_ayuda",response.discapacitados[0].tipo_ayuda,'FISICA');
+          $("#ayuda_mecanica").val("").change();
+          $("#nombre_apoderado").val("");
+          $("#dni_apoderado").val("");
+          $("#parentesco").val("--").change();
+          $("#direccion_apoderado").val("");
+          $("#correo_apoderado").val("");
+          $("#telefono_apoderado").val("");
+          $("#tipo_seguro").val("--").change();
+          $("#seguro_salud").val("");
+          $("#flg_carnet_did").val("");
+          $("#fecha_empadronamiento").val("dd/mm/aaaa");
+          $("#comentario").val("");
+          $("#DTDirecciones tbody").html("");
         }
     }
   });
