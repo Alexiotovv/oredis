@@ -496,7 +496,7 @@
                                     </a>
                                 </li>
 
-                                    <form action="login" method="post">
+                                    <form action="/login" method="post">
                                         @method('put')
                                         @csrf
                                         <li><button type="submit" class="dropdown-item" href="javascript:;">
