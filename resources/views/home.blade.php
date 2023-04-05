@@ -136,6 +136,8 @@
         </div>
     </section>
 
+
+
     @if ($bannerModal !== null)
     <div class="modal fade" id="modalBanner" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -167,13 +169,21 @@
             </div>
         </div>
     @endif
+    <br>
+    
+    
 
     <script src="../assets/js/jquery.js"></script>
     <script>
-            function banner() { 
-                $("#modalBanner").modal('show');
-             }
-            setTimeout(banner, 2000);
+        function banner() { 
+            $("#modalBanner").modal('show');
+            }
+        setTimeout(banner, 2000);
+        // if ($("#formContacto").on("click",function (e) { 
+        //     e.preventDefault();
+            
+        //  }));
+
         
     </script>
 @endsection

@@ -55,7 +55,7 @@
               selector: '#Descripcion'
             });
         </script> --}}
-        <script src="../app_js/noticias.js"></script>
+        <script src="../../../app_js/noticias.js"></script>
     @endsection
 
   @endsection

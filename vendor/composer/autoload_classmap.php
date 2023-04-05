@@ -37,6 +37,7 @@ return array(
     'App\\Models\\asociaciones' => $baseDir . '/app/Models/asociaciones.php',
     'App\\Models\\asociacionessocios' => $baseDir . '/app/Models/asociacionessocios.php',
     'App\\Models\\bannermodals' => $baseDir . '/app/Models/bannermodals.php',
+    'App\\Models\\contactos' => $baseDir . '/app/Models/contactos.php',
     'App\\Models\\contenidos' => $baseDir . '/app/Models/contenidos.php',
     'App\\Models\\direcciones' => $baseDir . '/app/Models/direcciones.php',
     'App\\Models\\discapacitados' => $baseDir . '/app/Models/discapacitados.php',

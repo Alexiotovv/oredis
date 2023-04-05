@@ -58,8 +58,7 @@
                                         <input class="form-check-input chkbanner" type="checkbox" id="bannerModal" checked>
                                     @else
                                         <input class="form-check-input chkbanner" type="checkbox" id="bannerModal">
-                                    @endif
-                                    
+                                    @endif    
                                 </div>
                             </td>
                             <td>{{$pub->publicar}}</td>

@@ -10,10 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>OREDIS</title>
-    <link rel="shortcut icon" href="../assetss/images/favicon.png" type="image/png">
-    <link rel="stylesheet" href="../assetss/css/default.css">
-    <link rel="stylesheet" href="../assetss/css/style.css">
-    <link rel="stylesheet" href="../assetss/css/responsive.css">
+    <link rel="shortcut icon" href="../../../assetss/images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="../../../assetss/css/default.css">
+    <link rel="stylesheet" href="../../../assetss/css/style.css">
+    <link rel="stylesheet" href="../../../assetss/css/responsive.css">
 
     
     
@@ -64,21 +64,21 @@
     @yield('pie_pagina')
 
     <a href="#" class="back-to-top"><i class="far fa-angle-up"></i></a>
-    <script data-cfasync="false" src="../assetss/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="../assetss/vendor/jquery-3.6.0.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
-    <script src="../assetss/vendor/popper/popper.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
-    <script src="../assetss/vendor/bootstrap/js/bootstrap.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
-    <script src="../assetss/vendor/slick/slick.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
-    <script src="../assetss/vendor/magnific-popup/dist/jquery.magnific-popup.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
-    <script src="../assetss/vendor/isotope.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
-    <script src="../assetss/vendor/imagesloaded.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
-    <script src="../assetss/vendor/jquery.counterup.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
-    <script src="../assetss/vendor/jquery.waypoints.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
-    <script src="../assetss/vendor/nice-select/js/jquery.nice-select.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
-    <script src="../assetss/vendor/wow.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
-    <script src="../assetss/vendor/parallax.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
-    <script src="../assetss/js/theme.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
-    <script src="../assetss/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+    <script data-cfasync="false" src="../../../assetss/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="../../../assetss/vendor/jquery-3.6.0.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
+    <script src="../../../assetss/vendor/popper/popper.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
+    <script src="../../../assetss/vendor/bootstrap/js/bootstrap.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
+    <script src="../../../assetss/vendor/slick/slick.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
+    <script src="../../../assetss/vendor/magnific-popup/dist/jquery.magnific-popup.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
+    <script src="../../../assetss/vendor/isotope.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
+    <script src="../../../assetss/vendor/imagesloaded.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
+    <script src="../../../assetss/vendor/jquery.counterup.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
+    <script src="../../../assetss/vendor/jquery.waypoints.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
+    <script src="../../../assetss/vendor/nice-select/js/jquery.nice-select.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
+    <script src="../../../assetss/vendor/wow.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
+    <script src="../../../assetss/vendor/parallax.min.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
+    <script src="../../../assetss/js/theme.js" type="fcd2a3ed92a7775c946711b7-text/javascript"></script>
+    <script src="../../../assetss/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
         data-cf-settings="fcd2a3ed92a7775c946711b7-|49" defer=""></script>
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993"
         integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA=="

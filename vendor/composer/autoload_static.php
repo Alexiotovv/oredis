@@ -597,6 +597,7 @@ class ComposerStaticInitd85d19bdc5bcb4b3b687f59d03f75b9e
         'App\\Models\\asociaciones' => __DIR__ . '/../..' . '/app/Models/asociaciones.php',
         'App\\Models\\asociacionessocios' => __DIR__ . '/../..' . '/app/Models/asociacionessocios.php',
         'App\\Models\\bannermodals' => __DIR__ . '/../..' . '/app/Models/bannermodals.php',
+        'App\\Models\\contactos' => __DIR__ . '/../..' . '/app/Models/contactos.php',
         'App\\Models\\contenidos' => __DIR__ . '/../..' . '/app/Models/contenidos.php',
         'App\\Models\\direcciones' => __DIR__ . '/../..' . '/app/Models/direcciones.php',
         'App\\Models\\discapacitados' => __DIR__ . '/../..' . '/app/Models/discapacitados.php',

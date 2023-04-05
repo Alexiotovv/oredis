@@ -14,7 +14,7 @@ use App\Http\Controllers\NoticiasController;
 use App\Http\Controllers\ContenidosController;
 use App\Http\Controllers\AsociacionesController;
 use App\Http\Controllers\AsociacionessociosController;
-
+use App\Http\Controllers\ContactosController;
 // use App\Http\Controllers\UserController;
 Route::get('/storage-link', function () {
     $targetFolder = storage_path('/app/public');
@@ -25,7 +25,7 @@ Route::get('/storage-link', function () {
 
 Route::get('/',[paginasController::class, 'home'])->name('local.home');
 
-Route::get('login',function(){
+Route::get('/login',function(){
     return view('paneladmin');
 })->name('login')->middleware('guest');
 
@@ -36,6 +36,7 @@ Route::get('login',function(){
 Route::get('register',function(){
     return view('register');
 })->name('register');
+
 
 
 //Paginas
@@ -50,7 +51,10 @@ Route::get('/paneladmin',[paginasController::class, 'paneladmin'])->middleware([
 
 Route::get('/obtenerdistritos',[UbigeosController::class, 'show'])->name('obtener.distritos');
 
-
+Route::get('/contacto/show',[ContactosController::class, 'show'])->name('contacto.show');
+Route::get('/contacto/create',[ContactosController::class, 'create'])->name('contacto.create');
+Route::post('/contacto/store',[ContactosController::class,'store'])->name('contacto.store');
+Route::get('/contacto/index',[ContactosController::class, 'index'])->name('contacto.index');
 
 //asociaciones
 Route::get('/asociaciones/index',[AsociacionesController::class, 'index'])->middleware(['auth'])->name('asociaciones.index');

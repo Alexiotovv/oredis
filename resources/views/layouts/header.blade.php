@@ -49,7 +49,7 @@
                                     <li><a href="service-details.html">Service Details</a></li>
                                 </ul> --}}
                             </li>
-                            <li class="menu-item has-children"><a href="#" class="nav-link">Contacto</a>
+                            <li class="menu-item has-children"><a href="{{route('contacto.create')}}" class="nav-link">Contacto</a>
                                 {{-- <ul class="sub-menu">
                                     <li><a href="projects.html">Our Portfolio</a></li>
                                     <li><a href="project-details.html">Portfolio Details</a></li>

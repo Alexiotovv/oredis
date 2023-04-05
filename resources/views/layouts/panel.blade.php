@@ -140,6 +140,9 @@
                                     </li>
                                     <li><a href="{{route('create.noticia')}}"><i class="bx bx-user"></i>Registrar Noticia</a>
                                     </li>
+                                    <li><a href="{{route('contacto.index')}}"><i class="bx bx-user"></i>Mensajes Contacto</a>
+                                    </li>
+                                    
                                 </ul>
                             </li>
                             
