@@ -10,7 +10,95 @@ $.ajax({
     }
 });
 
+$(document).on("click",".btnSeleccionar",function (e) {
+    e.preventDefault();
+    fila = $(this).closest("tr");
+    $("#iddiscapacitado").val((fila).find('td:eq(0)').text());
+    $("#dni").val((fila).find('td:eq(2)').text());
+    $("#nombre").val((fila).find('td:eq(3)').text()+" "+(fila).find('td:eq(4)').text()+" "+(fila).find('td:eq(5)').text());
+    $("#modalbuscarpornombre").modal("hide");
+});
 
+$("#txtbuscarnombre").on("keyup",function (e){
+    buscarPersonaNombres();
+});
+$("#txtbuscarapellidopat").on("keyup",function (e){
+    buscarPersonaNombres();
+});
+$("#txtbuscarapellidomat").on("keyup",function (e){
+    buscarPersonaNombres();
+});
+function buscarPersonaNombres() { 
+    nombre=$("#txtbuscarnombre").val();
+    apepat=$("#txtbuscarapellidopat").val();
+    apemat=$("#txtbuscarapellidomat").val();
+    if (nombre.trim()=='') {
+        nombre="%";
+    }
+    if (apepat.trim()=='') {
+        apepat="%";
+    }
+    if (apemat.trim()=='') {
+        apemat="%";
+    }
+    
+    $.ajax({
+        type: "GET",
+        url: "/socios/buscar/nombre/"+nombre+"/apepat/"+apepat+"/apemat/"+apemat,
+        dataType: "json",
+        beforeSend: function() {
+            $("#spinner_buscar_nombre").prop('hidden',false);
+        }, 
+        success: function (response) {
+            $("#DTBuscarSocio tbody").html("");
+            response.forEach(element => {
+                $("#DTBuscarSocio").append('<tr>'+
+                '<td>'+element.id+'</td>'+
+                '<td><button class="btn btn-warning btn-sm btnSeleccionar"><i class="bx bx-plus"></i></button></td>'+
+                '<td>'+element.nro_doc_identidad+'</td>'+
+                '<td>'+element.nombre+'</td>'+
+                '<td>'+element.apellido_paterno+'</td>'+
+                '<td>'+element.apellido_materno+'</td>'+
+                '<td>'+element.provincia+'</td>'+
+                '<td>'+element.distrito+'</td>'+
+                '<td>'+element.direccion+'</td>'+
+                '<td>'+element.numero+'</td>'+
+                '</tr>');
+            });
+            $("#spinner_buscar_nombre").prop('hidden',true);
+        }
+
+    });
+ }
+
+$("#SinDocumento").on("click",function (e){
+    e.preventDefault();
+    $("#modalbuscarpornombre").modal("show");
+});
+
+$("#btnbuscarsocio").on("click",function (e) {
+    var dni=$("#dni").val();
+    e.preventDefault();
+    $.ajax({
+        type: "GET",
+        url: "/socios/buscar/"+dni,
+        dataType: "json",
+        beforeSend: function() {
+            $("#spinner").prop('hidden',false);
+        },
+        success: function (response) {
+            $("#nombre").val(response[0].nombre + " " + 
+                response[0].apellido_paterno + " " + 
+                response[0].apellido_materno)
+                $("#spinner").prop('hidden',true);
+            $("#iddiscapacitado").val(response[0].id);
+        },
+        error: function (response) {  
+            $("#spinner").prop('hidden',true);
+            alert('error '+response);
+        }
+    });
+});
 
 $(document).on("click",".btnEliminarSocio",function (e) { 
     e.preventDefault();
@@ -27,21 +115,21 @@ $(document).on("click",".btnEditarSocio",function (e) {
     e.preventDefault();
     fila = $(this).closest("tr");
     id = (fila).find('td:eq(0)').text();
+    //ocultamos las casillas de agregar personas
+    $("#ocultar_campos").prop("hidden",true);
     $.ajax({
         type: "GET",
         url: "/socios/edit/"+id,
         dataType: "json",
         success: function (response) {
-            $("#nombre_socio").val(response.nombre_socio);
-            $("#apellido_socio").val(response.apellido_socio);
+            $("#nombre").val((fila).find('td:eq(2)').text()+" "+(fila).find('td:eq(3)').text()+ " " +(fila).find('td:eq(4)').text());
             $("#tipo_socio").val(response.tipo_socio);
-            $("#celular_socio").val(response.celular_socio);
-            $("#correo_socio").val(response.correo_socio);
-            $("#tipo_discapacidad").val(response.tipo_discapacidad);
+            $("#status").val(response.status);
         }
     });
 
     $("#IdSocio").val(id);
+
     $("#etiquetaSocio").text('Editar Socio');
     $("#modalSocio").modal('show');
  })
@@ -78,11 +166,12 @@ $(document).on("click",".btnListarsocios",function (e) {
             { "defaultContent": 
             "<button class='btn btn-icon btn-outline-warning btnEditarSocio'><i class='fadeIn animated bx bx-pencil'></i></button>\
             <button class='btn btn-outline-danger btnEliminarSocio'><i class='fadeIn animated bx bx-trash'></i></button>"},
-            {data:'nombre_socio'},
-            {data:'apellido_socio'},
+            {data:'nombre'},
+            {data:'apellido_paterno'},
+            {data:'apellido_materno'},
             {data:'tipo_socio'},
-            {data:'celular_socio'},
-            {data:'correo_socio'},
+            {data:'telefono'},
+            {data:'correo'},
             {data:'tipo_discapacidad'},
         ],order:[0],
         buttons:[],
@@ -97,6 +186,9 @@ $(document).on("click",".btnAgregarsocio",function (e) {
     LimpiarformSocio();
     fila = $(this).closest("tr");
     id = (fila).find('td:eq(0)').text();
+    $("#nombre").val("");
+    $("#ocultar_campos").prop("hidden",false);
+    
     $("#IdAsociacionSocio").val(id);
     $("#etiquetaSocio").text('Registrar Socio');
     $("#modalSocio").modal('show');
@@ -105,27 +197,37 @@ $(document).on("click",".btnAgregarsocio",function (e) {
 
 $("#btnGuardaSocio").on("click",function (e) { 
     e.preventDefault();
-    ds=$("#fomrSocio").serialize();
     
-    dt="";
-    if ($("#etiquetaSocio").text()=='Registrar Socio') {
-        ru="/socios/store";
-        mje="Socio Registrado";
-        dt="#DTAsociaciones";
-    }else{
-        ru="/socios/update";
-        mje="Socio Actualizado";
-        dt="#DTListaSocios";
-    }
-    GuardarRegistro(ds,ru,mje,dt);
-    $("#modalSocio").modal('hide');
+    
+        ds=$("#fomrSocio").serialize();
+        dt="";
+        if ($("#etiquetaSocio").text()=='Registrar Socio') {
+            if ($("#iddiscapacitado").val()=="") {
+                alert("Seleccione una persona por dni o por nombre");
+            }else{
+                ru="/socios/store";
+                mje="Socio Registrado";
+                dt="#DTAsociaciones";
+                GuardarRegistro(ds,ru,mje,dt);
+                $("#modalSocio").modal('hide');
+            }
+            
+        }else{
+            ru="/socios/update";
+            mje="Socio Actualizado";
+            dt="#DTListaSocios";
+            GuardarRegistro(ds,ru,mje,dt);
+            $("#modalSocio").modal('hide');
+        }
+        
+    
  })
 
 function LimpiarformSocio() { 
-    $("#nombre_socio").val('');
-    $("#apellido_socio").val('');
-    $("#celular_socio").val('');
-    $("#correo_socio").val('');
+    // $("#nombre_socio").val('');
+    // $("#apellido_socio").val('');
+    // $("#celular_socio").val('');
+    // $("#correo_socio").val('');
     
 }
 
@@ -141,15 +243,16 @@ $("#DTAsociaciones").DataTable({
         <button class='btn btn-outline-primary btnListarsocios'><i class='fadeIn animated bx bx-list-ol'></i></button>"},
         {data:'provincia'},
         {data:'distrito'},
-        {data: '-',
-            render: function ( data, type, row ) {
-                if (row.nombre_socio==null) {
-                    return ' ';
-                }else{
-                    return row.nombre_socio + ' ' + row.apellido_socio;
-                }
-            }
-        },
+        // {data: '-',
+        //     render: function ( data, type, row ) {
+        //         if (row.nombre==null) {
+        //             return ' ';
+        //         }else{
+        //             return row.nombre +row.apellido_paterno + ' ' + row.apellido_materno;
+        //         }
+        //     }
+        // },
+        // {data:'tipo_socio'},
         {data:'nombre_organizacion'},
         {data:'siglas_asociacion'},
         {data:'partida_registral'},
