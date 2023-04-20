@@ -16,7 +16,6 @@ $("#provincia").on('change', function() {
 
 $("#btnGuardaContrasena").on("click",function (e) {
   e.preventDefault();
-
   if (($("#passwordchange").val())==($("#passwordchange2").val())) {
       var serializedData = $("#formCambiarClave").serialize();
       let ruta="ActualizaContrasena";
@@ -31,8 +30,6 @@ $("#btnGuardaContrasena").on("click",function (e) {
           showConfirmButton: false,
           timer: 1500});
   }
-  
-
 });
 
 $(document).on("click",".btnCambiarClave",function (e) {

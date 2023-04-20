@@ -464,6 +464,8 @@
                             </li>
                         </ul>
                     </div>
+
+
                     @if (Route::has('login'))
                     @auth
                         <div class="user-box dropdown">

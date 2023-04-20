@@ -1,3 +1,4 @@
+
 $("#btnGuardarVisita").on("click",function (e) {
     e.preventDefault()
     if ($("#dniBuscar").val()=="") {

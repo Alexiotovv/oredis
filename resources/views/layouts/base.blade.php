@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="../../../assetss/css/style.css">
     <link rel="stylesheet" href="../../../assetss/css/responsive.css">
 
-    
-    
 </head>
 
 <body>

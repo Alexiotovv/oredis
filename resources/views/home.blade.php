@@ -12,7 +12,7 @@
           <span data-depth=".5"><img src="assetss/images/hero/hero-one-img-1.jpg" class="wow fadeInLeft" alt="hero image">
           </span>
         </div> --}}
-
+        
         <div class="hero-img hero-img-two scene">
           <span data-depth=".5">
             <img style="width: 90%" src="{{asset('storage/contenido/'.$obj->foto_banner)}}" class="wow fadeInLeft" alt="hero image">
