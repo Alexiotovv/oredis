@@ -199,7 +199,7 @@ $("#btnGuardaSocio").on("click",function (e) {
     e.preventDefault();
     
     
-        ds=$("#fomrSocio").serialize();
+        ds=$("#formSocio").serialize();
         dt="";
         if ($("#etiquetaSocio").text()=='Registrar Socio') {
             if ($("#iddiscapacitado").val()=="") {

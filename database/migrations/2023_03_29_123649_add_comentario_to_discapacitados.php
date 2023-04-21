@@ -18,6 +18,7 @@ class AddComentarioToDiscapacitados extends Migration
         });
     }
 
+    
     /**
      * Reverse the migrations.
      *

@@ -71,8 +71,6 @@
         });
     </script>
 
-    
-
     <script>
 		$('.single-select').select2({
 			theme: 'bootstrap4',

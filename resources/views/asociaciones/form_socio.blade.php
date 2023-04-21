@@ -1,4 +1,4 @@
-<form action="" id="fomrSocio">@csrf
+<form action="" id="formSocio">@csrf
         <div class="modal fade" id="modalSocio" aria-hidden="true" style="z-index: 1049">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -61,4 +61,3 @@
    
 </form>
 
-@include('asociaciones.form_socio')

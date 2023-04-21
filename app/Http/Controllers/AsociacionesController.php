@@ -21,7 +21,9 @@ class AsociacionesController extends Controller
         $distrito=DB::table('ubigeos')
         ->select('ubigeos.id','ubigeos.distrito')
         ->get();
+        // return view('asociaciones.index_asociaciones',[,'provincia'=>$provincia]);
         return view('asociaciones.index_asociaciones',['distrito'=>$distrito,'provincia'=>$provincia]);
+        
     }
 
     /**
