@@ -17,12 +17,10 @@ class CreateAsociacionessociosTable extends Migration
             $table->id();
             $table->bigInteger('idasociaciones')->unsigned();
             $table->foreign('idasociaciones')->references('id')->on('asociaciones')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('nombre_socio', 100)->nullable()->default('');
-            $table->string('apellido_socio', 100)->nullable()->default('');
+            $table->bigInteger('iddiscapacitados')->unsigned();
+            $table->foreign('iddiscapacitados')->references('id')->on('discapacitados')->onDelete('cascade')->onUpdate('cascade');
             $table->string('tipo_socio', 100)->nullable()->default('');
-            $table->string('celular_socio', 100)->nullable()->default('');
-            $table->string('correo_socio', 100)->nullable()->default('');
-            $table->string('tipo_discapacidad', 100)->nullable()->default('');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

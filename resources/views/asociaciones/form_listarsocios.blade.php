@@ -51,7 +51,8 @@
                                         <th>id</th>
                                         <th>Acciones</th>
                                         <th>nombre_socio</th>
-                                        <th>apellido_socio</th>
+                                        <th>apellido_paterno</th>
+                                        <th>apellido_materno</th>
                                         <th>tipo_socio</th>
                                         <th>celular_socio</th>
                                         <th>correo_socio</th>

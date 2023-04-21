@@ -72,6 +72,10 @@ Route::get('/socios/show/{id}',[AsociacionessociosController::class, 'show'])->m
 Route::get('/socios/edit/{id}',[AsociacionessociosController::class, 'edit'])->middleware(['auth'])->name('socios.edit');
 Route::post('/socios/update',[AsociacionessociosController::class, 'update'])->middleware(['auth'])->name('socios.update');
 Route::get('/socios/destroy/{id}',[AsociacionessociosController::class, 'destroy'])->middleware(['auth'])->name('socios.destroy');
+
+Route::get('/socios/buscar/{dni}',[AsociacionessociosController::class, 'buscar'])->middleware(['auth'])->name('socios.buscar');
+Route::get('/socios/buscar/nombre/{nombre}/apepat/{apepat}/apemat/{apemat}',[AsociacionessociosController::class, 'buscarnombre'])->middleware(['auth'])->name('socios.buscarnombre');
+
 //end socios
 
 //Discapacitado

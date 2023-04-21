@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\asociacionessocios;
 use Illuminate\Http\Request;
 use DB;
-
+use Illuminate\Support\Str;
 class AsociacionessociosController extends Controller
 {
     /**
@@ -34,16 +34,56 @@ class AsociacionessociosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     public function buscarnombre($nombre,$apepat,$apemat)
+     {
+        #aqui me quede
+        // $nombre=request('txtbuscarnombre');
+        // $apellido_pat=request('txtbuscarapellidopat');
+        // $apellido_mat=request('txtbuscarapellidomat');
+        // $nombre=Str::of(request('txtbuscarnombre'))->explode(' ');
+        $obj = DB::table('discapacitados')
+        ->leftjoin('direcciones','direcciones.disc_id','=','discapacitados.id')
+        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+        ->select('discapacitados.id',
+            'discapacitados.nro_doc_identidad',
+            'discapacitados.nombre',
+            'discapacitados.apellido_paterno',
+            'discapacitados.apellido_materno',
+            'ubigeos.provincia',
+            'ubigeos.distrito',
+            'direcciones.direccion',
+            'direcciones.numero',
+        )
+       ->where('discapacitados.nombre','like','%'.$nombre.'%')
+       ->where('discapacitados.apellido_paterno','like','%'.$apepat.'%')
+       ->where('discapacitados.apellido_materno','like','%'.$apemat.'%')
+       ->limit(50)
+        ->get();
+        return response()->json($obj);
+     }
+
+     public function buscar($dni)
+     {
+        $obj = DB::table('discapacitados')
+        ->select('discapacitados.id',
+        'discapacitados.nro_doc_identidad',
+        'discapacitados.nombre',
+        'discapacitados.apellido_paterno',
+        'discapacitados.apellido_materno')
+        ->where('discapacitados.nro_doc_identidad','=',$dni)
+        ->get();
+        return response()->json($obj);
+     }
+
+
     public function store(Request $request)
     {
         $obj = new asociacionessocios();
         $obj->idasociaciones=request('IdAsociacionSocio');
-        $obj->nombre_socio=request('nombre_socio');
-        $obj->apellido_socio = request('apellido_socio');
+        $obj->iddiscapacitados=request('iddiscapacitado');
         $obj->tipo_socio = request('tipo_socio');
-        $obj->celular_socio = request('celular_socio');
-        $obj->correo_socio = request('correo_socio');
-        $obj->tipo_discapacidad = request('tipo_discapacidad');
+        $obj->status = request('status');
         $obj->save();
         $data=['Msje'=>'ok'];
         return response()->json($data);
@@ -58,7 +98,15 @@ class AsociacionessociosController extends Controller
     public function show($id)
     {
         $obj = DB::table('asociacionessocios')
-        ->select('asociacionessocios.*')
+        ->leftjoin('discapacitados','discapacitados.id','=','asociacionessocios.iddiscapacitados')
+        ->select('asociacionessocios.id',
+        'asociacionessocios.tipo_socio',
+        'discapacitados.nombre',
+        'discapacitados.apellido_paterno',
+        'discapacitados.apellido_materno',
+        'discapacitados.telefono',
+        'discapacitados.correo',
+        'discapacitados.tipo_discapacidad')
         ->where('asociacionessocios.idasociaciones','=',$id)
         ->get();
         return datatables()->of($obj)->toJson();
@@ -87,12 +135,8 @@ class AsociacionessociosController extends Controller
     {
         $id=request('IdSocio');
         $obj = asociacionessocios::findOrFail($id);
-        $obj->nombre_socio=request('nombre_socio');
-        $obj->apellido_socio = request('apellido_socio');
         $obj->tipo_socio = request('tipo_socio');
-        $obj->celular_socio = request('celular_socio');
-        $obj->correo_socio = request('correo_socio');
-        $obj->tipo_discapacidad = request('tipo_discapacidad');
+        $obj->status = request('status');
         $obj->save();
         $data=['Msje'=>'ok'];
         return response()->json($data);
