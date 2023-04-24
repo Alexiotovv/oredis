@@ -95,18 +95,18 @@ function buscarPersonaNombres(){
     apepat=$("#txtbuscarapellidopat").val();
     apemat=$("#txtbuscarapellidomat").val();
     if (nombre.trim()=='') {
-        nombre="%";
+        nombre="-";
     }
     if (apepat.trim()=='') {
-        apepat="%";
+        apepat="-";
     }
     if (apemat.trim()=='') {
-        apemat="%";
+        apemat="-";
     }
 
     $.ajax({
         type: "GET",
-        url: "/socios/buscar/nombre/"+nombre+"/apepat/"+apepat+"/apemat/"+apemat,
+        url: "/socios/buscarnombre/"+nombre+"/"+apepat+"/"+apemat,
         dataType: "json",
         beforeSend: function() {
             $("#spinner_buscar_nombre").prop('hidden',false);
