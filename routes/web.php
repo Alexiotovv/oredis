@@ -82,7 +82,7 @@ Route::post('/socios/update',[AsociacionessociosController::class, 'update'])->m
 Route::get('/socios/destroy/{id}',[AsociacionessociosController::class, 'destroy'])->middleware(['auth'])->name('socios.destroy');
 
 Route::get('/socios/buscar/{dni}',[AsociacionessociosController::class, 'buscar'])->middleware(['auth'])->name('socios.buscar');
-Route::get('/socios/buscarnombre/{nombre}/apepat/{apepat}/apemat/{apemat}',[AsociacionessociosController::class, 'buscarnombre'])->middleware(['auth'])->name('socios.buscarnombre');
+Route::get('/socios/buscarnombre/{nombre}/{apepat}/{apemat}',[AsociacionessociosController::class, 'buscarnombre'])->middleware(['auth'])->name('socios.buscarnombre');
 Route::get('/socios/buscarregistro/{dni}',[AsociacionessociosController::class, 'buscarregistro'])->middleware(['auth'])->name('socios.buscarregistro');
 Route::get('/socios/buscarregistroporid/{id}',[AsociacionessociosController::class, 'buscarregistroporid'])->middleware(['auth'])->name('socios.buscarregistroporid');
 Route::get('/socios/listar/{id}',[AsociacionessociosController::class, 'listar'])->middleware(['auth'])->name('socios.listar');

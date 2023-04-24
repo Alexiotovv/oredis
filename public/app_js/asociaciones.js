@@ -34,39 +34,38 @@ $(document).on("click",".btnSeleccionar",function (e) {
     });
 });
 
-$("#txtbuscarnombre").on("keyup",function (e){
+$("#txtbuscarnombre").on("keyup",function (){
+
     buscarPersonaNombres();
 });
-$("#txtbuscarapellidopat").on("keyup",function (e){
+$("#txtbuscarapellidopat").on("keyup",function (){
     buscarPersonaNombres();
 });
-$("#txtbuscarapellidomat").on("keyup",function (e){
+$("#txtbuscarapellidomat").on("keyup",function (){
     buscarPersonaNombres();
 });
 function buscarPersonaNombres() {
-    nombre=$("#txtbuscarnombre").val();
-    apepat=$("#txtbuscarapellidopat").val();
-    apemat=$("#txtbuscarapellidomat").val();
-    if (nombre.trim()=='') {
-        nombre="%";
+    nom=$("#txtbuscarnombre").val();
+    pat=$("#txtbuscarapellidopat").val();
+    mat=$("#txtbuscarapellidomat").val();
+    if (nom.trim()=='') {
+        nom="%";
     }
-    if (apepat.trim()=='') {
-        apepat="%";
+    if (pat.trim()=='') {
+        pat="%";
     }
-    if (apemat.trim()=='') {
-        apemat="%";
+    if (mat.trim()=='') {
+        mat="%";
     }
 
     $.ajax({
         type: "GET",
-        url: "/socios/buscarnombre/"+nombre+"/apepat/"+apepat+"/apemat/"+apemat,
+        url: "/socios/buscarnombre/"+nom+"/"+pat+"/"+mat,
         dataType: "json",
         beforeSend: function() {
             $("#spinner_buscar_nombre").prop('hidden',false);
         },
         success: function (response) {
-
-
             $("#DTBuscarSocio tbody").html("");
             response.forEach(element => {
                 $("#DTBuscarSocio").append('<tr>'+
@@ -83,8 +82,6 @@ function buscarPersonaNombres() {
                 '</tr>');
             });
             $("#spinner_buscar_nombre").prop('hidden',true);
-
-
         }
 
     });
