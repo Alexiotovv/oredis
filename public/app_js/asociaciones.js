@@ -49,13 +49,13 @@ function buscarPersonaNombres() {
     pat=$("#txtbuscarapellidopat").val();
     mat=$("#txtbuscarapellidomat").val();
     if (nom.trim()=='') {
-        nom="%";
+        nom="-";
     }
     if (pat.trim()=='') {
-        pat="%";
+        pat="-";
     }
     if (mat.trim()=='') {
-        mat="%";
+        mat="-";
     }
 
     $.ajax({

@@ -78,6 +78,16 @@ class AsociacionessociosController extends Controller
         // $apellido_pat=request('txtbuscarapellidopat');
         // $apellido_mat=request('txtbuscarapellidomat');
         // $nombre=Str::of(request('txtbuscarnombre'))->explode(' ');
+        if ($nombre=='-') {
+            $nombre='%';
+        }
+        if ($apepat=='-') {
+            $apepat='%';
+        }
+        if ($apemat=='-') {
+            $apemat='%';
+        }
+
         $obj = DB::table('discapacitados')
         ->leftjoin('direcciones','direcciones.disc_id','=','discapacitados.id')
         ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
