@@ -66,6 +66,14 @@ Route::get('/asociaciones/destroy/{id}',[AsociacionesController::class, 'destroy
 Route::get('/asociaciones/edit/{id}',[AsociacionesController::class, 'edit'])->middleware(['auth'])->name('asociaciones.edit');
 //end asociaciones
 
+
+//Asociaciones y Socios
+Route::get('/asociacionesysocios/listar',[AsociacionesController::class, 'listar'])->middleware(['auth'])->name('asociacionesysocios.listar');
+Route::get('/asociacionesysocios/index',[AsociacionesController::class, 'asociacionesysocios_index'])->middleware(['auth'])->name('asociacionesysocios.index');
+
+
+//End Asociaciones y Socios
+
 //socios
 Route::post('/socios/store',[AsociacionessociosController::class, 'store'])->middleware(['auth'])->name('socios.store');
 Route::get('/socios/show/{id}',[AsociacionessociosController::class, 'show'])->middleware(['auth'])->name('socios.show');
@@ -75,6 +83,9 @@ Route::get('/socios/destroy/{id}',[AsociacionessociosController::class, 'destroy
 
 Route::get('/socios/buscar/{dni}',[AsociacionessociosController::class, 'buscar'])->middleware(['auth'])->name('socios.buscar');
 Route::get('/socios/buscar/nombre/{nombre}/apepat/{apepat}/apemat/{apemat}',[AsociacionessociosController::class, 'buscarnombre'])->middleware(['auth'])->name('socios.buscarnombre');
+Route::get('/socios/buscarregistro/{dni}',[AsociacionessociosController::class, 'buscarregistro'])->middleware(['auth'])->name('socios.buscarregistro');
+Route::get('/socios/buscarregistroporid/{id}',[AsociacionessociosController::class, 'buscarregistroporid'])->middleware(['auth'])->name('socios.buscarregistroporid');
+Route::get('/socios/listar/{id}',[AsociacionessociosController::class, 'listar'])->middleware(['auth'])->name('socios.listar');
 
 //end socios
 
@@ -88,6 +99,9 @@ Route::get('/editardiscapacitado/{id}',[DiscapacitadosController::class, 'edit']
 Route::get('/editarpersonas',[DiscapacitadosController::class, 'editarpersonas'])->middleware(['auth'])->name('editar.personas');
 
 Route::get('/informacioncompleta/{id}',[DiscapacitadosController::class, 'show'])->middleware(['auth'])->name('informacion.completa');
+
+Route::get('/persona/buscarporid/{id}',[DiscapacitadosController::class, 'buscarporid'])->middleware(['auth'])->name('persona.buscarporid');
+
 //End Discapacitado
 
 //direcciones

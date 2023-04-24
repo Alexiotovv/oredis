@@ -22,6 +22,27 @@ class DiscapacitadosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     
+     public function buscarporid($id)
+    {
+        $discapacitados = DB::table('discapacitados')
+        ->select('discapacitados.*')
+        ->where('discapacitados.id','=',$id)
+        ->get();
+
+        $direcciones = DB::table('direcciones')
+        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+        ->leftjoin('discapacitados','discapacitados.id','=','direcciones.disc_id')
+        ->where('discapacitados.id','=',$id)
+        ->select('direcciones.*','ubigeos.provincia','ubigeos.distrito')
+        ->get();
+        $datos=['direcciones'=>$direcciones,'discapacitados'=>$discapacitados];
+
+        return response()->json($datos);
+        
+    }
+
     public function create(Request $request)
     {
         $provincias=DB::table('ubigeos')
@@ -224,11 +245,6 @@ class DiscapacitadosController extends Controller
         $obj->apellido_materno=request('apellido_materno');#
         $obj->doc_identidad=request('doc_identidad');#OK
         $obj->nro_doc_identidad=request('nro_doc_identidad');#OK
-        // $obj->direccion=request('direccion');#
-        // $obj->ubigeo_id=request('distrito');#
-        // $obj->altitud=request('altitud');
-        // $obj->longitud=request('longitud');
-        // $obj->latitud=request('latitud');
         $obj->correo=request('correo');#
         $obj->telefono=request('telefono');#
         $obj->fecha_nacimiento=request('fecha_nacimiento');#

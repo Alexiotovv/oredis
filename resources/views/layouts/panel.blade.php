@@ -35,7 +35,7 @@
 
 
     @yield('extra_css')
-	<title>Panel Administración</title>
+    @yield('titulo')
 </head>
 
 <body>
@@ -154,6 +154,8 @@
                                 </a>
                                 <ul>
                                     <li><a href="{{route('asociaciones.index')}}"><i class="bx bx-user"></i>Listar Asociaciones</a>
+                                    </li>
+                                    <li><a href="{{route('asociacionesysocios.index')}}"><i class="bx bx-user"></i>Lista AsociacionesySocios</a>
                                     </li>
                                     {{-- <li><a href="{{route('noticias')}}"><i class="bx bx-user"></i></a>
                                     </li>

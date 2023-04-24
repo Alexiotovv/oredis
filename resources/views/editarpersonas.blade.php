@@ -25,10 +25,11 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label" for="nro_doc_identidad">Nro de documento</label>
+                    <label class="form-label" for="nro_doc_identidad">Ingrese N° Documento</label>
+                    o <span class="badge bg-warning text-dark" id="btnInfo"><a href="" id="SinDocumento"> Buscar por Nombre</a></span>
                     <div class="input-group lg-3">
                         <input class="form-control" type="text" name="nro_doc_identidad" id="nro_doc_identidad"
-                            name="nro_doc_identidad" placeholder="Nro de documento..." required>
+                            placeholder="Nro de documento..." required>
                         <button type="button" class="btn btn-primary" id="btnBuscarEditar" ><i
                                 class="lni lni-search"></i>Buscar</button>
 
@@ -62,7 +63,7 @@
                         placeholder="Apellido paterno..." readonly required>
                 </div>
                 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label class="form-label" for="correo">Correo</label>
                     <input class="form-control" type="email" name="correo" id="correo" placeholder="Correo...">
                 </div>
@@ -80,7 +81,7 @@
                         <option value="DIVORCIADO">DIVORCIADO</option>
                     </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <label class="form-label" for="sexo">Sexo</label>
                     <select class="form-select" aria-label="Default select example" name="sexo" id="sexo">
                         <option value="--">--</option>
@@ -96,12 +97,14 @@
 
                 <div class="col-md-4">
                     <label class="form-label" for="seguro_salud">¿Cuenta con seguro de salud?</label>
-                    <div class="form-check form-check-inline">
+                    <br>
+                    <div class="form-check">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="seguro_salud" id="seguro_saludRadio1"
                                 value="SI" checked>
                             <label class="form-check-label" for="inlineRadio1">SÍ</label>
                         </div>
+                        
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="seguro_salud" id="seguro_saludRadio2"
                                 value="NO">
@@ -336,27 +339,7 @@
                     id="comentario" placeholder="escribre un comentario" maxlength="249"></textarea>
             </div>
             <hr>
-            {{-- <div class="row">
-                <div class="content">
-                    <h5>Datos de Geolocalziación</h5>
-                    <a class="btn btn-primary" id="ObtenerUbicacion"><i class="lni lni-search"></i>
-                        Obtener Ubicación</a>
-                    <a class="btn btn-primary" id="IngresarManualUbicacion"><i class="lni lni-write"></i>
-                        Ingresar Manual</a>
-                </div>
-                <div class="col-md-4">
-                    <label for="">Latitud</label>
-                    <input type="text" class="form-control" id="latitud" name="latitud" readonly>
-                </div>
-                <div class="col-md-4">
-                    <label for="">Longitud</label>
-                    <input type="text" class="form-control" id="longitud" name="longitud" readonly>
-                </div>
-                <div class="col-md-4">
-                    <label for="">Altitud</label>
-                    <input type="text" class="form-control" id="altitud" name="altitud" readonly>
-                </div>
-            </div> --}}
+
 
             <div class="row" style="padding-top: 30px;">
 
@@ -427,7 +410,7 @@
         </div>
     </form>
 
-   
+    @include('discapacitados.form_buscardiscapacitados')
 @endsection
 
 @section('extra_js')

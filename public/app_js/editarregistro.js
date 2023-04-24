@@ -24,6 +24,117 @@ $("#distrito").on('change', function() {
   });
 });
 
+
+$(document).on("click",".btnSeleccionar",function (e) {
+  e.preventDefault();
+  fila = $(this).closest("tr");
+  id= (fila).find('td:eq(0)').text();
+  $.ajax({
+      type: "GET",
+      url: "/persona/buscarporid/"+id,
+      dataType: "json",
+      success: function (response) {
+            $("#idPersonaDireccion").val(response.discapacitados[0].id);//Input del form Direccion
+            $("#idPersona").val(response.discapacitados[0].id);
+            $("#nro_doc_identidad").val(response.discapacitados[0].nro_doc_identidad);
+            $("#nombre").val(response.discapacitados[0].nombre);
+            $("#apellido_paterno").val(response.discapacitados[0].apellido_paterno);
+            $("#apellido_materno").val(response.discapacitados[0].apellido_materno);
+            $("#doc_identidad").val(response.discapacitados[0].doc_identidad).change();
+            $("#fecha_caducidad_carnet").val(response.discapacitados[0].fecha_caducidad_carnet);
+            $("#correo").val(response.discapacitados[0].correo);
+            $("#telefono").val(response.discapacitados[0].telefono);
+            $("#fecha_nacimiento").val(response.discapacitados[0].fecha_nacimiento);
+            $("#estado_civil").val(response.discapacitados[0].estado_civil).change();
+            $("#sexo").val(response.discapacitados[0].sexo).change();
+            $("#ocupacion").val(response.discapacitados[0].ocupacion);
+            $("#grado_instruccion").val(response.discapacitados[0].grado_instruccion);
+            $("#flag_certifi_discapacidad").val(response.discapacitados[0].flag_certifi_discapacidad).change();
+            $("#tipo_discapacidad").val(response.discapacitados[0].tipo_discapacidad).change();
+            $("#diagnostico_discapacidad").val(response.discapacitados[0].diagnostico_discapacidad).change();
+            //RecibirRadio(nombre del elemento, valor guardado que viene, valor del primer radio);
+            RecibirRadio("requiere_ayuda",response.discapacitados[0].requiere_ayuda,'SI');
+            RecibirRadio("tipo_ayuda",response.discapacitados[0].tipo_ayuda,'FISICA');
+            $("#ayuda_mecanica").val(response.discapacitados[0].ayuda_mecanica).change();
+            $("#nombre_apoderado").val(response.discapacitados[0].nombre_apoderado);
+            $("#dni_apoderado").val(response.discapacitados[0].dni_apoderado);
+            $("#parentesco").val(response.discapacitados[0].parentesco).change();
+            $("#direccion_apoderado").val(response.discapacitados[0].direccion_apoderado);
+            $("#correo_apoderado").val(response.discapacitados[0].correo_apoderado);
+            $("#telefono_apoderado").val(response.discapacitados[0].telefono_apoderado);
+            $("#tipo_seguro").val(response.discapacitados[0].tipo_seguro).change();
+            $("#seguro_salud").val(response.discapacitados[0].seguro_salud);
+            $("#flg_carnet_did").val(response.discapacitados[0].flg_carnet_did);
+            $("#fecha_empadronamiento").val(response.discapacitados[0].fecha_empadronamiento);
+            $("#comentario").val(response.discapacitados[0].comentario);
+            //poniendo en la tabla sus direcciones
+            ObtenerDirecciones(response.discapacitados[0].id);
+            $("#nro_doc_identidad").removeClass('is-valid')
+            $("#modalbuscarpornombre").modal("hide");
+      }
+  });
+});
+
+$("#SinDocumento").on("click",function (e) {
+  e.preventDefault();
+  $("#modalbuscarpornombre").modal("show");
+})
+
+$("#txtbuscarnombre").on("keyup",function (e){
+  buscarPersonaNombres();
+});
+$("#txtbuscarapellidopat").on("keyup",function (e){
+  buscarPersonaNombres();
+});
+$("#txtbuscarapellidomat").on("keyup",function (e){
+  buscarPersonaNombres();
+});
+
+function buscarPersonaNombres(){
+  nombre=$("#txtbuscarnombre").val();
+    apepat=$("#txtbuscarapellidopat").val();
+    apemat=$("#txtbuscarapellidomat").val();
+    if (nombre.trim()=='') {
+        nombre="%";
+    }
+    if (apepat.trim()=='') {
+        apepat="%";
+    }
+    if (apemat.trim()=='') {
+        apemat="%";
+    }
+
+    $.ajax({
+        type: "GET",
+        url: "/socios/buscar/nombre/"+nombre+"/apepat/"+apepat+"/apemat/"+apemat,
+        dataType: "json",
+        beforeSend: function() {
+            $("#spinner_buscar_nombre").prop('hidden',false);
+        },
+        success: function (response) {
+            $("#DTBuscarSocio tbody").html("");
+            response.forEach(element => {
+                $("#DTBuscarSocio").append('<tr>'+
+                '<td>'+element.id+'</td>'+
+                '<td><button class="btn btn-warning btn-sm btnSeleccionar"><i class="bx bx-plus"></i></button></td>'+
+                '<td>'+element.nro_doc_identidad+'</td>'+
+                '<td>'+element.nombre+'</td>'+
+                '<td>'+element.apellido_paterno+'</td>'+
+                '<td>'+element.apellido_materno+'</td>'+
+                '<td>'+element.provincia+'</td>'+
+                '<td>'+element.distrito+'</td>'+
+                '<td>'+element.direccion+'</td>'+
+                '<td>'+element.numero+'</td>'+
+                '</tr>');
+            });
+            $("#spinner_buscar_nombre").prop('hidden',true);
+        }
+
+    });
+}
+
+
+
 $(document).on('click','.btnEditarDireccion', function(e) {
   e.preventDefault();
   fila = $(this).closest("tr");
@@ -84,8 +195,8 @@ $("#btnNuevaDireccion").on('click', function(e) {
 
 $("#btnEnviar").on("click",function (e) {
   e.preventDefault();
-  if ($("#nro_doc_identidad").val()=="" ||$("#telefono").val()==""){
-    alert("Ingrese un Dni o telefono");
+  if ($("#telefono").val()==""){
+    alert("Ingrese un telefono");
   }else{
     ds=$("#formActualiza").serialize();
     ru='actualizardiscapacitado';
@@ -116,110 +227,110 @@ function error(err){
 
 $("#btnBuscarEditar").on("click",function(e){
   e.preventDefault();
-  $.ajax({
-    type: "GET",
-    url: "consultadni/"+$("#nro_doc_identidad").val(),
-    dataType: "json",
-    success: function (response) {
-        if (response.discapacitados.length>0) {
-          $.ajax({
-            type: "GET",
-            url: "editardiscapacitado/"+$("#nro_doc_identidad").val(),
-            dataType: "json",
-            success: function (response) {
-              $("#idPersonaDireccion").val(response.discapacitados[0].id);//Input del form Direccion
-              $("#idPersona").val(response.discapacitados[0].id);
-              $("#nro_doc_identidad").addClass('is-valid')
-              $("#dni_encontrado").show();
-              $("#dni_noencontrado").hide();
-
-              $("#nombre").val(response.discapacitados[0].nombre);
-              $("#apellido_paterno").val(response.discapacitados[0].apellido_paterno);
-              $("#apellido_materno").val(response.discapacitados[0].apellido_materno);
-              $("#doc_identidad").val(response.discapacitados[0].doc_identidad).change();
-              $("#fecha_caducidad_carnet").val(response.discapacitados[0].fecha_caducidad_carnet);
-              // $("#direccion").val(response[0].direccion);
-              // $("#distrito").val(response[0].ubigeo_id);
-              // $("#altitud").val(response[0].altitud);
-              // $("#longitud").val(response[0].longitud);
-              // $("#latitud").val(response[0].latitud);
-              $("#correo").val(response.discapacitados[0].correo);
-              $("#telefono").val(response.discapacitados[0].telefono);
-              $("#fecha_nacimiento").val(response.discapacitados[0].fecha_nacimiento);
-              $("#estado_civil").val(response.discapacitados[0].estado_civil).change();
-              $("#sexo").val(response.discapacitados[0].sexo).change();
-              $("#ocupacion").val(response.discapacitados[0].ocupacion);
-              $("#grado_instruccion").val(response.discapacitados[0].grado_instruccion);
-              $("#flag_certifi_discapacidad").val(response.discapacitados[0].flag_certifi_discapacidad).change();
-              $("#tipo_discapacidad").val(response.discapacitados[0].tipo_discapacidad).change();
-              $("#diagnostico_discapacidad").val(response.discapacitados[0].diagnostico_discapacidad).change();
-              //RecibirRadio(nombre del elemento, valor guardado que viene, valor del primer radio);
-              RecibirRadio("requiere_ayuda",response.discapacitados[0].requiere_ayuda,'SI');
-              RecibirRadio("tipo_ayuda",response.discapacitados[0].tipo_ayuda,'FISICA');
-              $("#ayuda_mecanica").val(response.discapacitados[0].ayuda_mecanica).change();
-              $("#nombre_apoderado").val(response.discapacitados[0].nombre_apoderado);
-              $("#dni_apoderado").val(response.discapacitados[0].dni_apoderado);
-              $("#parentesco").val(response.discapacitados[0].parentesco).change();
-              $("#direccion_apoderado").val(response.discapacitados[0].direccion_apoderado);
-              $("#correo_apoderado").val(response.discapacitados[0].correo_apoderado);
-              $("#telefono_apoderado").val(response.discapacitados[0].telefono_apoderado);
-              $("#tipo_seguro").val(response.discapacitados[0].tipo_seguro).change();
-              $("#seguro_salud").val(response.discapacitados[0].seguro_salud);
-              $("#flg_carnet_did").val(response.discapacitados[0].flg_carnet_did);
-              $("#fecha_empadronamiento").val(response.discapacitados[0].fecha_empadronamiento);
-              $("#comentario").val(response.discapacitados[0].comentario);
-              //poniendo en la tabla sus direcciones
-              ObtenerDirecciones(response.discapacitados[0].id);
-              // console.log(VerificarDistrito());
-
-            }
-          });
-        }else{
-          $("#dni_encontrado").hide();
-          $("#dni_noencontrado").show();
-          $("#nro_doc_identidad").removeClass('is-valid');
-          $("#nro_doc_identidad").addClass('is-invalid');
-
-
-          $("#nombre").val("");
-          $("#apellido_paterno").val("");
-          $("#apellido_materno").val("");
-          $("#doc_identidad").val("DNI").change();
-          $("#fecha_caducidad_carnet").val("dd/mm/aaaa");
-          // $("#direccion").val(response[0].direccion);
-          // $("#distrito").val(response[0].ubigeo_id);
-          // $("#altitud").val(response[0].altitud);
-          // $("#longitud").val(response[0].longitud);
-          // $("#latitud").val(response[0].latitud);
-          $("#correo").val("");
-          $("#telefono").val("");
-          $("#fecha_nacimiento").val("dd/mm/aaaa");
-          $("#estado_civil").val('--').change();
-          $("#sexo").val("--").change();
-          $("#ocupacion").val("");
-          $("#grado_instruccion").val("--").change();
-          $("#flag_certifi_discapacidad").val("--").change();
-          $("#tipo_discapacidad").val("--").change();
-          $("#diagnostico_discapacidad").val("--").change();
-          //RecibirRadio(nombre del elemento, valor guardado que viene, valor del primer radio);
-          // RecibirRadio("requiere_ayuda",response.discapacitados[0].requiere_ayuda,'SI');
-          // RecibirRadio("tipo_ayuda",response.discapacitados[0].tipo_ayuda,'FISICA');
-          $("#ayuda_mecanica").val("").change();
-          $("#nombre_apoderado").val("");
-          $("#dni_apoderado").val("");
-          $("#parentesco").val("--").change();
-          $("#direccion_apoderado").val("");
-          $("#correo_apoderado").val("");
-          $("#telefono_apoderado").val("");
-          $("#tipo_seguro").val("--").change();
-          $("#seguro_salud").val("");
-          $("#flg_carnet_did").val("");
-          $("#fecha_empadronamiento").val("dd/mm/aaaa");
-          $("#comentario").val("");
-          $("#DTDirecciones tbody").html("");
-        }
-    }
-  });
+  if ($("#nro_doc_identidad").val().trim()==="") {
+      alert("Ingrese un DNI para buscar");
+  }else{
+    $.ajax({
+      type: "GET",
+      url: "consultadni/"+$("#nro_doc_identidad").val(),
+      dataType: "json",
+      success: function (response) {
+          if (response.discapacitados.length>0) {
+            $.ajax({
+              type: "GET",
+              url: "editardiscapacitado/"+$("#nro_doc_identidad").val(),
+              dataType: "json",
+              success: function (response) {
+                $("#idPersonaDireccion").val(response.discapacitados[0].id);//Input del form Direccion
+                $("#idPersona").val(response.discapacitados[0].id);
+                $("#nro_doc_identidad").addClass('is-valid')
+                $("#dni_encontrado").show();
+                $("#dni_noencontrado").hide();
+  
+                $("#nombre").val(response.discapacitados[0].nombre);
+                $("#apellido_paterno").val(response.discapacitados[0].apellido_paterno);
+                $("#apellido_materno").val(response.discapacitados[0].apellido_materno);
+                $("#doc_identidad").val(response.discapacitados[0].doc_identidad).change();
+                $("#fecha_caducidad_carnet").val(response.discapacitados[0].fecha_caducidad_carnet);
+  
+                $("#correo").val(response.discapacitados[0].correo);
+                $("#telefono").val(response.discapacitados[0].telefono);
+                $("#fecha_nacimiento").val(response.discapacitados[0].fecha_nacimiento);
+                $("#estado_civil").val(response.discapacitados[0].estado_civil).change();
+                $("#sexo").val(response.discapacitados[0].sexo).change();
+                $("#ocupacion").val(response.discapacitados[0].ocupacion);
+                $("#grado_instruccion").val(response.discapacitados[0].grado_instruccion);
+                $("#flag_certifi_discapacidad").val(response.discapacitados[0].flag_certifi_discapacidad).change();
+                $("#tipo_discapacidad").val(response.discapacitados[0].tipo_discapacidad).change();
+                $("#diagnostico_discapacidad").val(response.discapacitados[0].diagnostico_discapacidad).change();
+                //RecibirRadio(nombre del elemento, valor guardado que viene, valor del primer radio);
+                RecibirRadio("requiere_ayuda",response.discapacitados[0].requiere_ayuda,'SI');
+                RecibirRadio("tipo_ayuda",response.discapacitados[0].tipo_ayuda,'FISICA');
+                $("#ayuda_mecanica").val(response.discapacitados[0].ayuda_mecanica).change();
+                $("#nombre_apoderado").val(response.discapacitados[0].nombre_apoderado);
+                $("#dni_apoderado").val(response.discapacitados[0].dni_apoderado);
+                $("#parentesco").val(response.discapacitados[0].parentesco).change();
+                $("#direccion_apoderado").val(response.discapacitados[0].direccion_apoderado);
+                $("#correo_apoderado").val(response.discapacitados[0].correo_apoderado);
+                $("#telefono_apoderado").val(response.discapacitados[0].telefono_apoderado);
+                $("#tipo_seguro").val(response.discapacitados[0].tipo_seguro).change();
+                $("#seguro_salud").val(response.discapacitados[0].seguro_salud);
+                $("#flg_carnet_did").val(response.discapacitados[0].flg_carnet_did);
+                $("#fecha_empadronamiento").val(response.discapacitados[0].fecha_empadronamiento);
+                $("#comentario").val(response.discapacitados[0].comentario);
+                //poniendo en la tabla sus direcciones
+                ObtenerDirecciones(response.discapacitados[0].id);
+                // console.log(VerificarDistrito());
+  
+              }
+            });
+          }else{
+            $("#dni_encontrado").hide();
+            $("#dni_noencontrado").show();
+            $("#nro_doc_identidad").removeClass('is-valid');
+            $("#nro_doc_identidad").addClass('is-invalid');
+  
+  
+            $("#nombre").val("");
+            $("#apellido_paterno").val("");
+            $("#apellido_materno").val("");
+            $("#doc_identidad").val("DNI").change();
+            $("#fecha_caducidad_carnet").val("dd/mm/aaaa");
+            // $("#direccion").val(response[0].direccion);
+            // $("#distrito").val(response[0].ubigeo_id);
+            // $("#altitud").val(response[0].altitud);
+            // $("#longitud").val(response[0].longitud);
+            // $("#latitud").val(response[0].latitud);
+            $("#correo").val("");
+            $("#telefono").val("");
+            $("#fecha_nacimiento").val("dd/mm/aaaa");
+            $("#estado_civil").val('--').change();
+            $("#sexo").val("--").change();
+            $("#ocupacion").val("");
+            $("#grado_instruccion").val("--").change();
+            $("#flag_certifi_discapacidad").val("--").change();
+            $("#tipo_discapacidad").val("--").change();
+            $("#diagnostico_discapacidad").val("--").change();
+            //RecibirRadio(nombre del elemento, valor guardado que viene, valor del primer radio);
+            // RecibirRadio("requiere_ayuda",response.discapacitados[0].requiere_ayuda,'SI');
+            // RecibirRadio("tipo_ayuda",response.discapacitados[0].tipo_ayuda,'FISICA');
+            $("#ayuda_mecanica").val("").change();
+            $("#nombre_apoderado").val("");
+            $("#dni_apoderado").val("");
+            $("#parentesco").val("--").change();
+            $("#direccion_apoderado").val("");
+            $("#correo_apoderado").val("");
+            $("#telefono_apoderado").val("");
+            $("#tipo_seguro").val("--").change();
+            $("#seguro_salud").val("");
+            $("#flg_carnet_did").val("");
+            $("#fecha_empadronamiento").val("dd/mm/aaaa");
+            $("#comentario").val("");
+            $("#DTDirecciones tbody").html("");
+          }
+      }
+    });
+  }
 
 });
 

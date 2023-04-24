@@ -17,7 +17,6 @@ class AsociacionessociosController extends Controller
     {
         //
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -27,13 +26,50 @@ class AsociacionessociosController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function listar($idAsociacion)
+    {
+        $obj = DB::table('asociacionessocios')
+        ->leftjoin('asociaciones','asociaciones.id','=','asociacionessocios.idasociaciones')
+        ->leftjoin('discapacitados','discapacitados.id','=','asociacionessocios.iddiscapacitados')
+        ->where('asociacionessocios.idasociaciones','=',$idAsociacion)
+        ->select(
+            'discapacitados.nro_doc_identidad',
+            'discapacitados.nombre',
+            'discapacitados.apellido_paterno',
+            'discapacitados.apellido_materno',
+            'asociacionessocios.tipo_socio',
+            'discapacitados.correo',
+            'discapacitados.telefono',
+            'discapacitados.tipo_discapacidad',)
+        ->get();
+        return response()->json($obj);
+    }
+
+    public function buscarregistroporid($id)
+    {
+       $obj = DB::table('asociacionessocios')
+       ->select('asociacionessocios.iddiscapacitados')
+       ->where('asociacionessocios.iddiscapacitados','=',$id)
+       ->get();
+       return response()->json($obj);
+    }
+
+
+    public function buscarregistro($dni)
+     {
+        $obj = DB::table('asociacionessocios')
+        ->leftjoin('discapacitados','discapacitados.id','=','asociacionessocios.iddiscapacitados')
+        ->select('asociacionessocios.id')
+        ->where('discapacitados.nro_doc_identidad','=',$dni)
+        ->get();
+        return response()->json($obj);
+     }
 
      public function buscarnombre($nombre,$apepat,$apemat)
      {

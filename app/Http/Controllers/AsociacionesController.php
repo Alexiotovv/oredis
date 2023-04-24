@@ -12,6 +12,30 @@ class AsociacionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function asociacionesysocios_index(Request $request)
+    {
+        return view('asociaciones.form_asociacionesysocios');
+    }
+
+    public function listar(Request $request)
+    {
+        $obj=DB::table('asociaciones')
+        ->leftjoin('ubigeos','ubigeos.id','=','asociaciones.idUbigeos')
+        ->leftjoin('asociacionessocios','asociacionessocios.idasociaciones','=','asociaciones.id')
+        ->leftjoin('discapacitados','discapacitados.id','=','asociacionessocios.iddiscapacitados')
+        ->where('asociaciones.status','=',1)
+        ->select(
+            'asociacionessocios.tipo_socio',
+            'asociaciones.*',
+            'discapacitados.nombre',
+            'discapacitados.apellido_paterno',
+            'discapacitados.apellido_materno',
+            'ubigeos.provincia',
+            'ubigeos.distrito')
+        ->get();
+        return datatables()->of($obj)->tojson();
+    }
+
     public function index()
     {
         $provincia=DB::table('ubigeos')

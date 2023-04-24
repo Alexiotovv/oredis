@@ -10,13 +10,28 @@ $.ajax({
     }
 });
 
+
+
+
 $(document).on("click",".btnSeleccionar",function (e) {
     e.preventDefault();
     fila = $(this).closest("tr");
-    $("#iddiscapacitado").val((fila).find('td:eq(0)').text());
-    $("#dni").val((fila).find('td:eq(2)').text());
-    $("#nombre").val((fila).find('td:eq(3)').text()+" "+(fila).find('td:eq(4)').text()+" "+(fila).find('td:eq(5)').text());
-    $("#modalbuscarpornombre").modal("hide");
+    id= (fila).find('td:eq(0)').text();
+    $.ajax({
+        type: "GET",
+        url: "/socios/buscarregistroporid/"+id,
+        dataType: "json",
+        success: function (response) {
+            if (response.length>0) {
+                alert("ya se encuentra registrada ésta persona");
+            }else{
+                $("#iddiscapacitado").val((fila).find('td:eq(0)').text());
+                $("#dni").val((fila).find('td:eq(2)').text());
+                $("#nombre").val((fila).find('td:eq(3)').text()+" "+(fila).find('td:eq(4)').text()+" "+(fila).find('td:eq(5)').text());
+                $("#modalbuscarpornombre").modal("hide");
+            }
+        }
+    });
 });
 
 $("#txtbuscarnombre").on("keyup",function (e){
@@ -28,7 +43,7 @@ $("#txtbuscarapellidopat").on("keyup",function (e){
 $("#txtbuscarapellidomat").on("keyup",function (e){
     buscarPersonaNombres();
 });
-function buscarPersonaNombres() { 
+function buscarPersonaNombres() {
     nombre=$("#txtbuscarnombre").val();
     apepat=$("#txtbuscarapellidopat").val();
     apemat=$("#txtbuscarapellidomat").val();
@@ -41,15 +56,17 @@ function buscarPersonaNombres() {
     if (apemat.trim()=='') {
         apemat="%";
     }
-    
+
     $.ajax({
         type: "GET",
         url: "/socios/buscar/nombre/"+nombre+"/apepat/"+apepat+"/apemat/"+apemat,
         dataType: "json",
         beforeSend: function() {
             $("#spinner_buscar_nombre").prop('hidden',false);
-        }, 
+        },
         success: function (response) {
+
+
             $("#DTBuscarSocio tbody").html("");
             response.forEach(element => {
                 $("#DTBuscarSocio").append('<tr>'+
@@ -66,6 +83,8 @@ function buscarPersonaNombres() {
                 '</tr>');
             });
             $("#spinner_buscar_nombre").prop('hidden',true);
+
+
         }
 
     });
@@ -73,34 +92,61 @@ function buscarPersonaNombres() {
 
 $("#SinDocumento").on("click",function (e){
     e.preventDefault();
+    $("#dni").val("");
+    $("#nombre").val("");
     $("#modalbuscarpornombre").modal("show");
 });
 
 $("#btnbuscarsocio").on("click",function (e) {
     var dni=$("#dni").val();
     e.preventDefault();
+
+    //pregunta si el dni del socio ya se encuentra registrado
     $.ajax({
         type: "GET",
-        url: "/socios/buscar/"+dni,
+        url: "/socios/buscarregistro/"+dni,
         dataType: "json",
-        beforeSend: function() {
-            $("#spinner").prop('hidden',false);
-        },
         success: function (response) {
-            $("#nombre").val(response[0].nombre + " " + 
-                response[0].apellido_paterno + " " + 
-                response[0].apellido_materno)
-                $("#spinner").prop('hidden',true);
-            $("#iddiscapacitado").val(response[0].id);
-        },
-        error: function (response) {  
-            $("#spinner").prop('hidden',true);
-            alert('error '+response);
+            if (response.length>0) {
+                alert("El socio ya se encuentra registrado");
+                $("#nombre").val("");
+            }else{
+                ///ajax para buscar el socio en la base de datos
+                $.ajax({
+                    type: "GET",
+                    url: "/socios/buscar/"+dni,
+                    dataType: "json",
+                    beforeSend: function() {
+                        $("#spinner").prop('hidden',false);
+                    },
+                    success: function (response) {
+                        if (response.length>0) {//pregunta si hay registros
+                            $("#nombre").val(response[0].nombre + " " +
+                                response[0].apellido_paterno + " " +
+                                response[0].apellido_materno)
+                            $("#iddiscapacitado").val(response[0].id);
+                        }else{
+                            alert("Dni no encontrado");
+                        }
+                        $("#spinner").prop('hidden',true);
+                    },
+                    error: function (response) {
+                        $("#spinner").prop('hidden',true);
+                        alert('error '+response);
+                    }
+                });
+                //cierre de ajax para buscar el socio en la base de datos
+
+            }
         }
     });
+    //cierra pregunta si el dni del socio ya se encuentra registrado
+
+
+
 });
 
-$(document).on("click",".btnEliminarSocio",function (e) { 
+$(document).on("click",".btnEliminarSocio",function (e) {
     e.preventDefault();
     fila = $(this).closest("tr");
     id = (fila).find('td:eq(0)').text();
@@ -111,7 +157,7 @@ $(document).on("click",".btnEliminarSocio",function (e) {
     EliminarRegistro(ru,mje,dt,ru_despues)
  })
 
-$(document).on("click",".btnEditarSocio",function (e) { 
+$(document).on("click",".btnEditarSocio",function (e) {
     e.preventDefault();
     fila = $(this).closest("tr");
     id = (fila).find('td:eq(0)').text();
@@ -134,11 +180,11 @@ $(document).on("click",".btnEditarSocio",function (e) {
     $("#modalSocio").modal('show');
  })
 
-$(document).on("click",".btnListarsocios",function (e) { 
+$(document).on("click",".btnListarsocios",function (e) {
     e.preventDefault();
     fila = $(this).closest("tr");
     id = (fila).find('td:eq(0)').text();
-    
+
     mdDistrito = (fila).find('td:eq(2)').text();
     mdProvincia = (fila).find('td:eq(3)').text();
     mdNombre = (fila).find('td:eq(5)').text();
@@ -163,7 +209,7 @@ $(document).on("click",".btnListarsocios",function (e) {
         "ajax":"/socios/show/"+id,
         "columns":[
             {data:'id'},
-            { "defaultContent": 
+            { "defaultContent":
             "<button class='btn btn-icon btn-outline-warning btnEditarSocio'><i class='fadeIn animated bx bx-pencil'></i></button>\
             <button class='btn btn-outline-danger btnEliminarSocio'><i class='fadeIn animated bx bx-trash'></i></button>"},
             {data:'nombre'},
@@ -188,17 +234,17 @@ $(document).on("click",".btnAgregarsocio",function (e) {
     id = (fila).find('td:eq(0)').text();
     $("#nombre").val("");
     $("#ocultar_campos").prop("hidden",false);
-    
+
     $("#IdAsociacionSocio").val(id);
     $("#etiquetaSocio").text('Registrar Socio');
     $("#modalSocio").modal('show');
 })
 
 
-$("#btnGuardaSocio").on("click",function (e) { 
+$("#btnGuardaSocio").on("click",function (e) {
     e.preventDefault();
-    
-    
+
+
         ds=$("#formSocio").serialize();
         dt="";
         if ($("#etiquetaSocio").text()=='Registrar Socio') {
@@ -211,7 +257,7 @@ $("#btnGuardaSocio").on("click",function (e) {
                 GuardarRegistro(ds,ru,mje,dt);
                 $("#modalSocio").modal('hide');
             }
-            
+
         }else{
             ru="/socios/update";
             mje="Socio Actualizado";
@@ -219,16 +265,16 @@ $("#btnGuardaSocio").on("click",function (e) {
             GuardarRegistro(ds,ru,mje,dt);
             $("#modalSocio").modal('hide');
         }
-        
-    
+
+
  })
 
-function LimpiarformSocio() { 
+function LimpiarformSocio() {
     // $("#nombre_socio").val('');
     // $("#apellido_socio").val('');
     // $("#celular_socio").val('');
     // $("#correo_socio").val('');
-    
+
 }
 
 $("#DTAsociaciones").DataTable({
@@ -240,7 +286,8 @@ $("#DTAsociaciones").DataTable({
         { "defaultContent": "<button class='btn btn-icon btn-outline-warning btnEditarAsociacion'><i class='fadeIn animated bx bx-pencil'></i></button>\
         <button class='btn btn-outline-danger btnEliminarAsociacion'><i class='fadeIn animated bx bx-trash'></i></button>\
         <button class='btn btn-outline-success btnAgregarsocio'><i class='fadeIn animated bx bx-user-plus'></i></button>\
-        <button class='btn btn-outline-primary btnListarsocios'><i class='fadeIn animated bx bx-list-ol'></i></button>"},
+        <button class='btn btn-outline-primary btnListarsocios'><i class='fadeIn animated bx bx-list-ol'></i></button>\
+        <button class='btn btn-outline-dark btnVerSocios' data-bs-toggle='offcanvas' data-bs-target='#VerSocios' aria-controls='offcanvasRight'><i class='lni lni-eye'></i></button>"},
         {data:'provincia'},
         {data:'distrito'},
         // {data: '-',
@@ -270,7 +317,7 @@ $("#btnNuevo").on("click",function (e) {
     $("#etiquetaAsociacion").text('Registro Asociación');
     $("#modalAsociacion").modal('show');
 })
-$(document).on("click",".btnEditarAsociacion",function (e) { 
+$(document).on("click",".btnEditarAsociacion",function (e) {
     e.preventDefault();
     $("#etiquetaAsociacion").text('Editar Asociación');
     fila = $(this).closest("tr");
@@ -282,7 +329,7 @@ $(document).on("click",".btnEditarAsociacion",function (e) {
         url: "/asociaciones/edit/"+id,
         dataType: "json",
         success: function (response) {
-            
+
             $("#idAsociacion").val(response.id);
             $("#distrito").val(response.idUbigeos).change();
             $("#nombre_organizacion").val(response.nombre_organizacion);
@@ -297,7 +344,7 @@ $(document).on("click",".btnEditarAsociacion",function (e) {
 
  })
 
-$("#btnGuardarAsociacion").on("click",function (e) { 
+$("#btnGuardarAsociacion").on("click",function (e) {
     e.preventDefault();
     ds=$("#formAsociacion").serialize();
     if ($("#etiquetaAsociacion").text()=='Registro Asociación') {
@@ -312,7 +359,7 @@ $("#btnGuardarAsociacion").on("click",function (e) {
     $("#modalAsociacion").modal('hide');
  })
 
-$(document).on("click",".btnEliminarAsociacion",function (e) { 
+$(document).on("click",".btnEliminarAsociacion",function (e) {
     e.preventDefault();
     fila = $(this).closest("tr");
     id = (fila).find('td:eq(0)').text();
