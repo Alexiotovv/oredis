@@ -59,7 +59,7 @@ function buscarPersonaNombres() {
 
     $.ajax({
         type: "GET",
-        url: "/socios/buscar/nombre/"+nombre+"/apepat/"+apepat+"/apemat/"+apemat,
+        url: "/socios/buscarnombre/"+nombre+"/apepat/"+apepat+"/apemat/"+apemat,
         dataType: "json",
         beforeSend: function() {
             $("#spinner_buscar_nombre").prop('hidden',false);
