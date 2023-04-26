@@ -122,6 +122,7 @@ class ReportesController extends Controller
     public function obtenervisitas(Request $request)
     {
         $f_incio=request('FechaInicio');
+        $f_final=request('FechaFinal');
         $visitas=DB::table('visitas')
         ->leftjoin('direcciones','direcciones.id','=','visitas.idDireccion')
         ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
@@ -139,6 +140,7 @@ class ReportesController extends Controller
         'users.nombres',
         'users.apellidos')
         ->where('visitas.FechaVisita','>=',$f_incio)
+        ->where('visitas.FechaVisita','<=',$f_final)
         ->get();
         // $msje=['Mensaje'=>'ok'];
         // return response()->json($msje);

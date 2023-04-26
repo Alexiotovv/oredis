@@ -1,10 +1,6 @@
 @extends('layouts.panel')
-@section('extra_css')
-    <style>
-        /* .btnListarsocios:hover{
-
-        } */
-    </style>
+@section('titulo')
+<title>Lista de Asociaciones</title>
 @endsection
 @section('content')
 
@@ -17,6 +13,7 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
+                <h5 style="text-align: center">Lista de Asociaciones</h5>
                 <table class="table table-striped table-bordered" id="DTAsociaciones">
                     <thead>
                         <tr>
@@ -98,7 +95,9 @@
                         //console.log(element);
                         x+=1;
                         $("#Socios").append('<p>Socio #'+ x +'</p>')
+                        $("#Socios").append('<p>DNI: '+ element.nro_doc_identidad +'</p>')
                         $("#Socios").append('<p>'+'Nombre: '+ element.nombre+' '+ element.apellido_paterno + ' '+element.apellido_materno+'</p>');
+                        $("#Socios").append('<p>'+'Dirección: ' + element.direccion + ' '+element.numero +' / '+ element.distrito +'-' + element.provincia+'</p>');
                         $("#Socios").append('<p>'+'Tipo: '+ element.tipo_socio+'</p>');
                         $("#Socios").append('<p>'+'Telefono: '+ element.telefono+'</p>');
                         $("#Socios").append('<p>'+'Correo: '+ element.correo+'</p>');

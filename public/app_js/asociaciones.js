@@ -305,7 +305,7 @@ $("#DTAsociaciones").DataTable({
         {data:'correo'},
         {data:'status'},
     ],order:[0],
-    buttons:['excel','pdf'],
+    buttons:['excel'],
     dom: 'Bfrtip',
 })
 

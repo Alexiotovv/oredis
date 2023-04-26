@@ -14,6 +14,7 @@ $("#btnGuardarVisita").on("click",function (e) {
         $("#longitud").val('');
         $("#altitud").val('');
         $("#comentarios").val('');
+        $("#NombrePersona").text('');
     }
 });
 

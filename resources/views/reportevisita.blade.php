@@ -1,9 +1,11 @@
 @extends('layouts.panel')
-
+@section('titulo')
+<title>Reporte de Visitas por Fechas</title>
+@endsection
 @section('content')
 
     <h5><a href="/home">Inicio / </a><a href="/paneladmin">Panel Admin / </a><a href="#">Reporte de Visitas</a></h5>
-    <form id="formBuscarVisitas" method="POST" action="obtenervisitas">
+    <form id="formBuscarVisitas" method="POST" action="/obtenervisitas">
         {{-- method="POST" action="{{route('registrar.visita')}}" --}}
         @csrf
         <div class="row">
@@ -30,6 +32,7 @@
         <div class="card-body">
  
             <div class="table-responsive">
+                <h5 style="text-align: center">Reporte de Visitas por Fechas</h5>
                 <table class="table table-striped table-bordered" id="example2">
                     <thead>
                         <tr>
@@ -82,7 +85,7 @@
         $(document).ready(function() {
         var table = $('#example2').DataTable( {
             lengthChange: false,
-            buttons: [ 'copy', 'excel', 'pdf', 'print'],
+            buttons: ['excel'],
             order:[0]
         }
         );

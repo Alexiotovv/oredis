@@ -171,7 +171,7 @@ $("#DTUsuarios").DataTable({
       {data:"is_admin"},
       {data:"status"},
   ],order:[0],
-  buttons:['copy','excel','pdf'],
+  buttons:['excel'],
   dom: 'Bfrtip',
 
 });

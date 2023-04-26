@@ -7,6 +7,7 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
+                <h5 style="text-align: center">Lista de Asociaciones</h5>
                 <table class="table table-striped table-bordered" id="DTAsociacionesysocios">
                     <thead>
                         <tr>

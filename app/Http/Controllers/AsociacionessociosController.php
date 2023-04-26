@@ -37,13 +37,20 @@ class AsociacionessociosController extends Controller
         $obj = DB::table('asociacionessocios')
         ->leftjoin('asociaciones','asociaciones.id','=','asociacionessocios.idasociaciones')
         ->leftjoin('discapacitados','discapacitados.id','=','asociacionessocios.iddiscapacitados')
+        ->leftjoin('direcciones','direcciones.disc_id','=','discapacitados.id')
+        ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
         ->where('asociacionessocios.idasociaciones','=',$idAsociacion)
+        ->where('direcciones.activo','=',1)
         ->select(
             'discapacitados.nro_doc_identidad',
             'discapacitados.nombre',
             'discapacitados.apellido_paterno',
             'discapacitados.apellido_materno',
             'asociacionessocios.tipo_socio',
+            'ubigeos.provincia',
+            'ubigeos.distrito',
+            'direcciones.direccion',
+            'direcciones.numero',
             'discapacitados.correo',
             'discapacitados.telefono',
             'discapacitados.tipo_discapacidad',)

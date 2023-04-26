@@ -1,5 +1,7 @@
 @extends('layouts.panel')
-
+@section('titulo')
+<title>Reporte de Beneficiario</title>
+@endsection
 @section('content')
 
     <h5><a href="/home">Inicio / </a><a href="/paneladmin">Panel Admin / </a><a href="">Reporte de Beneficiario</a></h5>
@@ -35,8 +37,8 @@
 
     <div class="card">
         <div class="card-body">
- 
             <div class="table-responsive">
+                <h5 style="text-align: center">Reporte de Beneficiarios</h5>
                 <table class="table table-striped table-bordered" id="example2">
                     <thead>
                         <tr>
@@ -132,7 +134,7 @@
         $(document).ready(function() {
         var table = $('#example2').DataTable( {
             lengthChange: false,
-            buttons: [ 'excel', 'pdf', 'print'],
+            buttons: [ 'excel'],
             order:[0]
         }
         );
