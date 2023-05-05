@@ -110,7 +110,8 @@ class DiscapacitadosController extends Controller
         $obj->save();
         
         //Capturamos el Id buscando el dni del recien ingresado
-        $ultimo_id=DB::table('discapacitados')->where('nro_doc_identidad',request('nro_doc_identidad'))->value('id');
+        $ultimo_id = $obj->id;
+        // $ultimo_id=DB::table('discapacitados')->where('nro_doc_identidad',request('nro_doc_identidad'))->value('id');
         // cerramos la captura del recien ingresado
 
         //Ahora se guarda la dirección pero primero actualiza todas las direcciones activa=false para registrar solo una dirección como activa = true

@@ -158,6 +158,7 @@
                 </div>
 
                 <div class="col-md-4">
+                    <br>
                     <label class="form-label" for="seguro_salud">¿Cuenta con seguro de salud?</label>
                     <div class="form-check form-check-inline">
                         <div class="form-check form-check-inline">
@@ -197,7 +198,7 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="distrito">Distrito</label>
-                    <select class="form-select" aria-label="Default select example" name="distrito" id="distrito">
+                    <select class="single-select" aria-label="Default select example" name="distrito" id="distrito">
                         <option value="--">--</option>
                       @foreach ($distritos as $dist)
                         <option value="{{$dist->id}}">{{$dist->ubigeo_distrito}}-{{$dist->distrito}}</option>
@@ -248,7 +249,6 @@
         <section data-step="3. Datos personales">
             
             <div class="row">
-                
                 <h5>Condición</h5>
                 <div class="col-md-4">
                     <label class="form-label" for="flag_certifi_discapacidad">¿Cuenta con certificado de
@@ -260,12 +260,13 @@
                         <option value="NO" selected>NO</option>
                     </select>
                 </div>
+
                 <div class="col-md-4">
-                    <label class="form-label" for="fecha_caducidad_carnet">Fecha de Caducidad</label>
+                    <label class="form-label" for="fecha_caducidad_carnet">Fecha Caducidad Carnet</label>
                     <input class="form-control" type="date" name="fecha_caducidad_carnet" id="fecha_caducidad_carnet" placeholder="Fecha Caducidad">
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label" for="flg_carnet_did` bigint">Nro de D.I.D</label>
+                    <label class="form-label" for="flg_carnet_did` bigint">Nro D.I.D Carnet</label>
                     <input class="form-control" type="number" name="flg_carnet_did" id="flg_carnet_did"
                         placeholder="Nro de D.I.D...">
                 </div>
@@ -295,6 +296,7 @@
                     </select>
                 </div>
                 <div class="col-md-4">
+                    <br>
                     <label class="form-label" for="requiere_ayuda">¿Requiere ayuda para
                         Movilizarce?</label>
                     <div class="form-check form-check-inline">
@@ -313,6 +315,7 @@
                 </div>
 
                 <div class="col-md-4">
+                    <br>
                     <label class="form-label" for="tipo_ayuda">¿Qué tipo de ayuda necesita?</label>
                     <div class="form-check form-check-inline">
                         <div class="form-check form-check-inline">
@@ -400,21 +403,21 @@
                     <input class="form-control" type="number" name="telefono_apoderado" id="telefono_apoderado"
                         placeholder="Teléfono de apoderado...">
                 </div>
-                
-                
+            </div>
+            
+            <div class="row">
                 <div class="col-md-4">
                     <label class="form-label" for="fecha_empadronamiento">fecha de empadronamiento</label>
                     <input class="form-control" type="date" name="fecha_empadronamiento"
-                        id="fecha_empadronamiento" placeholder="Fecha empadronamiento...">
+                        id="fecha_empadronamiento" placeholder="Fecha empadronamiento..." readonly>
                 </div>
-                
+                <div class="col-md-4">
+                    <label class="form-label" for="fecha_empadronamiento">Comentario</label>
+                    <textarea class="form-control" type="date" name="comentario"
+                        id="comentario" placeholder="escribre un comentario" maxlength="249"></textarea>
+                </div>
+                <hr>
             </div>
-            <div class="col-md-4">
-                <label class="form-label" for="fecha_empadronamiento">Comentario</label>
-                <textarea class="form-control" type="date" name="comentario"
-                    id="comentario" placeholder="escribre un comentario" maxlength="249"></textarea>
-            </div>
-            <hr>
 
 
             <div class="row" style="padding-top: 30px;">
@@ -431,4 +434,12 @@
     <script src="app_js/crud.js"></script>
     <script src="app_js/discapacitados.js"></script>
     <script src="assets/js/widgets.js"></script>
+    <script>
+        $('.single-select').select2({
+			theme: 'bootstrap4',
+			width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+			placeholder: $(this).data('placeholder'),
+			allowClear: Boolean($(this).data('allow-clear')),
+		});
+    </script>
 @endsection

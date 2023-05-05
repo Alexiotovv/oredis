@@ -82,6 +82,7 @@ class ReportesController extends Controller
         ->leftjoin('direcciones','direcciones.disc_id','=','discapacitados.id')
         ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
         ->where('discapacitados.delete','=',0)
+        ->where('direcciones.activo','=',1)
         ->whereIn('ubigeos.id',$distrito)
         ->select('ubigeos.distrito','discapacitados.nombre',
         'discapacitados.apellido_paterno',
@@ -114,8 +115,6 @@ class ReportesController extends Controller
         'discapacitados.fecha_empadronamiento',
         'discapacitados.flg_carnet_did')
         ->get();
-
-
         return view('reportebeneficiario',compact('distritos','personas'));
     }
 
@@ -142,8 +141,6 @@ class ReportesController extends Controller
         ->where('visitas.FechaVisita','>=',$f_incio)
         ->where('visitas.FechaVisita','<=',$f_final)
         ->get();
-        // $msje=['Mensaje'=>'ok'];
-        // return response()->json($msje);
         return view('reportevisita',['visitas'=>$visitas]);
 
     }
@@ -175,7 +172,6 @@ class ReportesController extends Controller
     {
         $distrito=request('distrito');
         $distrito_corresponde=DB::table('users')->where('users.id','=',auth()->user()->id)->get();
-        // dd($distrito_corresponde[0]->zona_dist);
 
         $distritos=DB::table('ubigeos')
         ->whereIn('ubigeos.id',json_decode($distrito_corresponde[0]->zona_dist))

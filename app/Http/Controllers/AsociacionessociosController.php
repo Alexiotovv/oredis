@@ -111,6 +111,7 @@ class AsociacionessociosController extends Controller
        ->where('discapacitados.nombre','like','%'.$nombre.'%')
        ->where('discapacitados.apellido_paterno','like','%'.$apepat.'%')
        ->where('discapacitados.apellido_materno','like','%'.$apemat.'%')
+       ->where('direcciones.activo','=',1)
        ->limit(50)
         ->get();
         return response()->json($obj);

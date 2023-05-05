@@ -24,6 +24,26 @@ $("#distrito").on('change', function() {
   });
 });
 
+function EstadoCarnet(){
+  var fecha = new Date();
+  fecha_hoy = fecha.toJSON().slice(0, 10);
+  if ($("#fecha_caducidad_carnet").val()=='') {
+    $("#EstadoCarnet").removeClass('btn btn-danger');
+      $("#EstadoCarnet").removeClass('btn btn-success');
+      $("#EstadoCarnet").addClass('btn btn-secondary');
+      $("#EstadoCarnet").text('N/A');
+  }else{
+    if (fecha_hoy>$("#fecha_caducidad_carnet").val()) {
+      $("#EstadoCarnet").removeClass('btn btn-success');
+      $("#EstadoCarnet").addClass('btn btn-danger');
+      $("#EstadoCarnet").text('Expiró');
+    }else{
+      $("#EstadoCarnet").removeClass('btn btn-danger');
+      $("#EstadoCarnet").addClass('btn btn-success');
+      $("#EstadoCarnet").text('Vigente');     
+    }
+  }
+}
 
 $(document).on("click",".btnSeleccionar",function (e) {
   e.preventDefault();
@@ -71,6 +91,10 @@ $(document).on("click",".btnSeleccionar",function (e) {
             ObtenerDirecciones(response.discapacitados[0].id);
             $("#nro_doc_identidad").removeClass('is-valid')
             $("#modalbuscarpornombre").modal("hide");
+
+            EstadoCarnet();
+
+
       }
   });
 });
@@ -225,6 +249,18 @@ function error(err){
   alert(err);
 }
 
+// $("#EstadoCarnet").on("click",function (e) { 
+//   e.preventDefault();
+//   var fecha = new Date();
+//   fecha_hoy = fecha.toJSON().slice(0, 10);
+//   if (fecha_hoy<$("#fecha_caducidad_carnet").val()) {
+//     alert("vigente");
+//   }else{
+//     alert("expiró");
+//   }
+// })
+
+
 $("#btnBuscarEditar").on("click",function(e){
   e.preventDefault();
   if ($("#nro_doc_identidad").val().trim()==="") {
@@ -252,7 +288,9 @@ $("#btnBuscarEditar").on("click",function(e){
                 $("#apellido_materno").val(response.discapacitados[0].apellido_materno);
                 $("#doc_identidad").val(response.discapacitados[0].doc_identidad).change();
                 $("#fecha_caducidad_carnet").val(response.discapacitados[0].fecha_caducidad_carnet);
-  
+                
+               
+
                 $("#correo").val(response.discapacitados[0].correo);
                 $("#telefono").val(response.discapacitados[0].telefono);
                 $("#fecha_nacimiento").val(response.discapacitados[0].fecha_nacimiento);
@@ -281,7 +319,9 @@ $("#btnBuscarEditar").on("click",function(e){
                 //poniendo en la tabla sus direcciones
                 ObtenerDirecciones(response.discapacitados[0].id);
                 // console.log(VerificarDistrito());
-  
+               
+                EstadoCarnet();
+
               }
             });
           }else{

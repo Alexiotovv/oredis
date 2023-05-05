@@ -22,6 +22,7 @@ $("#IngresoManual").on("click",function () {
         $("#nombres").attr('readonly', false);
         $("#apellido_paterno").attr('readonly', false);
         $("#apellido_materno").attr('readonly', false);
+        $("#nro_doc_identidad").attr('readonly', false);
         $("#nro_doc_identidad").val('');
         $("#nro_doc_identidad").removeClass('is-invalid');
         $("#SinDocumento").prop('checked',false)
@@ -74,16 +75,30 @@ $("#btnCerrarCard").on("click",function (e) {
 })
 
 $("#btnRegistrar").on("click",function (e) { 
-    if ($("#nro_doc_identidad").val()=="" || $("#direccion").val()=="" ||$("#telefono").val()=="" ){
-        //que haga su trabajo los mensajea de html de cada input
+    if ($("#SinDocumento").prop('checked')||$("#IngresoManual").prop('checked')){
+        if ($("#direccion").val()=="" ||$("#telefono").val()=="" ){
+            //que haga su trabajo los mensajea de html de cada input
+        }else{
+            e.preventDefault();
+            ds=$("#formRegistro").serialize();
+            ru='guardardiscapacitado';
+            mje='Registro Guardado'
+            GuardarRegistro(ds,ru,mje);
+         
+            // setTimeout( function() { window.location.href = "msjeregistrodiscapacitados"; }, 3000 );
+        }
     }else{
-        e.preventDefault();
-        ds=$("#formRegistro").serialize();
-        ru='guardardiscapacitado';
-        mje='Registro Guardado'
-        GuardarRegistro(ds,ru,mje);
-        LimpiarFormulario();
-        // setTimeout( function() { window.location.href = "msjeregistrodiscapacitados"; }, 3000 );
+        if ($("#nro_doc_identidad").val()=="" || $("#direccion").val()=="" ||$("#telefono").val()=="" ){
+            //que haga su trabajo los mensajea de html de cada input
+        }else{
+            e.preventDefault();
+            ds=$("#formRegistro").serialize();
+            ru='guardardiscapacitado';
+            mje='Registro Guardado'
+            GuardarRegistro(ds,ru,mje);
+            
+            // setTimeout( function() { window.location.href = "msjeregistrodiscapacitados"; }, 3000 );
+        }
     }
 });
 

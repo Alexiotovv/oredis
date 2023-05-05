@@ -187,7 +187,7 @@
         <section data-step="3. Datos personales">
             <div class="row">
                 <h5>Condición</h5>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label class="form-label" for="flag_certifi_discapacidad">¿Cuenta con certificado de
                         discapacidad?</label>
                     <select class="form-select" aria-label="Default select example" name="flag_certifi_discapacidad" id="flag_certifi_discapacidad">
@@ -196,14 +196,21 @@
                         <option value="NO">NO</option>
                     </select>
                 </div>
+                <div class="col-md-2" style="text-align: center">
+                    <label class="form-label">Estado Carnet</label>
+                    <br>
+                    <a  id="EstadoCarnet">--</a>
+                    
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label" for="fecha_caducidad_carnet">Fecha de Caducidad</label>
+                    <input class="form-control" type="date" name="fecha_caducidad_carnet" id="fecha_caducidad_carnet" placeholder="Fecha Caducidad">
+                </div>
                 <div class="col-md-4">
                     <label class="form-label" for="flg_carnet_did bigint">Nro de D.I.D</label>
                     <input class="form-control" type="number" name="flg_carnet_did" id="flg_carnet_did" placeholder="Nro de D.I.D...">
                 </div>
-                <div class="col-md-4">
-                    <label class="form-label" for="fecha_caducidad_carnet">Fecha de Caducidad</label>
-                    <input class="form-control" type="date" name="fecha_caducidad_carnet" id="fecha_caducidad_carnet" placeholder="Fecha Caducidad">
-                </div>
+                
                 <div class="col-md-4">
                     <label class="form-label" for="tipo_discapacidad">Tipo de discapacidad</label>
                     <select class="form-select" aria-label="Default select example" name="tipo_discapacidad" id="tipo_discapacidad">
@@ -229,6 +236,7 @@
                     </select>
                 </div>
                 <div class="col-md-4">
+                    <br>
                     <label class="form-label" for="requiere_ayuda">¿Requiere ayuda para
                         Movilizarse?</label>
                     <div class="form-check form-check-inline">
@@ -247,6 +255,7 @@
                 </div>
 
                 <div class="col-md-4">
+                    <br>
                     <label class="form-label" for="tipo_ayuda">¿Qué tipo de ayuda necesita?</label>
                     <div class="form-check form-check-inline">
                         <div class="form-check form-check-inline">
@@ -354,7 +363,7 @@
     
     <form id="formDirecciones">@csrf
         <!-- Modal -->
-        <div class="modal fade" id="modalDirecciones" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="modalDirecciones" tabindex="-1" aria-hidden="true" style="z-index: 1049">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -376,7 +385,7 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label" for="distrito">Distrito</label>
-                                <select class="form-select" aria-label="Default select example" name="distrito" id="distrito">
+                                <select class="single-select" aria-label="Default select example" name="distrito" id="distrito">
                                     <option value="--">--</option>
                                     @foreach ($distritos as $dist )
                                         <option value="{{$dist->id}}">{{$dist->ubigeo_distrito}}-{{$dist->distrito}}</option>
@@ -417,4 +426,12 @@
 
     <script src="app_js/crud.js"></script>
     <script src="app_js/editarregistro.js"></script>
+    <script>
+        $('.single-select').select2({
+			theme: 'bootstrap4',
+			width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+			placeholder: $(this).data('placeholder'),
+			allowClear: Boolean($(this).data('allow-clear')),
+		});
+    </script>
 @endsection

@@ -27,7 +27,7 @@ function GuardarRegistro(ds,ru,mje,dt){
                 }else{
                     $(dt).DataTable().ajax.reload();
                 }
-                
+                LimpiarFormulario();
             },
             error: function(response) {
                 Swal.fire('OPS!', 'Hubo un error!', 'código de error' + response)
