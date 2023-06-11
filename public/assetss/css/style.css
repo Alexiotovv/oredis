@@ -1461,6 +1461,8 @@ button {
 .hero-banner-v1 {
     z-index: 1;
     padding: 255px 0 180px;
+    height:825px;
+    width:auto;
     background: url(../images/hero/portada1.jpg);
 }
 

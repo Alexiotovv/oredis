@@ -19,10 +19,11 @@ class NoticiasController extends Controller
     {
         $texto=$request->get('txtBuscar');
         $noticias=noticias::where('Titulo', 'like','%'.$texto.'%')
+        ->where('status','=',1)
         ->orwhere('Descripcion', 'like','%'.$texto.'%')
         ->orderByDesc('noticias.id')
         ->paginate(20);
-        // ->get();
+        // ->get(); //no se ponde get cuando hay paginate()
         return view('noticias',['noticias'=>$noticias,'texto'=>$texto]);
     }
 
@@ -71,6 +72,7 @@ class NoticiasController extends Controller
     public function show(noticias $noticias)
     {
         $noticias=noticias::where('publicar', '1')
+        ->where('status','=',1)
         ->orderByDesc('noticias.id')
         ->paginate(10);
 
@@ -142,8 +144,9 @@ class NoticiasController extends Controller
      */
     public function destroy($id)
     {
-        $obj=noticias::find($id);
-        $obj->delete();
+        $obj=noticias::findOrFail($id);
+        $obj->status=false;
+        $obj->save();
         $data=['msje'=>'ok'];
         return response()->json($data);
     }

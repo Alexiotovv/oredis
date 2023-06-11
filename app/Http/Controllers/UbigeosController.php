@@ -52,6 +52,15 @@ class UbigeosController extends Controller
         ->get();
         return response()->json($distritos);
     }
+    public function showprovincias(ubigeos $ubigeos)
+    {
+        //obtener registros de las provincias
+        $distritos=DB::table('ubigeos')
+        ->select('ubigeos.provincia')
+        ->distinct()
+        ->get();
+        return response()->json($distritos);
+    }
 
     /**
      * Show the form for editing the specified resource.

@@ -1,8 +1,35 @@
+$(document).on("click",".btnSeleccionar",function (e) {
+    e.preventDefault();
+    fila = $(this).closest("tr");
+    id= (fila).find('td:eq(0)').text();
+    $.ajax({
+        type: "GET",
+        url: "obtenerdireccion_pornombre/"+id,
+        dataType: "json",
+        success: function (response) {
+            var nombre_completo = response[0].nombre+ ' ' +response[0].apellido_paterno+ ' '+response[0].apellido_materno;
+
+            $("#NombrePersona").text(nombre_completo.toUpperCase());
+            $("#Direccion").val((response[0].direccion).toUpperCase()+ ' '+response[0].numero);
+            $("#Provincia").val(response[0].provincia);
+            $("#Distrito").val(response[0].distrito);
+            $("#idDireccion").val(response[0].idDireccion);
+            $("#modalbuscarpornombre").modal("hide");
+        },
+    });
+  });
+
+
+$("#SinDocumento").on("click",function (e) {
+    e.preventDefault();
+    $("#modalbuscarpornombre").modal("show");
+  })
 
 $("#btnGuardarVisita").on("click",function (e) {
     e.preventDefault()
-    if ($("#dniBuscar").val()=="") {
-        alert('Ingrese un DNI');
+    
+    if ($("#Direccion").val()=="" || $("#Provincia").val()=="" || $("#Distrito").val()=="") {
+        alert('Realice una búsqueda por favor');
     }else{
         ds=$("#formGuardarVisita").serialize();
         ru="guardarvisita";
@@ -15,6 +42,8 @@ $("#btnGuardarVisita").on("click",function (e) {
         $("#altitud").val('');
         $("#comentarios").val('');
         $("#NombrePersona").text('');
+        $("#Provincia").val("");
+        $("#Distrito").val("");
     }
 });
 
@@ -26,7 +55,9 @@ $("#btnBuscarDireccion").on("click",function (e){
         dataType: "json",
         success: function (response) {
             $("#NombrePersona").text(response[0].nombre+ ' ' +response[0].apellido_paterno+ ' '+response[0].apellido_materno);
-            $("#Direccion").val(response[0].direccion+ ' '+response[0].numero);
+            $("#Direccion").val((response[0].direccion).toUpperCase()+ ' '+response[0].numero);
+            $("#Provincia").val(response[0].provincia);
+            $("#Distrito").val(response[0].distrito);
             $("#idDireccion").val(response[0].idDireccion);
         },
     });

@@ -65,14 +65,29 @@ class VisitasController extends Controller
         //
        $datos =DB::table('direcciones')
        ->leftjoin('discapacitados','discapacitados.id','direcciones.disc_id')
+       ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
        ->where('discapacitados.nro_doc_identidad','=',$dni)
        ->where('direcciones.activo','=',1)
        ->select('direcciones.direccion','direcciones.numero','discapacitados.nombre',
-       'discapacitados.apellido_paterno','discapacitados.apellido_materno','direcciones.id as idDireccion')
+       'discapacitados.apellido_paterno','discapacitados.apellido_materno',
+       'direcciones.id as idDireccion','ubigeos.provincia','ubigeos.distrito')
        ->get();
        return response()->json($datos);
     }
-
+    public function show_pornombre($id)
+    {
+        //
+       $datos =DB::table('direcciones')
+       ->leftjoin('discapacitados','discapacitados.id','direcciones.disc_id')
+       ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+       ->where('discapacitados.id','=',$id)
+       ->where('direcciones.activo','=',1)
+       ->select('direcciones.direccion','direcciones.numero','discapacitados.nombre',
+       'discapacitados.apellido_paterno','discapacitados.apellido_materno',
+       'direcciones.id as idDireccion','ubigeos.provincia','ubigeos.distrito')
+       ->get();
+       return response()->json($datos);
+    }
     /**
      * Show the form for editing the specified resource.
      *

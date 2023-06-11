@@ -1,9 +1,97 @@
+$("#IngresoManualApoderado").on("click",function () { 
+  if ($("#IngresoManualApoderado").prop('checked')){
+      $("#nombre_apoderado").attr('readonly', false);
+      $("#apellido_apoderado").attr('readonly', false);
+  }else{
+      $("#nombre_apoderado").attr('readonly', true);
+      $("#apellido_apoderado").attr('readonly', true);
+  }
 
-  $("#formActualiza").keypress(function(e) {
-      if (e.which == 13) {
-          return false;
-      }
+  $("#dni_apoderado").focus();
+})
+
+$("#btnGuardarApoderado").on("click",function (e) {
+  e.preventDefault();
+  ds=$("#formApoderados").serialize();
+  if ($("#etiquetaApoderados").text()=='Nuevo Apoderado') {
+    ruta="/apoderados/guardar";
+    // console.log("entro a guardar");
+  }else{
+    ruta="/apoderados/actualizar";
+  }
+
+
+  $.ajax({
+    type: "POST",
+    url: ruta,
+    data: ds,
+    dataType: "json",
+    beforeSend: function() {
+      $("#spinner_guardar_apoderado").prop('hidden',false);
+    },
+    success: function (response) {
+      round_success_noti("Registro Guardado");
+      $("#spinner_guardar_apoderado").prop('hidden',true);
+    },
+    error: function (response) {
+      round_error_noti("Se produjo un error");
+      $("#spinner_guardar_apoderado").prop('hidden',true);
+      
+  }
   });
+
+  id=$("#idPersonaApoderado").val();
+  $.ajax({
+    type: "GET",
+    url: "/apoderados/listar/"+id,
+    dataType: "json",
+    success: function (response) {
+      $("#DTApoderados tbody").html("");
+        
+      response.forEach(element => {
+          
+          $("#DTApoderados").append("<tr>"+
+            "<td>"+ element.id +"</td>"+
+            "<td>"+'<button class="btn btn-outline-warning btn-sm btnEditarApoderado"><i class="lni lni-pencil"></i></button>' +"</td>"+
+            "<td>"+ element.dni +"</td>"+
+            "<td>"+ element.nombres +"</td>"+
+            "<td>"+ element.apellidos +"</td>"+
+            "<td>"+ element.direccion +"</td>"+
+            "<td>"+ element.parentesco +"</td>"+
+            "<td>"+ element.correo +"</td>"+
+            "<td>"+ element.telefono +"</td>"+
+            "<td>"+ element.status +"</td>"+
+          "</tr>");
+        });
+    }
+  });
+
+
+  $("#modalApoderados").modal('hide');
+})
+
+$("#btnNuevoApoderado").on("click",function (e) {
+  e.preventDefault();
+  $("#idApoderado").val('');
+  $("#dni_apoderado").val('');
+  $("#nombre_apoderado").val('');
+  $("#apellido_apoderado").val('');
+  $("#direccion_apoderado").val('');
+  $("#parentesco").val('');
+  $("#correo_apoderado").val('');
+  $("#telefono_apoderado").val('');
+  $("#etiquetaApoderados").text('Nuevo Apoderado');
+  
+  $("#modalApoderados").modal('show');
+  
+})
+
+
+$("#formActualiza").keypress(function(e) {
+    if (e.which == 13) {
+        return false;
+    }
+});
 //end Buscar el distrito y comparar el discapacitado
 
 distritos={};
@@ -55,6 +143,7 @@ $(document).on("click",".btnSeleccionar",function (e) {
       dataType: "json",
       success: function (response) {
             $("#idPersonaDireccion").val(response.discapacitados[0].id);//Input del form Direccion
+            $("#idPersonaApoderado").val(response.discapacitados[0].id);//Input del form Apoderados
             $("#idPersona").val(response.discapacitados[0].id);
             $("#nro_doc_identidad").val(response.discapacitados[0].nro_doc_identidad);
             $("#nombre").val(response.discapacitados[0].nombre);
@@ -76,12 +165,12 @@ $(document).on("click",".btnSeleccionar",function (e) {
             RecibirRadio("requiere_ayuda",response.discapacitados[0].requiere_ayuda,'SI');
             RecibirRadio("tipo_ayuda",response.discapacitados[0].tipo_ayuda,'FISICA');
             $("#ayuda_mecanica").val(response.discapacitados[0].ayuda_mecanica).change();
-            $("#nombre_apoderado").val(response.discapacitados[0].nombre_apoderado);
-            $("#dni_apoderado").val(response.discapacitados[0].dni_apoderado);
-            $("#parentesco").val(response.discapacitados[0].parentesco).change();
-            $("#direccion_apoderado").val(response.discapacitados[0].direccion_apoderado);
-            $("#correo_apoderado").val(response.discapacitados[0].correo_apoderado);
-            $("#telefono_apoderado").val(response.discapacitados[0].telefono_apoderado);
+            // $("#nombre_apoderado").val(response.discapacitados[0].nombre_apoderado);
+            // $("#dni_apoderado").val(response.discapacitados[0].dni_apoderado);
+            // $("#parentesco").val(response.discapacitados[0].parentesco).change();
+            // $("#direccion_apoderado").val(response.discapacitados[0].direccion_apoderado);
+            // $("#correo_apoderado").val(response.discapacitados[0].correo_apoderado);
+            // $("#telefono_apoderado").val(response.discapacitados[0].telefono_apoderado);
             $("#tipo_seguro").val(response.discapacitados[0].tipo_seguro).change();
             $("#seguro_salud").val(response.discapacitados[0].seguro_salud);
             $("#flg_carnet_did").val(response.discapacitados[0].flg_carnet_did);
@@ -92,12 +181,29 @@ $(document).on("click",".btnSeleccionar",function (e) {
             $("#nro_doc_identidad").removeClass('is-valid')
             $("#modalbuscarpornombre").modal("hide");
 
+            $("#DTApoderados tbody").html("");
+            response.apoderados.forEach(element => {
+              $("#DTApoderados").append("<tr>"+
+                "<td>"+ element.id +"</td>"+
+                "<td>"+'<button class="btn btn-outline-warning btn-sm btnEditarApoderado"><i class="lni lni-pencil"></i></button>' +"</td>"+
+                "<td>"+ element.dni +"</td>"+
+                "<td>"+ element.nombres +"</td>"+
+                "<td>"+ element.apellidos +"</td>"+
+                "<td>"+ element.direccion +"</td>"+
+                "<td>"+ element.parentesco +"</td>"+
+                "<td>"+ element.correo +"</td>"+
+                "<td>"+ element.telefono +"</td>"+
+                "<td>"+ element.status +"</td>"+
+              "</tr>");
+            });
             EstadoCarnet();
 
 
       }
   });
 });
+
+
 
 $("#SinDocumento").on("click",function (e) {
   e.preventDefault();
@@ -113,6 +219,7 @@ $("#txtbuscarapellidopat").on("keyup",function (e){
 $("#txtbuscarapellidomat").on("keyup",function (e){
   buscarPersonaNombres();
 });
+
 
 function buscarPersonaNombres(){
   nombre=$("#txtbuscarnombre").val();
@@ -155,8 +262,9 @@ function buscarPersonaNombres(){
         }
 
     });
-}
+};
 
+// module.exports {buscarPersonaNombres} ;
 
 
 $(document).on('click','.btnEditarDireccion', function(e) {
@@ -184,6 +292,39 @@ $(document).on('click','.btnEditarDireccion', function(e) {
   $("#etiquetaDirecciones").text('Editar Dirección');
   $("#modalDirecciones").modal('show');
 });
+
+
+
+$(document).on('click','.btnEditarApoderado', function(e) {
+  e.preventDefault();
+  fila = $(this).closest("tr");
+  id = (fila).find('td:eq(0)').text();
+  
+  $.ajax({
+    type: "GET",
+    url: "/apoderados/editar/"+id,
+    dataType: "json",
+    success: function (response) {
+      // $("idPersonaApoderado").val(response.idDisc);
+      $("#idApoderado").val(response.id);
+      $("#dni_apoderado").val(response.dni);
+      $("#nombre_apoderado").val(response.nombres);
+      $("#apellido_apoderado").val(response.apellidos);
+      $("#direccion_apoderado").val(response.direccion);
+      $("#parentesco").val(response.parentesco);
+      $("#correo_apoderado").val(response.correo);
+      $("#telefono_apoderado").val(response.telefono);
+      $("#status").val(response.status).change();
+
+    }
+  });
+
+
+  $("#iApoderado").val(id);
+  $("#etiquetaApoderados").text('Editar Apoderado');
+  $("#modalApoderados").modal('show');
+});
+
 
 
 
@@ -278,6 +419,7 @@ $("#btnBuscarEditar").on("click",function(e){
               dataType: "json",
               success: function (response) {
                 $("#idPersonaDireccion").val(response.discapacitados[0].id);//Input del form Direccion
+                $("#idPersonaApoderado").val(response.discapacitados[0].id);//Input del form Apoderados
                 $("#idPersona").val(response.discapacitados[0].id);
                 $("#nro_doc_identidad").addClass('is-valid')
                 $("#dni_encontrado").show();
@@ -288,8 +430,6 @@ $("#btnBuscarEditar").on("click",function(e){
                 $("#apellido_materno").val(response.discapacitados[0].apellido_materno);
                 $("#doc_identidad").val(response.discapacitados[0].doc_identidad).change();
                 $("#fecha_caducidad_carnet").val(response.discapacitados[0].fecha_caducidad_carnet);
-                
-               
 
                 $("#correo").val(response.discapacitados[0].correo);
                 $("#telefono").val(response.discapacitados[0].telefono);
@@ -305,12 +445,12 @@ $("#btnBuscarEditar").on("click",function(e){
                 RecibirRadio("requiere_ayuda",response.discapacitados[0].requiere_ayuda,'SI');
                 RecibirRadio("tipo_ayuda",response.discapacitados[0].tipo_ayuda,'FISICA');
                 $("#ayuda_mecanica").val(response.discapacitados[0].ayuda_mecanica).change();
-                $("#nombre_apoderado").val(response.discapacitados[0].nombre_apoderado);
-                $("#dni_apoderado").val(response.discapacitados[0].dni_apoderado);
-                $("#parentesco").val(response.discapacitados[0].parentesco).change();
-                $("#direccion_apoderado").val(response.discapacitados[0].direccion_apoderado);
-                $("#correo_apoderado").val(response.discapacitados[0].correo_apoderado);
-                $("#telefono_apoderado").val(response.discapacitados[0].telefono_apoderado);
+                // $("#nombre_apoderado").val(response.discapacitados[0].nombre_apoderado);
+                // $("#dni_apoderado").val(response.discapacitados[0].dni_apoderado);
+                // $("#parentesco").val(response.discapacitados[0].parentesco).change();
+                // $("#direccion_apoderado").val(response.discapacitados[0].direccion_apoderado);
+                // $("#correo_apoderado").val(response.discapacitados[0].correo_apoderado);
+                // $("#telefono_apoderado").val(response.discapacitados[0].telefono_apoderado);
                 $("#tipo_seguro").val(response.discapacitados[0].tipo_seguro).change();
                 $("#seguro_salud").val(response.discapacitados[0].seguro_salud);
                 $("#flg_carnet_did").val(response.discapacitados[0].flg_carnet_did);
@@ -318,6 +458,21 @@ $("#btnBuscarEditar").on("click",function(e){
                 $("#comentario").val(response.discapacitados[0].comentario);
                 //poniendo en la tabla sus direcciones
                 ObtenerDirecciones(response.discapacitados[0].id);
+                $("#DTApoderados tbody").html("");
+                response.apoderados.forEach(element => {
+                  $("#DTApoderados").append("<tr>"+
+                    "<td>"+ element.id +"</td>"+
+                    "<td>"+'<button class="btn btn-outline-warning btn-sm btnEditarApoderado"><i class="lni lni-pencil"></i></button>' +"</td>"+
+                    "<td>"+ element.dni +"</td>"+
+                    "<td>"+ element.nombres +"</td>"+
+                    "<td>"+ element.apellidos +"</td>"+
+                    "<td>"+ element.direccion +"</td>"+
+                    "<td>"+ element.parentesco +"</td>"+
+                    "<td>"+ element.correo +"</td>"+
+                    "<td>"+ element.telefono +"</td>"+
+                    "<td>"+ element.status +"</td>"+
+                  "</tr>");
+                });
                 // console.log(VerificarDistrito());
                
                 EstadoCarnet();
@@ -355,12 +510,12 @@ $("#btnBuscarEditar").on("click",function(e){
             // RecibirRadio("requiere_ayuda",response.discapacitados[0].requiere_ayuda,'SI');
             // RecibirRadio("tipo_ayuda",response.discapacitados[0].tipo_ayuda,'FISICA');
             $("#ayuda_mecanica").val("").change();
-            $("#nombre_apoderado").val("");
-            $("#dni_apoderado").val("");
-            $("#parentesco").val("--").change();
-            $("#direccion_apoderado").val("");
-            $("#correo_apoderado").val("");
-            $("#telefono_apoderado").val("");
+            // $("#nombre_apoderado").val("");
+            // $("#dni_apoderado").val("");
+            // $("#parentesco").val("--").change();
+            // $("#direccion_apoderado").val("");
+            // $("#correo_apoderado").val("");
+            // $("#telefono_apoderado").val("");
             $("#tipo_seguro").val("--").change();
             $("#seguro_salud").val("");
             $("#flg_carnet_did").val("");
@@ -476,11 +631,8 @@ $("#btnBuscarApoderado").on("click",function(e){
       }
       ,
       success: function (response) {
-          $("#nombre_apoderado").val(
-              response['nombres']+ " " +
-              response['apellidoPaterno'] + " " +
-              response['apellidoMaterno']);
-
+          $("#nombre_apoderado").val( response['nombres']);
+          $("#apellido_apoderado").val(response['apellidoPaterno'] + " " + response['apellidoMaterno']);
           $("#spinner_apoderado").prop('hidden',true);
       },
       error: function (response) {

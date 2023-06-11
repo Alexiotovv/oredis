@@ -73,6 +73,7 @@ $(document).on("click",".btnEditarUsuario",function (e) {
 });
 
 distritos={};
+provincias={};
 $.ajax({
   type: "GET",
   url: "obtenerdistritos",
@@ -82,13 +83,46 @@ $.ajax({
   }
 });
 
+$.ajax({
+  type: "GET",
+  url: "obtenerprovincias",
+  dataType: "json",
+  success: function (response) {
+    provincias=response;
+  }
+});
+
+
+
 $("#btnNuevoUsuario").on("click",function (e) {
   e.preventDefault();
   $("#EtiquetaUsuario").text('Nuevo Usuario');
   LimpiarFormUsuarios();
+  $("#usuario").val("");
   $("#password").prop("disabled",false);
   $("#apellidos").val("");
   $("#nombres").val("");
+  $("#email").val("");
+  $("#password").val("");
+  //Limpiar Provincias y Distritos
+  
+  $("#provincia").empty();
+  provincias.forEach(element => {
+    $("#provincia").append('<option value="' + element.provincia + '">'+ element.provincia+'</option>');
+  });
+
+  $("#distrito").empty();
+
+    // $("#provincia").val().forEach(element => {
+    //   distritos.forEach(element2 => {
+    //     if (element==element2.provincia) {
+    //       $("#distrito").append('<option selected value="' + element2.id + '">'+ element2.distrito+'</option>').change();
+    //     }
+    //   });
+    // });
+
+    
+
   $("#ModalUsuario").modal('show');
     
 })

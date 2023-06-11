@@ -12,12 +12,12 @@
           <span data-depth=".5"><img src="assetss/images/hero/hero-one-img-1.jpg" class="wow fadeInLeft" alt="hero image">
           </span>
         </div> --}}
+      
         
-        <div class="hero-img hero-img-two scene">
-          <span data-depth=".5">
-            <img style="width: 90%" src="{{asset('storage/contenido/'.$obj->foto_banner)}}" class="wow fadeInLeft" alt="hero image">
-          </span>
-        </div>
+        
+
+
+        
 
         <div class="container" style="margin-top: -140px;">
           <div class="row">
@@ -26,7 +26,8 @@
                         <h1 class="wow fadeInUp" data-wow-delay=".5s" style="color: white">
                             {{$obj->texto_banner}}
                         </h1>
-                        <p class="wow fadeInDown" data-wow-delay="1s" style="color: white">
+                        
+                        <p class="wow fadeInDown" data-wow-delay=".1s" style="color: white">
                             {{$obj->pie_banner}}
                         </p>
                         <a href="#" id="btnLogin2" class="main-btn arrow-btn wow fadeInUp" data-wow-delay=".5s">Acceder</a>
@@ -34,8 +35,27 @@
                 </div>
             </div>
         </div>
+        
+        <div class="hero-img hero-img-two scene">
+            <span data-depth=".5">
+              <img  src="{{asset('storage/contenido/'.$obj->foto_banner)}}" class="wow fadeInLeft" alt="hero image">
 
+            </span>
+        </div>
+        
     </section>
+
+    <section>
+        <div class="container" style="padding-top: 30px; text-align:center;">
+            <h4>OFICINA REGIONAL DE ATENCIÓN A LA PERSONA CON DISCAPACIDAD - OREDIS</h4>
+            <P>"Proyecto de Ordenanza Regional de Personas con Discapacidad en la Región Loreto.
+                Creado con Ordenanza Regional N°011-2022-GRL-CR"</p>
+        </div>
+        <div class="container" style="text-align: center">
+            <img src="../../../assets/images/icons/disc_icons.png" style="width: 300px;height:70px;" alt="">
+        </div>
+    </section>
+
 
     <section class="about-area about-area-v1 position-relative pt-130">
         <div class="container">
@@ -65,6 +85,8 @@
             </div>
         </div>
     </section>
+
+    
 
     {{-- Seccion Noticias --}}
     <section class="service-area pt-90 pb-80">

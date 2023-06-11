@@ -285,69 +285,56 @@
             </div>
             <hr>
             <div class="row">
-                <h5>Datos del Apoderado</h5>
-                <div class="col-md-6">
-                    <label class="form-label" for="nombre_apoderado">Nombre completo de apoderado</label>
-                    <input class="form-control" type="text" name="nombre_apoderado" id="nombre_apoderado"
-                        placeholder="Nombre de apoderado..." readonly required>
-                </div>
-
-                <div class="col-md-6">
-                    <label class="form-label" for="dni_apoderado">Nro de documento</label>
-                    <div class="input-group lg-3">
-                        <input class="form-control" type="text" name="dni_apoderado" id="dni_apoderado"
-                            placeholder="Nro de documento..." required>
-                        <button type="button" class="btn btn-primary" name="btnBuscarApoderado" id="btnBuscarApoderado"
-                            disabled><i class="lni lni-search"></i>Buscar</button>
-
-                        <div class="text-center" id="spinner_apoderado" hidden>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5>Apoderados</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-warning" id="btnNuevoApoderado"><i class="fadeIn animated bx bx-user-plus"></i>Nuevo Apoderado</button>
+                        <div class="text-center" id="spinner_guardar_apoderado" hidden>
                             <div class="spinner-border" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <label class="form-label" for="direccion_apoderado">Dirección de apoderado</label>
-                    <input class="form-control" type="text" name="direccion_apoderado" id="direccion_apoderado"
-                        placeholder="Dirección de apoderado...">
+                <div class="row">
+                    <table class="table table-stripped" id="DTApoderados">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Acción</th>
+                                <th>dni</th>
+                                <th>nombre</th>
+                                <th>apellidos</th>
+                                <th>dirección</th>
+                                <th>parentesco</th>
+                                <th>correo</th>
+                                <th>telefono</th>
+                                <th>status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+    
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-md-4">
-                    <label class="form-label" for="parentesco">Parentesco de Apoderado</label>
-                    <select class="form-select" aria-label="Default select example" name="parentesco" id="parentesco" required>
-                        <option value="--" selected>--</option>
-                        <option value="PADRE">PADRE</option>
-                        <option value="MADRE">MADRE</option>
-                        <option value="TIO">TIO(a)</option>
-                        <option value="PRIMO">PRIMO(A)</option>
-                        <option value="SORBINO">SOBRINO(A)</option>
-                        <option value="OTRO">OTRO</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label" for="correo_apoderado">Correo apoderado</label>
-                    <input class="form-control" type="email" name="correo_apoderado" id="correo_apoderado"
-                        placeholder="Correo de apoderado...">
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label" for="telefono_apoderado">Teléfono apoderado</label>
-                    <input class="form-control" type="number" name="telefono_apoderado" id="telefono_apoderado"
-                        placeholder="Teléfono de apoderado...">
-                </div>
+
+
                 
+                <hr>
                 <div class="col-md-4">
                     <label class="form-label" for="fecha_empadronamiento">fecha de empadronamiento</label>
                     <input class="form-control" type="date" name="fecha_empadronamiento" id="fecha_empadronamiento"
                         placeholder="Fecha empadronamiento...">
                 </div>
                 
+                <div class="col-md-4">
+                    <label class="form-label" for="fecha_empadronamiento">Comentario</label>
+                    <textarea class="form-control" type="date" name="comentario"
+                        id="comentario" placeholder="escribre un comentario" maxlength="249"></textarea>
+                </div>
             </div>
-            <div class="col-md-4">
-                <label class="form-label" for="fecha_empadronamiento">Comentario</label>
-                <textarea class="form-control" type="date" name="comentario"
-                    id="comentario" placeholder="escribre un comentario" maxlength="249"></textarea>
-            </div>
-            <hr>
 
 
             <div class="row" style="padding-top: 30px;">
@@ -419,6 +406,108 @@
         </div>
     </form>
 
+     
+    <form id="formApoderados">@csrf
+        <!-- Modal -->
+        <div class="modal fade" id="modalApoderados" tabindex="-1" aria-hidden="true" style="z-index: 1049">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="etiquetaApoderados">-</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <input type="text" id="idPersonaApoderado" name="idPersonaApoderado" hidden>
+                        <input type="text" id="idApoderado" name="idApoderado" hidden>
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="input-group lg-3">
+                                    <label class="form-label" for="dni_apoderado">Nro Doc.</label>
+                                    <br>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="IngresoManualApoderado">
+                                        <label class="form-check-label" for="IngresoManualApoderado">Ingreso Manual</label>
+                                    </div>
+                                </div>
+                                <div class="input-group lg-3">
+                                    <input class="form-control" type="text" name="dni_apoderado" id="dni_apoderado"
+                                        placeholder="Nro de documento..." required>
+                                    <button type="button" class="btn btn-primary" name="btnBuscarApoderado" id="btnBuscarApoderado"
+                                        disabled><i class="lni lni-search"></i>Buscar</button>
+            
+                                    <div class="text-center" id="spinner_apoderado" hidden>
+                                        <div class="spinner-border" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label" for="nombre_apoderado">Nombres</label>
+                                <input class="form-control" type="text" name="nombre_apoderado" id="nombre_apoderado"
+                                    placeholder="Nombre de apoderado..." readonly required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label" for="nombre_apoderado">Apellidos</label>
+                                <input class="form-control" type="text" name="apellido_apoderado" id="apellido_apoderado"
+                                    placeholder="Nombre de apoderado..." readonly required>
+                            </div>
+            
+                            <div class="col-md-4">
+                                <label class="form-label" for="direccion_apoderado">Dirección de apoderado</label>
+                                <input class="form-control" type="text" name="direccion_apoderado" id="direccion_apoderado"
+                                    placeholder="Dirección de apoderado...">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label" for="parentesco">Parentesco de Apoderado</label>
+                                <select class="form-select" aria-label="Default select example" name="parentesco" id="parentesco" required>
+                                    <option value="--" selected>--</option>
+                                    <option value="PADRE">PADRE</option>
+                                    <option value="MADRE">MADRE</option>
+                                    <option value="TIO">TIO(a)</option>
+                                    <option value="PRIMO">PRIMO(A)</option>
+                                    <option value="SORBINO">SOBRINO(A)</option>
+                                    <option value="OTRO">OTRO</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label" for="correo_apoderado">Correo apoderado</label>
+                                <input class="form-control" type="email" name="correo_apoderado" id="correo_apoderado"
+                                    placeholder="Correo de apoderado...">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label" for="telefono_apoderado">Teléfono apoderado</label>
+                                <input class="form-control" type="number" name="telefono_apoderado" id="telefono_apoderado" placeholder="Teléfono de apoderado...">
+                                <br>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="status" class="form-label" >Status</label>
+                                <select name="status" id="status" class="form-select">
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="btnGuardarApoderado">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+
     @include('discapacitados.form_buscardiscapacitados')
 @endsection
 
@@ -426,6 +515,7 @@
 
     <script src="app_js/crud.js"></script>
     <script src="app_js/editarregistro.js"></script>
+    
     <script>
         $('.single-select').select2({
 			theme: 'bootstrap4',

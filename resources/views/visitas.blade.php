@@ -12,18 +12,29 @@
         {{-- action="guardarvisita" method="POST" --}}
         <div class="row">
             <div class="col-md-6">
-                <h4>Ingrese un DNI</h4>
+                <div class="row">
+                    <div class="col-6">
+                        <h5>Ingrese un DNI</h5>
+                    </div>
+                    <div class="col-6">
+                        <span class="badge bg-warning text-dark" id="btnInfo"><a href="" id="SinDocumento"> Buscar por Nombre</a></span>
+                    </div>
+                </div>
+                
                 <div class="input-group">    
                     <input type="text" class="form-control form-control" id="dniBuscar" required>
                     <button class="btn btn-warning" id="btnBuscarDireccion"><i class="lni lni-search"></i> Buscar</button>
                 </div>
                 <br>
                 <div class="card">
-                    
                     <div class="card-body">    
-                        <h4 id="NombrePersona"></h4>
-                        <label for="">Dirección</label>
+                        <h5 id="NombrePersona"></h5>
+                        <label for="">Última Dirección Activa</label>
                         <input type="text" class="form-control" id="Direccion" readonly>
+                        <label for="">Provincia</label>
+                        <input type="text" class="form-control" id="Provincia" readonly>
+                        <label for="">Distrito</label>
+                        <input type="text" class="form-control" id="Distrito" readonly>
                     </div>
                 </div>
 
@@ -68,21 +79,10 @@
                     </div>
                 </form>
             </div>
-        </div>
-                
-
-            {{-- <iframe src="" 
-            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade" id="mapa"></iframe> --}}
-           
-
-            {{-- <div class="col-md-12">
-                <div id="mapita" style="width: 100%;height: 350px;"></div>
-            </div> --}}
-
-
-     
+        </div>     
     </form>
+    @include('discapacitados.form_buscardiscapacitados')
+
     <div class="row">
         <div class="col-md-12" style="padding-left: 30px;padding-right:30px;">
             <div id="map" style="height: 400px;"></div>
@@ -95,6 +95,66 @@
 @section('extra_js')
     <script src="app_js/crud.js"></script>
     <script src="app_js/visitas.js"></script>
+   
+    <script>
+        $("#SinDocumento").on("click",function (e) {
+            e.preventDefault();
+            $("#modalbuscarpornombre").modal("show");
+        })
+        $("#txtbuscarnombre").on("keyup",function (e){
+            buscarPersonaNombres();
+        });
+        $("#txtbuscarapellidopat").on("keyup",function (e){
+            buscarPersonaNombres();
+        });
+        $("#txtbuscarapellidomat").on("keyup",function (e){
+            buscarPersonaNombres();
+        });
+    </script>
+     <script>
+        function buscarPersonaNombres(){
+            nombre=$("#txtbuscarnombre").val();
+            apepat=$("#txtbuscarapellidopat").val();
+            apemat=$("#txtbuscarapellidomat").val();
+            if (nombre.trim()=='') {
+            nombre="-";
+            }
+            if (apepat.trim()=='') {
+            apepat="-";
+            }
+            if (apemat.trim()=='') {
+            apemat="-";
+            }
+
+            $.ajax({
+            type: "GET",
+            url: "/socios/buscarnombre/"+nombre+"/"+apepat+"/"+apemat,
+            dataType: "json",
+            beforeSend: function() {
+                $("#spinner_buscar_nombre").prop('hidden',false);
+            },
+            success: function (response) {
+                $("#DTBuscarSocio tbody").html("");
+                response.forEach(element => {
+                    $("#DTBuscarSocio").append('<tr>'+
+                    '<td>'+element.id+'</td>'+
+                    '<td><button class="btn btn-warning btn-sm btnSeleccionar"><i class="bx bx-plus"></i></button></td>'+
+                    '<td>'+element.nro_doc_identidad+'</td>'+
+                    '<td>'+element.nombre+'</td>'+
+                    '<td>'+element.apellido_paterno+'</td>'+
+                    '<td>'+element.apellido_materno+'</td>'+
+                    '<td>'+element.provincia+'</td>'+
+                    '<td>'+element.distrito+'</td>'+
+                    '<td>'+element.direccion+'</td>'+
+                    '<td>'+element.numero+'</td>'+
+                    '</tr>');
+                });
+                $("#spinner_buscar_nombre").prop('hidden',true);
+            }
+
+            });
+        };
+    </script>
     {{-- <script src="https://maps.googleapis.com/maps/api/js?key=&callback=iniciarMapa"></script> --}}
     
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"

@@ -74,7 +74,7 @@ function round_info_noti() {
 	});
 }
 
-function round_warning_noti() {
+function round_warning_noti(mensaje) {
 	Lobibox.notify('warning', {
 		pauseDelayOnHover: true,
 		size: 'mini',
@@ -83,11 +83,11 @@ function round_warning_noti() {
 		icon: 'bx bx-error',
 		continueDelayOnInactiveTab: false,
 		position: 'top right',
-		msg: 'Lorem ipsum dolor sit amet hears farmer indemnity inherent.'
+		msg: mensaje
 	});
 }
 
-function round_error_noti() {
+function round_error_noti(mensaje) {
 	Lobibox.notify('error', {
 		pauseDelayOnHover: true,
 		size: 'mini',
@@ -96,7 +96,7 @@ function round_error_noti() {
 		icon: 'bx bx-x-circle',
 		continueDelayOnInactiveTab: false,
 		position: 'top right',
-		msg: 'Lorem ipsum dolor sit amet hears farmer indemnity inherent.'
+		msg: mensaje
 	});
 }
 

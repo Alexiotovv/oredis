@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\discapacitados;
 use App\Models\direcciones;
+use App\Models\apoderados;
 use Illuminate\Http\Request;
 use DB;
 class DiscapacitadosController extends Controller
@@ -37,7 +38,12 @@ class DiscapacitadosController extends Controller
         ->where('discapacitados.id','=',$id)
         ->select('direcciones.*','ubigeos.provincia','ubigeos.distrito')
         ->get();
-        $datos=['direcciones'=>$direcciones,'discapacitados'=>$discapacitados];
+
+        $apoderados = DB::table('apoderados')
+        ->where('apoderados.idDisc','=',$id)
+        ->select('apoderados.*')
+        ->get();
+        $datos=['direcciones'=>$direcciones,'discapacitados'=>$discapacitados,'apoderados'=>$apoderados];
 
         return response()->json($datos);
         
@@ -95,12 +101,12 @@ class DiscapacitadosController extends Controller
         $obj->requiere_ayuda=request('requiere_ayuda');
         $obj->tipo_ayuda=request('tipo_ayuda');
         $obj->ayuda_mecanica=request('ayuda_mecanica');
-        $obj->nombre_apoderado=request('nombre_apoderado');
-        $obj->dni_apoderado=request('dni_apoderado');
-        $obj->parentesco=request('parentesco');
-        $obj->direccion_apoderado=request('direccion_apoderado');
-        $obj->correo_apoderado=request('correo_apoderado');
-        $obj->telefono_apoderado=request('telefono_apoderado');
+        // $obj->nombre_apoderado=request('nombre_apoderado');
+        // $obj->dni_apoderado=request('dni_apoderado');
+        // $obj->parentesco=request('parentesco');
+        // $obj->direccion_apoderado=request('direccion_apoderado');
+        // $obj->correo_apoderado=request('correo_apoderado');
+        // $obj->telefono_apoderado=request('telefono_apoderado');
         $obj->tipo_seguro=request('tipo_seguro');
         $obj->seguro_salud=request('seguro_salud');
         $obj->fecha_empadronamiento=request('fecha_empadronamiento');
@@ -118,7 +124,7 @@ class DiscapacitadosController extends Controller
         $obj = DB::table('direcciones')
         ->where('direcciones.disc_id',$ultimo_id)
         ->where('direcciones.activo',1)
-        ->update(['direcciones.activo'=>0]);;
+        ->update(['direcciones.activo'=>0]);
         //desactiva todo
 
         //crear el nuevo registro con unica direccion activo
@@ -129,9 +135,23 @@ class DiscapacitadosController extends Controller
         $obj->numero=request('numero');#
         $obj->activo=true;
         $obj->save();
-        // $obj->altitud=request('altitud');
-        // $obj->longitud=request('longitud');
-        // $obj->latitud=request('latitud');
+        
+        //Ahora guarda al apoderado en caso tuviere
+        $tiene_apo=request('TieneApoderado');
+        if ($tiene_apo=='SI') {
+            $obj = new apoderados();
+            $obj->idDisc=$ultimo_id;
+            $obj->dni=request('dni_apoderado');
+            $obj->nombres=request('nombre_apoderado');
+            $obj->apellidos=request('apellido_apoderado');
+            $obj->direccion=request('direccion_apoderado');
+            $obj->parentesco=request('parentesco');
+            $obj->correo=request('correo_apoderado');
+            $obj->telefono=request('telefono_apoderado');
+            $obj->save();
+        }
+
+
         $data=['Mensaje'=>'ok'];
         return response()->json($data);
     }
@@ -201,7 +221,14 @@ class DiscapacitadosController extends Controller
         ->where('discapacitados.nro_doc_identidad','=',$dni)
         ->select('direcciones.*','ubigeos.provincia','ubigeos.distrito')
         ->get();
-        $datos=['direcciones'=>$direcciones,'discapacitados'=>$discapacitados];
+
+        $apoderados = DB::table('apoderados')
+        ->leftjoin('discapacitados','discapacitados.id','=','apoderados.idDisc')
+        ->where('discapacitados.nro_doc_identidad','=',$dni)
+        ->select('apoderados.*')
+        ->get();
+
+        $datos=['direcciones'=>$direcciones,'discapacitados'=>$discapacitados,'apoderados'=>$apoderados];
 
         return response()->json($datos);
         
@@ -260,12 +287,12 @@ class DiscapacitadosController extends Controller
         $obj->requiere_ayuda=request('requiere_ayuda');
         $obj->tipo_ayuda=request('tipo_ayuda');
         $obj->ayuda_mecanica=request('ayuda_mecanica');
-        $obj->nombre_apoderado=request('nombre_apoderado');
-        $obj->dni_apoderado=request('dni_apoderado');
-        $obj->parentesco=request('parentesco');
-        $obj->direccion_apoderado=request('direccion_apoderado');
-        $obj->correo_apoderado=request('correo_apoderado');
-        $obj->telefono_apoderado=request('telefono_apoderado');
+        // $obj->nombre_apoderado=request('nombre_apoderado');
+        // $obj->dni_apoderado=request('dni_apoderado');
+        // $obj->parentesco=request('parentesco');
+        // $obj->direccion_apoderado=request('direccion_apoderado');
+        // $obj->correo_apoderado=request('correo_apoderado');
+        // $obj->telefono_apoderado=request('telefono_apoderado');
         $obj->tipo_seguro=request('tipo_seguro');
         $obj->seguro_salud=request('seguro_salud');
         $obj->fecha_empadronamiento=request('fecha_empadronamiento');

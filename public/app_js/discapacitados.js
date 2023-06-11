@@ -1,3 +1,18 @@
+
+
+
+$("#IngresoManualApoderado").on("click",function () { 
+    if ($("#IngresoManualApoderado").prop('checked')){
+        $("#nombre_apoderado").attr('readonly', false);
+        $("#apellido_apoderado").attr('readonly', false);
+    }else{
+        $("#nombre_apoderado").attr('readonly', true);
+        $("#apellido_apoderado").attr('readonly', true);
+    }
+
+    $("#dni_apoderado").focus();
+})
+
 $("#TieneApoderado").on('change', function() {
     if ($(this).val()=='SI') {
         $("#DatosApoderado").attr('hidden',false);
@@ -75,31 +90,41 @@ $("#btnCerrarCard").on("click",function (e) {
 })
 
 $("#btnRegistrar").on("click",function (e) { 
-    if ($("#SinDocumento").prop('checked')||$("#IngresoManual").prop('checked')){
-        if ($("#direccion").val()=="" ||$("#telefono").val()=="" ){
-            //que haga su trabajo los mensajea de html de cada input
-        }else{
-            e.preventDefault();
-            ds=$("#formRegistro").serialize();
-            ru='guardardiscapacitado';
-            mje='Registro Guardado'
-            GuardarRegistro(ds,ru,mje);
-         
-            // setTimeout( function() { window.location.href = "msjeregistrodiscapacitados"; }, 3000 );
-        }
+    if ($("#distrito").val()=="--") {
+        e.preventDefault();
+        round_warning_noti("Por favor seleccione un distrito.");
     }else{
-        if ($("#nro_doc_identidad").val()=="" || $("#direccion").val()=="" ||$("#telefono").val()=="" ){
-            //que haga su trabajo los mensajea de html de cada input
+        if ($("#SinDocumento").prop('checked')||$("#IngresoManual").prop('checked')){
+            if ($("#direccion").val().trim()=="" ||$("#telefono").val().trim()=="" ){
+                //que haga su trabajo los mensajea de html de cada input
+                e.preventDefault();
+                round_warning_noti("Por favor complete direccion, numero o telefono.");
+            }else{
+                e.preventDefault();
+                ds=$("#formRegistro").serialize();
+                ru='guardardiscapacitado';
+                mje='Registro Guardado'
+                GuardarRegistro(ds,ru,mje);
+             
+                // setTimeout( function() { window.location.href = "msjeregistrodiscapacitados"; }, 3000 );
+            }
         }else{
-            e.preventDefault();
-            ds=$("#formRegistro").serialize();
-            ru='guardardiscapacitado';
-            mje='Registro Guardado'
-            GuardarRegistro(ds,ru,mje);
-            
-            // setTimeout( function() { window.location.href = "msjeregistrodiscapacitados"; }, 3000 );
+            if ($("#nro_doc_identidad").val()=="" || $("#direccion").val().trim()=="" ||$("#telefono").val().trim()=="" ){
+                //que haga su trabajo los mensajea de html de cada input
+                e.preventDefault();
+                round_warning_noti("Por favor complete dni, direccion, numero o telefono.");
+            }else{
+                e.preventDefault();
+                ds=$("#formRegistro").serialize();
+                ru='guardardiscapacitado';
+                mje='Registro Guardado'
+                GuardarRegistro(ds,ru,mje);
+                
+                // setTimeout( function() { window.location.href = "msjeregistrodiscapacitados"; }, 3000 );
+            }
         }
     }
+    
 });
 
 function LimpiarFormulario() { 
@@ -113,6 +138,7 @@ function LimpiarFormulario() {
     $("#numero").val('');
     $("#ocupacion").val('');
     $("#nombre_apoderado").val('');
+    $("#apellido_apoderado").val('');
     $("#dni_apoderado").val('');
     $("#correo_apoderado").val('');
     $("#direccion_apoderado").val('');
@@ -204,10 +230,8 @@ $("#btnBuscarApoderado").on("click",function(e){
         }
         ,
         success: function (response) {
-            $("#nombre_apoderado").val(
-                response['nombres']+ " " + 
-                response['apellidoPaterno'] + " " + 
-                response['apellidoMaterno']);
+            $("#nombre_apoderado").val( response['nombres']);
+            $("#apellido_apoderado").val(response['apellidoPaterno'] + " " + response['apellidoMaterno'])
 
             $("#spinner_apoderado").prop('hidden',true);
         },

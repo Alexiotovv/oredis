@@ -15,6 +15,7 @@ use App\Http\Controllers\ContenidosController;
 use App\Http\Controllers\AsociacionesController;
 use App\Http\Controllers\AsociacionessociosController;
 use App\Http\Controllers\ContactosController;
+use App\Http\Controllers\ApoderadosController;
 // use App\Http\Controllers\UserController;
 Route::get('/storage-link', function () {
     $targetFolder = storage_path('/app/public');
@@ -50,6 +51,7 @@ Route::get('/paneladmin',[paginasController::class, 'paneladmin'])->middleware([
 // Route::get('/appPublicaciones',[PublicacionesController::class, 'index'])->name('appPublicaciones');
 
 Route::get('/obtenerdistritos',[UbigeosController::class, 'show'])->name('obtener.distritos');
+Route::get('/obtenerprovincias',[UbigeosController::class, 'showprovincias'])->name('obtener.provincias');
 
 Route::get('/contacto/show',[ContactosController::class, 'show'])->name('contacto.show');
 Route::get('/contacto/create',[ContactosController::class, 'create'])->name('contacto.create');
@@ -114,6 +116,14 @@ Route::get('/editardireccion/{id}',[DireccionesController::class, 'edit'])->midd
 Route::get('/obtenerdistusuarios/{id}',[UserController::class, 'obtenerdistusuarios'])->middleware(['auth'])->name('obtenerdist.usuarios');
 //end direcciones
 
+//apoderados
+Route::post('/apoderados/guardar',[ApoderadosController::class, 'store'])->middleware(['auth'])->name('apoderados.guardar');
+Route::get('/apoderados/editar/{id}',[ApoderadosController::class, 'edit'])->middleware(['auth'])->name('apoderados.editar');
+Route::get('/apoderados/listar/{id}',[ApoderadosController::class, 'show'])->middleware(['auth'])->name('apoderados.listar');
+Route::post('/apoderados/actualizar',[ApoderadosController::class, 'update'])->middleware(['auth'])->name('apoderados.actualizar');
+//end apoderados
+
+
 
 //contenido portal
 Route::get('/editarcontenido',[ContenidosController::class,'edit'])->middleware(['auth'])->name('editar.contenido');
@@ -123,6 +133,7 @@ Route::post('/actualizarcontenido',[ContenidosController::class,'update'])->midd
 //visitas
 Route::get('/registrarvisita',[VisitasController::class, 'create'])->middleware(['auth'])->name('registrar.visita');
 Route::get('/obtenerdireccion/{dni}',[VisitasController::class, 'show'])->middleware(['auth'])->name('obtener.direccion');
+Route::get('/obtenerdireccion_pornombre/{id}',[VisitasController::class, 'show_pornombre'])->middleware(['auth'])->name('obtener.direccion.pornombre');
 Route::post('/guardarvisita',[VisitasController::class, 'store'])->middleware(['auth'])->name('guardar.visita');
 
 Route::get('/reportevisitas',[ReportesController::class, 'index'])->middleware(['auth'])->name('reporte.visitas');

@@ -344,7 +344,7 @@
                 </div>
                 <div class="col-md-4">
                     <label class="form-label" for="TieneApoderado">Tiene algún apoderado o representante?</label>
-                    <select id="TieneApoderado" class="form-select">
+                    <select id="TieneApoderado" name="TieneApoderado" class="form-select">
                         <option value="NO" default>NO</option>
                         <option value="SI">SI</option>
                     </select>
@@ -353,14 +353,18 @@
             <hr>
             <div class="row" id="DatosApoderado" hidden>
                 <h5>Datos del Apoderado</h5>
-                <div class="col-md-6">
-                    <label class="form-label" for="nombre_apoderado">Nombre completo de apoderado</label>
-                    <input class="form-control" type="text" name="nombre_apoderado"
-                        id="nombre_apoderado" placeholder="Nombre de apoderado..." readonly required>
-                </div>
+                <div class="col-md-4">
+                    <div class="input-group lg-3">
+                        <label class="form-label" for="dni_apoderado">Nro de documento</label>
+                        <br>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="IngresoManualApoderado">
+                            <label class="form-check-label" for="IngresoManualApoderado">Ingreso Manual</label>
+                        </div>
+                    </div>
 
-                <div class="col-md-6">
-                    <label class="form-label" for="dni_apoderado">Nro de documento</label>
+
+
                     <div class="input-group lg-3">
                         <input class="form-control" type="text" name="dni_apoderado"
                             id="dni_apoderado" placeholder="Nro de documento...">
@@ -374,6 +378,17 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="col-md-4">
+                    <label class="form-label" for="Nombre">Nombre</label>
+                    <input class="form-control" type="text" name="nombre_apoderado" id="nombre_apoderado" placeholder="Nombre de apoderado..." required readonly>
+                    
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="apellido_apoderado">Apellidos</label>
+                        <input class="form-control" type="text" name="apellido_apoderado" id="apellido_apoderado" placeholder="Apellido de apoderado..." required readonly>
+                </div>
+
                 <div class="col-md-4">
                     <label class="form-label" for="direccion_apoderado">Dirección de apoderado</label>
                     <input class="form-control" type="text" name="direccion_apoderado" id="direccion_apoderado"
@@ -404,6 +419,7 @@
                         placeholder="Teléfono de apoderado...">
                 </div>
             </div>
+            <hr>
             
             <div class="row">
                 <div class="col-md-4">
@@ -416,7 +432,6 @@
                     <textarea class="form-control" type="date" name="comentario"
                         id="comentario" placeholder="escribre un comentario" maxlength="249"></textarea>
                 </div>
-                <hr>
             </div>
 
 

@@ -42,7 +42,7 @@
                         <tr>
                             <td>{{$pub->id}}</td>
                             <td>
-                                <button class="btn btn-outline-danger btnEliminarNoticia"><i class="lni lni-trash"></i></button>
+                                {{-- <button class="btn btn-outline-danger btnEliminarNoticia"><i class="lni lni-trash"></i></button> --}}
                                 <button class="btn btn-outline-warning btnEditarNoticia"><i class="lni lni-pencil"></i></button>
                             </td>
                             <td>{{$pub->Titulo}}</td>
