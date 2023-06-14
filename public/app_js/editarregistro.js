@@ -49,7 +49,12 @@ $("#btnGuardarApoderado").on("click",function (e) {
       $("#DTApoderados tbody").html("");
         
       response.forEach(element => {
-          
+          if (element.status) {
+            estado='Activo';  
+          }else{
+            estado='Inactivo';  
+          }
+
           $("#DTApoderados").append("<tr>"+
             "<td>"+ element.id +"</td>"+
             "<td>"+'<button class="btn btn-outline-warning btn-sm btnEditarApoderado"><i class="lni lni-pencil"></i></button>' +"</td>"+
@@ -60,7 +65,7 @@ $("#btnGuardarApoderado").on("click",function (e) {
             "<td>"+ element.parentesco +"</td>"+
             "<td>"+ element.correo +"</td>"+
             "<td>"+ element.telefono +"</td>"+
-            "<td>"+ element.status +"</td>"+
+            "<td>"+ estado +"</td>"+
           "</tr>");
         });
     }
@@ -183,6 +188,11 @@ $(document).on("click",".btnSeleccionar",function (e) {
 
             $("#DTApoderados tbody").html("");
             response.apoderados.forEach(element => {
+              if (element.status) {
+                estado='Activo';
+              }else{
+                estado='Inactivo';
+              }
               $("#DTApoderados").append("<tr>"+
                 "<td>"+ element.id +"</td>"+
                 "<td>"+'<button class="btn btn-outline-warning btn-sm btnEditarApoderado"><i class="lni lni-pencil"></i></button>' +"</td>"+
@@ -193,7 +203,7 @@ $(document).on("click",".btnSeleccionar",function (e) {
                 "<td>"+ element.parentesco +"</td>"+
                 "<td>"+ element.correo +"</td>"+
                 "<td>"+ element.telefono +"</td>"+
-                "<td>"+ element.status +"</td>"+
+                "<td>"+ estado  +"</td>"+
               "</tr>");
             });
             EstadoCarnet();
@@ -460,6 +470,12 @@ $("#btnBuscarEditar").on("click",function(e){
                 ObtenerDirecciones(response.discapacitados[0].id);
                 $("#DTApoderados tbody").html("");
                 response.apoderados.forEach(element => {
+                  if (element.status) {
+                    estado='Activo';
+                  }else{
+                    estado='Inactivo';
+                  }
+
                   $("#DTApoderados").append("<tr>"+
                     "<td>"+ element.id +"</td>"+
                     "<td>"+'<button class="btn btn-outline-warning btn-sm btnEditarApoderado"><i class="lni lni-pencil"></i></button>' +"</td>"+
@@ -470,7 +486,7 @@ $("#btnBuscarEditar").on("click",function(e){
                     "<td>"+ element.parentesco +"</td>"+
                     "<td>"+ element.correo +"</td>"+
                     "<td>"+ element.telefono +"</td>"+
-                    "<td>"+ element.status +"</td>"+
+                    "<td>"+ estado +"</td>"+
                   "</tr>");
                 });
                 // console.log(VerificarDistrito());

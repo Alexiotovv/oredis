@@ -318,6 +318,8 @@
     
                         </tbody>
                     </table>
+
+                    <label for="" style="color:orange">Se recomienda que solo un apoderado esté con status: Activo(1)</label>
                 </div>
 
 

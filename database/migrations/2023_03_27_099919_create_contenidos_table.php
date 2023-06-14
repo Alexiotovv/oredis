@@ -15,8 +15,8 @@ class CreateContenidosTable extends Migration
     {
         Schema::create('contenidos', function (Blueprint $table) {
             $table->id();
-            $table->string('texto_banner', 60)->nullable()->default('Bienvenido al portal de personas con capacidades diferentes.');
-            $table->string('pie_banner', 72)->nullable()->default('Brindamos un portal de administración para el registro de las personas.');
+            $table->string('texto_banner', 150)->nullable()->default('Bienvenido al portal de personas con capacidades diferentes.');
+            $table->string('pie_banner', 150)->nullable()->default('Brindamos un portal de administración para el registro de las personas.');
             $table->string('foto_banner',250)->nullable();
             $table->string('foto_objetivo', 250)->nullable()->default('');
             $table->text('objetivo')->nullable();

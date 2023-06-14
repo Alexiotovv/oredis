@@ -13,7 +13,7 @@
                 <div class="form-check form-switch">
                     <label class="form-check-label" for="chkDistrito">Seleccionar Todos</label>
                     <input class="form-check-input chkDistrito" type="checkbox" id="chkDistrito" name="chkDistrito">
-                    
+
                 </div>
                 <label for="">Seleccione uno o varios Distritos</label>
                 <select id="distrito" name="distrito[]" class="multiple-select" multiple="multiple">
@@ -31,7 +31,7 @@
                     </div>
                 </div> --}}
             </div>
-        </div>    
+        </div>
     </form>
     <br>
 
@@ -70,14 +70,15 @@
                             <th>direccion_apoderado</th>
                             <th>correo_apoderado</th>
                             <th>telefono_apoderado</th>
+                            <th>status_apoderado</th>
                             <th>tipo_seguro</th>
                             <th>seguro_salud</th>
                             <th>fecha_empadronamiento</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                         @foreach ($personas as $per)
                         <tr>
                             <td>{{$per->distrito}}</td>
@@ -108,14 +109,26 @@
                             <td>{{$per->direccion_apoderado}}</td>
                             <td>{{$per->correo_apoderado}}</td>
                             <td>{{$per->telefono_apoderado}}</td>
+                            
+                                @if ($per->status_apoderado)
+                                    <td style="color: rgb(31, 179, 31)">    
+                                        Activo
+                                    </td>
+                                @else
+                                    <td style="color: rgb(225, 76, 76)">
+                                        Inactivo
+                                    </td>
+                                @endif
+                                
+                            
                             <td>{{$per->tipo_seguro}}</td>
                             <td>{{$per->seguro_salud}}</td>
                             <td>{{$per->fecha_empadronamiento}}</td>
-                            
+
                         </tr>
                         @endforeach
-                    
-                            
+
+
                     </tbody>
                 </table>
             </div>

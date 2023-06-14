@@ -79,10 +79,12 @@ class ReportesController extends Controller
         // }
         
         $personas=DB::table('discapacitados')
-        ->leftjoin('direcciones','direcciones.disc_id','=','discapacitados.id')
+        ->join('direcciones','direcciones.disc_id','=','discapacitados.id')
         ->leftjoin('ubigeos','ubigeos.id','=','direcciones.ubigeo_id')
+        ->leftjoin('apoderados','apoderados.idDisc','=','discapacitados.id')
         ->where('discapacitados.delete','=',0)
         ->where('direcciones.activo','=',1)
+        // ->orwhere('apoderados.status','=',1)
         ->whereIn('ubigeos.id',$distrito)
         ->select('ubigeos.distrito','discapacitados.nombre',
         'discapacitados.apellido_paterno',
@@ -104,12 +106,13 @@ class ReportesController extends Controller
         'discapacitados.requiere_ayuda',
         'discapacitados.tipo_ayuda',
         'discapacitados.ayuda_mecanica',
-        'discapacitados.nombre_apoderado',
-        'discapacitados.dni_apoderado',
-        'discapacitados.parentesco',
-        'discapacitados.direccion_apoderado',
-        'discapacitados.correo_apoderado',
-        'discapacitados.telefono_apoderado',
+        'apoderados.nombres as nombre_apoderado',
+        'apoderados.dni as dni_apoderado',
+        'apoderados.parentesco',
+        'apoderados.direccion as direccion_apoderado',
+        'apoderados.correo as correo_apoderado',
+        'apoderados.telefono as telefono_apoderado',
+        'apoderados.status as status_apoderado',
         'discapacitados.tipo_seguro',
         'discapacitados.seguro_salud',
         'discapacitados.fecha_empadronamiento',

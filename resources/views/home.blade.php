@@ -23,7 +23,7 @@
           <div class="row">
             <div class="col-xl-8 col-lg-12">
                     <div class="hero-content">
-                        <h1 class="wow fadeInUp" data-wow-delay=".5s" style="color: white">
+                        <h1 class="wow fadeInUp" data-wow-delay=".5s" style="color: white; font-size:69px;">
                             {{$obj->texto_banner}}
                         </h1>
                         

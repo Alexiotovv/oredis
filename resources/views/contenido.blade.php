@@ -14,12 +14,12 @@
   <form action="{{route('actualizar.contenido')}}" method="POST" enctype="multipart/form-data">@csrf
     <div class="row">
       <div class="col-sm-3">
-        <label for="texto_banner">Texto de banner <label id="texto_banner_cant">0</label>/60 Carac.</label>
-        <textarea class="form-control form-control-sm" id="texto_banner" name="texto_banner" maxlength="60" >{{$obj->texto_banner}}</textarea>
+        <label for="texto_banner">Texto de banner <label id="texto_banner_cant">0</label>/150 Carac.</label>
+        <textarea class="form-control form-control-sm" id="texto_banner" name="texto_banner" maxlength="150" >{{$obj->texto_banner}}</textarea>
       </div>
       <div class="col-sm-3">
-        <label for="pie_banner">Pie de Banner <label id="pie_banner_cant">0</label>/72 Carac.</label>
-        <textarea class="form-control form-control-sm" id="pie_banner" name="pie_banner" maxlength="72">{{$obj->pie_banner}}</textarea>
+        <label for="pie_banner">Pie de Banner <label id="pie_banner_cant">0</label>/150 Carac.</label>
+        <textarea class="form-control form-control-sm" id="pie_banner" name="pie_banner" maxlength="150">{{$obj->pie_banner}}</textarea>
       </div>
       <div class="col-sm-2">
         <label for="">Foto Banner Actual</label>
