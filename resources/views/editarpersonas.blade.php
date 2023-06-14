@@ -203,7 +203,7 @@
                     
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label" for="fecha_caducidad_carnet">Fecha de Caducidad</label>
+                    <label class="form-label" for="fecha_caducidad_carnet">Fech. Caducidad. Cert. Discapacidad</label>
                     <input class="form-control" type="date" name="fecha_caducidad_carnet" id="fecha_caducidad_carnet" placeholder="Fecha Caducidad">
                 </div>
                 <div class="col-md-4">
