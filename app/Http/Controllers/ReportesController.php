@@ -107,6 +107,7 @@ class ReportesController extends Controller
         'discapacitados.tipo_ayuda',
         'discapacitados.ayuda_mecanica',
         'apoderados.nombres as nombre_apoderado',
+        'apoderados.apellidos as apellido_apoderado',
         'apoderados.dni as dni_apoderado',
         'apoderados.parentesco',
         'apoderados.direccion as direccion_apoderado',

@@ -25,7 +25,7 @@
 
             <div class="col-md-4">
                 <br>
-                <button class="btn btn-warning" id="btnBuscarVisitas" type="submit"><i class="lni lni-search"></i>Buscar</button>
+                <button class="btn btn-warning" id="btnBuscarBeneficiario" type="submit"><i class="lni lni-search"></i>Buscar</button>
                 {{-- <div class="text-center" id="spinner_busqueda" hidden>
                     <div class="spinner-border" role="status">
                     </div>
@@ -103,7 +103,7 @@
                             <td>{{$per->requiere_ayuda}}</td>
                             <td>{{$per->tipo_ayuda}}</td>
                             <td>{{$per->ayuda_mecanica}}</td>
-                            <td>{{$per->nombre_apoderado}}</td>
+                            <td>{{$per->nombre_apoderado}} {{$per->apellido_apoderado}}</td>
                             <td>{{$per->dni_apoderado}}</td>
                             <td>{{$per->parentesco}}</td>
                             <td>{{$per->direccion_apoderado}}</td>
@@ -142,7 +142,28 @@
     {{-- <script src="app_js/reportevisitas.js"></script> --}}
     <script src="app_js/reportebeneficiario.js"></script>
     <script src="assets/js/widgets.js"></script>
+    <script>
+        
+        contar=0;
+        
+        $("#distrito").change(function () { 
+            // e.preventDefault();
+            contar=0;
+            $("#distrito").val().forEach(element => {
+               contar+=1;
+            });
+        });
 
+        $("#btnBuscarBeneficiario").on("click",function (e) { 
+            if (contar>0) {
+                //manda      
+            }else{
+                alert("Debe seleccionar por lo menos un distrito");
+                e.preventDefault();
+            }
+        });
+
+    </script>
     <script>
         $(document).ready(function() {
         var table = $('#example2').DataTable( {
