@@ -101,12 +101,7 @@ class DiscapacitadosController extends Controller
         $obj->requiere_ayuda=request('requiere_ayuda');
         $obj->tipo_ayuda=request('tipo_ayuda');
         $obj->ayuda_mecanica=request('ayuda_mecanica');
-        // $obj->nombre_apoderado=request('nombre_apoderado');
-        // $obj->dni_apoderado=request('dni_apoderado');
-        // $obj->parentesco=request('parentesco');
-        // $obj->direccion_apoderado=request('direccion_apoderado');
-        // $obj->correo_apoderado=request('correo_apoderado');
-        // $obj->telefono_apoderado=request('telefono_apoderado');
+
         $obj->tipo_seguro=request('tipo_seguro');
         $obj->seguro_salud=request('seguro_salud');
         $obj->fecha_empadronamiento=request('fecha_empadronamiento');
