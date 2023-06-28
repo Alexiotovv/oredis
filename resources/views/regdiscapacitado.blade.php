@@ -231,7 +231,7 @@
                     <select class="form-select" aria-label="Default select example"
                         name="grado_instruccion">
                         <option value="--">--</option>
-                        <option value="PRIMARIA">SIN ESTUDIOS</option>
+                        <option value="SIN ESTUDIOS">SIN ESTUDIOS</option>
                         <option value="PRIMARIA">PRIMARIA</option>
                         <option value="SECUNDARIA">SECUNDARIA</option>
                         <option value="TECNICO">TECNICO</option>

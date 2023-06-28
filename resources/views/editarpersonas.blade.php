@@ -171,6 +171,7 @@
                     <label class="form-label" for="Grado de instrucción">Grado de instrucción</label>
                     <select class="form-select" aria-label="Default select example" name="grado_instruccion" id="grado_instruccion">
                         <option value="--">--</option>
+                        <option value="SIN ESTUDIOS">SIN ESTUDIOS</option>
                         <option value="PRIMARIA">PRIMARIA</option>
                         <option value="SECUNDARIA">SECUNDARIA</option>
                         <option value="TECNICO">TECNICO</option>
@@ -178,6 +179,8 @@
                         <option value="EGRESADO UNIVERSITARIO">EGRESADO UNIVERSITARIO</option>
                         <option value="PROFESIONAL UNIVERSITARIO TITULADO">PROFESIONAL TITULADO</option>
                         <option value="POSTGRADO">ESTUDIOS DE POSTGRADO</option>
+                        <option value="OTRO">OTRO</option>
+
                     </select>
                 </div>
             </div>
