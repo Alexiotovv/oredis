@@ -23,38 +23,19 @@
 
                     <nav class="main-menu">
                         <ul>
-                            <li class="menu-item has-children"><a href="/home" class="active nav-link">Inicio</a>
-                                {{-- <ul class="sub-menu">
-                                    <li class="has-children"><a href="#">Multipage</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="index-2.html">Creative Agency</a></li>
-                                            <li><a href="index-3.html">Digital Agency</a></li>
-                                            <li><a href="index-4.html">Design Studio</a></li>
-                                            <li><a href="index-3-dark.html">Design Studio Dark</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="has-children"><a href="#">Onepage</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="onepage-index-1.html">Creative Agency</a></li>
-                                            <li><a href="onepage-index-2.html">Digital Agency</a></li>
-                                            <li><a href="onepage-index-3.html">Design Studio</a></li>
-                                            <li><a href="onepage-index-3-dark.html">Design Studio Dark</a></li>
-                                        </ul>
-                                    </li>
-                                </ul> --}}
-                            </li>
-                            <li class="menu-item has-children"><a href="/shownoticias" class="nav-link">Noticias</a>
-                                {{-- <ul class="sub-menu">
-                                    <li><a href="services.html">Our Service</a></li>
-                                    <li><a href="service-details.html">Service Details</a></li>
-                                </ul> --}}
-                            </li>
+                            <li class="menu-item has-children"><a href="/home" class="active nav-link">Inicio</a></li>
+                            <img src="../../../assetss/images/icon/icon-10.png" id="icon-inicio" width="40px" height="40px" alt="" hidden>
+                            <li class="menu-item has-children"><a href="/shownoticias" class="nav-link">Noticias</a></li>
+                            <img src="../../../assetss/images/icon/icon-10.png" id="icon-noticia" width="40px" height="40px" alt="" hidden>
+                            <img src="../../../assetss/images/senales/NOTICIAS.gif" id="senal-noticia" width="150px" height="150px" alt="" style="position: absolute;top:60px" hidden>
+
                             <li class="menu-item has-children"><a href="{{route('contacto.create')}}" class="nav-link">Contacto</a>
                                 {{-- <ul class="sub-menu">
                                     <li><a href="projects.html">Our Portfolio</a></li>
                                     <li><a href="project-details.html">Portfolio Details</a></li>
                                 </ul> --}}
                             </li>
+                            <img src="../../../assetss/images/icon/icon-10.png" id="icon-contacto" width="40px" height="40px" alt="" hidden>
                             
                             <li class="menu-item has-children"><a href="#" class="nav-link">
                                 @if (Route::has('login'))
@@ -101,8 +82,8 @@
                 </div>
                 <div class="header-right-nav">
                     <ul>
-                        <li class="bar-item"><a href="#"><img src="../assetss/images/dot.png"
-                                    alt="dot"></a></li>
+                        <li class="bar-item"><a href="#"><img src="../assetss/images/accesibility.png"
+                                    alt="dot" id="accesibility"></a></li>
                         <li class="navbar-toggle-btn">
                             <div class="navbar-toggler">
                                 <span></span>

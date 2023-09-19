@@ -95,6 +95,26 @@
       $("#modalLogin").modal('show');
     });
     
+
+    $("#accesibility").on("click",function () { 
+      $("#icon-inicio").removeAttr("hidden");
+      $("#icon-contacto").removeAttr("hidden");
+      $("#icon-noticia").removeAttr("hidden");
+    })
+
+
+    $("#icon-noticia").mouseover(function () { 
+      $("#senal-noticia").removeAttr("hidden");
+    });
+    
+    $("#icon-noticia").mouseleave(function () { 
+      $("#senal-noticia").prop("hidden",true);
+    });
+
+
+
+
+
   </script>
 
 </body>

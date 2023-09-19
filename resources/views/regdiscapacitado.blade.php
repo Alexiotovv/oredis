@@ -444,11 +444,43 @@
     </form>
 
 
+    {{-- Modal Información Declaración --}}
+    <div class="modal fade" id="modalDJ" aria-hidden="true" style="z-index: 1049">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="justify-content: center">
+                    <h5 class="modal-title" id="etiquetaDJ">Registro de Información</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <h5>
+                        "La información consignada en el presente formato tiene carácter de Declaración Juarada, en caso de resultar falsa la información que proporcionó se actuará en concordancia con el numeral 34.3 del artículo 34° del Texto único ordinario de la Ley N° 27444, Ley del Procedimiento Administrativo General aprobado mediante Decreto Supremo N° 004-2019-JUS".
+                        </h5>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                    {{-- <button class="btn btn-primary" id="btnGuardarAsociacion">Guardar</button> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
 @endsection
 @section('extra_js')
     <script src="app_js/crud.js"></script>
     <script src="app_js/discapacitados.js"></script>
     <script src="assets/js/widgets.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#modalDJ").modal('show');
+        });
+
+    </script>
     <script>
         $('.single-select').select2({
 			theme: 'bootstrap4',

@@ -13,8 +13,6 @@
         <img src="{{asset('storage/contenido/'.$obj->foto_banner)}}" class="wow fadeInLeft" alt="hero image">
       </span>
     </div>
-   
-
     <div class="container" style="margin-top: -140px;">
       <div class="row">
         <div class="col-xl-8 col-lg-12">
@@ -30,7 +28,6 @@
             </div>
         </div>
     </div>
-
 </section>
 
 <section class="about-area about-area-v1 position-relative pt-130">
