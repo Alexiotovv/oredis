@@ -1,6 +1,13 @@
 @extends('layouts.panel')
 
 @section('content')
+    <style>
+        .tamano-imagen img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
 
     <h5><a href="/home">Inicio / </a><a href="/paneladmin">Panel Admin / </a><a href="">Noticias</a></h5>
         
@@ -29,9 +36,11 @@
                         <th scope="col">Acción</th>
                         <th scope="col">Titulo</th>
                         <th scope="col">Descripción</th>
+                        <th scope="col">Contenido</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Archivo</th>
                         <th scope="col">BannerModal</th>
+                        <th scope="col">BannerSlider</th>
                         <th scope="col">Publicado</th>
                         
                     </tr>
@@ -47,6 +56,12 @@
                             </td>
                             <td>{{$pub->Titulo}}</td>
                             <td>{{$pub->Descripcion}}</td>
+                            <td>
+                                <div class="tamano-imagen">
+                                    {!!$pub->contenido!!}
+
+                                </div>
+                            </td>
                             <td>{{$pub->Fecha}}</td>
                             <td>
                                 <a href="{{asset('storage/noticias/'.$pub['archivo'])}}"><img src="{{asset('storage/noticias/'.$pub['archivo'])}}" style="height: 30px;width:30px;"></a>
@@ -61,7 +76,24 @@
                                     @endif    
                                 </div>
                             </td>
-                            <td>{{$pub->publicar}}</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    @if ($pub->slider)
+                                        <input class="form-check-input chkslider" type="checkbox" id="Slider" checked>
+                                    @else
+                                        <input class="form-check-input chkslider" type="checkbox" id="Slider">
+                                    @endif    
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    @if ($pub->publicar)
+                                        <input class="form-check-input chkpublicar" type="checkbox" id="Publicar" checked>
+                                    @else
+                                        <input class="form-check-input chkpublicar" type="checkbox" id="Publicar">
+                                    @endif    
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

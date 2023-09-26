@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../../assetss/css/default.css">
     <link rel="stylesheet" href="../../../assetss/css/style.css">
     <link rel="stylesheet" href="../../../assetss/css/responsive.css">
-
+    @yield('extra_css')
 </head>
 
 <body>
@@ -110,13 +110,8 @@
     $("#icon-noticia").mouseleave(function () { 
       $("#senal-noticia").prop("hidden",true);
     });
-
-
-
-
-
   </script>
-
+  @yield('extra_js')
 </body>
 
 </html>

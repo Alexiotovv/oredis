@@ -54,11 +54,16 @@ class NoticiasController extends Controller
             request('archivo')->storeAs('noticias/',$archivo,'pirulo');//pirulo es el nombre de disco
             $obj->archivo = $archivo;
         }
+        if (request('contenido')==''){
+            $contenido='-';
+        }
 
         $obj->Titulo = request('Titulo');
         $obj->Descripcion = request('Descripcion');
         $obj->Fecha = request('Fecha');
         $obj->publicar = request('publicar');
+        $obj->contenido = $contenido;
+        $obj->slider = request('slider');
         $obj->save();
         return redirect()->route('noticias');
     }
@@ -127,11 +132,15 @@ class NoticiasController extends Controller
             request('archivo')->storeAs('noticias/',$archivo,'pirulo');//pirulo es el nombre de disco
             $obj->archivo = $archivo;
         }
-
+        if (request('contenido')==''){
+            $contenido='-';
+        }
         $obj->Titulo = request('Titulo');
         $obj->Descripcion = request('Descripcion');
         $obj->Fecha = request('Fecha');
         $obj->publicar = request('publicar');
+        $obj->contenido = request('contenido');
+        $obj->slider = request('slider');
         $obj->save();
         return redirect()->route('noticias');
     }
@@ -155,6 +164,22 @@ class NoticiasController extends Controller
     {
         $obj=noticias::findOrFail($id);
         $obj->modal=$valor;
+        $obj->save();
+        $data=['Mensaje'=>'Ok'];
+        return response()->json($data);
+    }
+    public function slider($id,$valor)
+    {
+        $obj=noticias::findOrFail($id);
+        $obj->slider=$valor;
+        $obj->save();
+        $data=['Mensaje'=>'Ok'];
+        return response()->json($data);
+    }
+    public function publicar($id,$valor)
+    {
+        $obj=noticias::findOrFail($id);
+        $obj->publicar=$valor;
         $obj->save();
         $data=['Mensaje'=>'Ok'];
         return response()->json($data);

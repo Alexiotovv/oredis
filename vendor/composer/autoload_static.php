@@ -568,6 +568,7 @@ class ComposerStaticInitd85d19bdc5bcb4b3b687f59d03f75b9e
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\ApoderadosController' => __DIR__ . '/../..' . '/app/Http/Controllers/ApoderadosController.php',
         'App\\Http\\Controllers\\AsociacionesController' => __DIR__ . '/../..' . '/app/Http/Controllers/AsociacionesController.php',
         'App\\Http\\Controllers\\AsociacionessociosController' => __DIR__ . '/../..' . '/app/Http/Controllers/AsociacionessociosController.php',
         'App\\Http\\Controllers\\ContactosController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactosController.php',
@@ -604,6 +605,7 @@ class ComposerStaticInitd85d19bdc5bcb4b3b687f59d03f75b9e
         'App\\Models\\direcciones' => __DIR__ . '/../..' . '/app/Models/direcciones.php',
         'App\\Models\\discapacitados' => __DIR__ . '/../..' . '/app/Models/discapacitados.php',
         'App\\Models\\entregas' => __DIR__ . '/../..' . '/app/Models/entregas.php',
+        'App\\Models\\normas' => __DIR__ . '/../..' . '/app/Models/normas.php',
         'App\\Models\\noticias' => __DIR__ . '/../..' . '/app/Models/noticias.php',
         'App\\Models\\ocupaciones' => __DIR__ . '/../..' . '/app/Models/ocupaciones.php',
         'App\\Models\\publicaciones' => __DIR__ . '/../..' . '/app/Models/publicaciones.php',

@@ -32,3 +32,35 @@ $(document).on("click",".chkbanner",function (e){
         }
     });
 })
+
+$(document).on("click",".chkslider",function (e){
+    // e.preventDefault();
+    if ($(this).prop('checked')) { valor=1; } else { valor=0; }
+    fila = $(this).closest("tr");
+    id = (fila).find('td:eq(0)').text();
+    $.ajax({
+        type: "GET",
+        url: "/noticia/slider/"+ id +"/estado/"+ valor,
+        data: "data",
+        dataType: "dataType",
+        success: function (response) {
+            
+        }
+    });
+})
+
+$(document).on("click",".chkpublicar",function (e){
+    // e.preventDefault();
+    if ($(this).prop('checked')) { valor=1; } else { valor=0; }
+    fila = $(this).closest("tr");
+    id = (fila).find('td:eq(0)').text();
+    $.ajax({
+        type: "GET",
+        url: "/noticia/publicar/"+ id +"/estado/"+ valor,
+        data: "data",
+        dataType: "dataType",
+        success: function (response) {
+            
+        }
+    });
+})

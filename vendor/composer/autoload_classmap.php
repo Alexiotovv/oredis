@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\ApoderadosController' => $baseDir . '/app/Http/Controllers/ApoderadosController.php',
     'App\\Http\\Controllers\\AsociacionesController' => $baseDir . '/app/Http/Controllers/AsociacionesController.php',
     'App\\Http\\Controllers\\AsociacionessociosController' => $baseDir . '/app/Http/Controllers/AsociacionessociosController.php',
     'App\\Http\\Controllers\\ContactosController' => $baseDir . '/app/Http/Controllers/ContactosController.php',
@@ -44,6 +45,7 @@ return array(
     'App\\Models\\direcciones' => $baseDir . '/app/Models/direcciones.php',
     'App\\Models\\discapacitados' => $baseDir . '/app/Models/discapacitados.php',
     'App\\Models\\entregas' => $baseDir . '/app/Models/entregas.php',
+    'App\\Models\\normas' => $baseDir . '/app/Models/normas.php',
     'App\\Models\\noticias' => $baseDir . '/app/Models/noticias.php',
     'App\\Models\\ocupaciones' => $baseDir . '/app/Models/ocupaciones.php',
     'App\\Models\\publicaciones' => $baseDir . '/app/Models/publicaciones.php',

@@ -15,11 +15,14 @@ class paginasController extends Controller
         ->paginate(3);
         
         $dato=DB::table('contenidos')->select('contenidos.*')->get();
+        $slider=noticias::where('publicar','1')
+        ->where('slider','1')
+        ->get();
 
         if (count($dato)>0) {
             $obj=contenidos::find($dato[0]->id);
         }
-        return view('home',['noticias'=>$noticias,'obj'=>$obj]);
+        return view('home',['noticias'=>$noticias,'obj'=>$obj,'slider'=>$slider]);
     }
 
     public function home(Request $request)
@@ -31,8 +34,11 @@ class paginasController extends Controller
         if (count($dato)>0) {
             $obj=contenidos::find($dato[0]->id);
         }
+        $slider=noticias::where('publicar','1')
+        ->where('slider','1')
+        ->get();
         
-        return view('home',['noticias'=>$noticias,'obj'=>$obj,'bannerModal'=>$bannerModal]);
+        return view('home',['noticias'=>$noticias,'obj'=>$obj,'bannerModal'=>$bannerModal,'slider'=>$slider]);
     }
 
     public function paneladmin(Request $request)

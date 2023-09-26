@@ -73,7 +73,6 @@ Route::get('/asociaciones/edit/{id}',[AsociacionesController::class, 'edit'])->m
 Route::get('/asociacionesysocios/listar',[AsociacionesController::class, 'listar'])->middleware(['auth'])->name('asociacionesysocios.listar');
 Route::get('/asociacionesysocios/index',[AsociacionesController::class, 'asociacionesysocios_index'])->middleware(['auth'])->name('asociacionesysocios.index');
 
-
 //End Asociaciones y Socios
 
 //socios
@@ -157,6 +156,8 @@ Route::post('/storenoticia',[NoticiasController::class, 'store'])->middleware(['
 Route::get('/destroynoticia/{id}',[NoticiasController::class, 'destroy'])->middleware(['auth'])->name('destroy.noticia');
 
 Route::get('/noticia/bannermodal/{id}/estado/{valor}',[NoticiasController::class, 'bannermodal'])->name('noticia.bannermodal');
+Route::get('/noticia/slider/{id}/estado/{valor}',[NoticiasController::class, 'slider'])->name('noticia.slider');
+Route::get('/noticia/publicar/{id}/estado/{valor}',[NoticiasController::class, 'publicar'])->name('noticia.publicar');
 
 Route::post('/CreatePublicaciones',[PublicacionesController::class, 'create'])->middleware(['auth'])->name('Create.Publicaciones');
 Route::get('/CrearPublicaciones',[PublicacionesController::class, 'CrearPublicaciones'])->middleware(['auth'])->name('Crear.Publicaciones');
