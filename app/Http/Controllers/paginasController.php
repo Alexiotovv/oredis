@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\noticias;
 use App\Models\contenidos;
+use App\Models\normas;
 use DB;
 class paginasController extends Controller
 {
@@ -37,8 +38,9 @@ class paginasController extends Controller
         $slider=noticias::where('publicar','1')
         ->where('slider','1')
         ->get();
+        $normas = normas::all()->where('estado',1);
         
-        return view('home',['noticias'=>$noticias,'obj'=>$obj,'bannerModal'=>$bannerModal,'slider'=>$slider]);
+        return view('home',['noticias'=>$noticias,'obj'=>$obj,'bannerModal'=>$bannerModal,'slider'=>$slider,'normas'=>$normas]);
     }
 
     public function paneladmin(Request $request)

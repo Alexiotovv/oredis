@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-    <link rel="stylesheet" href="../../../assets/plugins/notifications/css/lobibox.min.css" />
+    <link rel="stylesheet" href="../../../panel/assets/plugins/notifications/css/lobibox.min.css" />
 	<link href="../../../assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
 	<link href="../../../assets/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
 	<!--favicon-->
@@ -141,6 +141,8 @@
                                     <li><a href="{{route('create.noticia')}}"><i class="bx bx-user"></i>Registrar Noticia</a>
                                     </li>
                                     <li><a href="{{route('contacto.index')}}"><i class="bx bx-user"></i>Mensajes Contacto</a>
+                                    </li>
+                                    <li><a href="{{route('panel.normas.index')}}"><i class="bx bx-user"></i>Registrar Normas</a>
                                     </li>
                                     
                                 </ul>

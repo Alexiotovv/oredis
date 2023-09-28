@@ -15,7 +15,6 @@ class AddSliderToNoticias extends Migration
     {
         Schema::table('noticias', function (Blueprint $table) {
             $table->boolean('slider')->default(false);
-            
         });
     }
 
@@ -27,7 +26,7 @@ class AddSliderToNoticias extends Migration
     public function down()
     {
         Schema::table('noticias', function (Blueprint $table) {
-            //
+            $table->dropColumn('slider');
         });
     }
 }

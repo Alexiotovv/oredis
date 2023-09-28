@@ -16,6 +16,7 @@ use App\Http\Controllers\AsociacionesController;
 use App\Http\Controllers\AsociacionessociosController;
 use App\Http\Controllers\ContactosController;
 use App\Http\Controllers\ApoderadosController;
+use App\Http\Controllers\NormasController;
 // use App\Http\Controllers\UserController;
 Route::get('/storage-link', function () {
     $targetFolder = storage_path('/app/public');
@@ -49,6 +50,16 @@ Route::get('/direcciones',[paginasController::class, 'direcciones'])->name('dire
 Route::get('/paneladmin',[paginasController::class, 'paneladmin'])->middleware(['auth'])->name('paneladmin');
 //Apps
 // Route::get('/appPublicaciones',[PublicacionesController::class, 'index'])->name('appPublicaciones');
+
+//NORMAS
+Route::get("/panel/normas/index",[NormasController::class, "index"])->middleware(['auth'])->name('panel.normas.index');
+Route::get("/panel/normas/create",[NormasController::class, "create"])->middleware(['auth'])->name('panel.normas.create');
+Route::get("/panel/normas/edit/{id}",[NormasController::class, "edit"])->middleware(['auth'])->name('panel.normas.edit');
+Route::post("/panel/normas/store",[NormasController::class, "store"])->middleware(['auth'])->name('panel.normas.store');
+Route::post("/panel/normas/update",[NormasController::class, "update"])->middleware(['auth'])->name('panel.normas.update');
+Route::get('/panel/normas/{id}/estado/{valor}',[NormasController::class, 'estado'])->name('panel.normas.estado');
+
+
 
 Route::get('/obtenerdistritos',[UbigeosController::class, 'show'])->name('obtener.distritos');
 Route::get('/obtenerprovincias',[UbigeosController::class, 'showprovincias'])->name('obtener.provincias');
@@ -182,6 +193,8 @@ Route::get("EditarUsuario/{id}",[UserController::class, "EditarUsuario"])->middl
 Route::get("ListarUsuarios",[UserController::class, "ListarUsuarios"])->middleware(['auth'])->name('Listar.Usuarios');
 Route::post("ActualizaContrasena",[UserController::class, "ActualizaContrasena"])->middleware(['auth'])->name('Actualiza.Contrasena');
 //END USUARIOS
+
+
 
 
 /*Route::get('/cuadro', function () {

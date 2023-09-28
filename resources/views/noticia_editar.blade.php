@@ -20,7 +20,11 @@
             </div>
             <div class="col-md-12">
                 <label for="">Contenido</label>
-                <textarea class="form-control" name="contenido" id="contenido" cols="30" rows="8">{{$obj->contenido}}</textarea>
+                @if ($obj->contenido=='')
+                    <textarea class="form-control" name="contenido" id="contenido" cols="30" rows="8">--</textarea>
+                @else
+                    <textarea class="form-control" name="contenido" id="contenido" cols="30" rows="8">{{$obj->contenido}}</textarea>
+                @endif
             </div>
             <div class="col-md-4">
                 <label for="">Fecha</label>

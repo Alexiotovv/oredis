@@ -26,7 +26,7 @@ class AddContenidoToNoticias extends Migration
     public function down()
     {
         Schema::table('noticias', function (Blueprint $table) {
-            //
+            $table->dropColumn('contenido');
         });
     }
 }

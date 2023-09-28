@@ -16,13 +16,13 @@
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-        
         <div class="carousel-inner">
+            
             @foreach ($slider as $slider)
                 
                     <div class="carousel-item @if ($loop->first) active @endif" data-bs-interval="10000">    
                         
-                    <img src="{{asset('storage/noticias/'. $slider->archivo)}}" class="d-block w-100" style="height:800px " alt="...">
+                    <img src="{{asset('storage/noticias/'. $slider->archivo)}}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block" style="background-color: rgba(83, 234, 232, 0.7)">
                             <h5 style="font-size: 30px">{{$slider->Titulo}}</h5>
                             <p>{{$slider->Descripcion}} </p>
@@ -115,15 +115,16 @@
                         Normas Publicadas
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <img src="../../../assetss/images/icon/pdf-icon.png" style="height:30px; width: 30px;"> <a href="#">Norma Disolución #00992.pdf</a>
-                        </li>
-                        <li class="list-group-item">
-                            <img src="../../../assetss/images/icon/pdf-icon.png" style="height:30px; width: 30px;"> <a href="#">Norma Disolución #00992.pdf</a>
-                        </li>
-                        <li class="list-group-item">
-                            <img src="../../../assetss/images/icon/pdf-icon.png" style="height:30px; width: 30px;"> <a href="#">Norma Disolución #00992.pdf</a>
-                        </li>
+                        @foreach ($normas as $n)
+                            <li class="list-group-item">
+                                Publicado el {{$n->fecha}}.
+                                <div class="input-group">
+                                    <img src="../../../assetss/images/icon/pdf-icon.png" style="height:30px; width: 30px;"> <a target="blank_" href="{{asset('storage/normas/'.$n->archivo)}}">{{$n->titulo}}</a>
+                                </div>
+                                <p>{{$n->descripcion}}</p>
+                            </li>
+                        @endforeach
+                        
                     </ul>
                         
                     <div class="card-body" style="text-align: center">
@@ -215,20 +216,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="row">
-                        <div class="col-sm-6">
-                            <h5 class="modal-title" id="exampleModalLabel">{{$bannerModal->Titulo}}</h5>
-                        </div>
-                        <div class="col-sm-6">
-                            <p style="font-size:13px;">{{$bannerModal->Fecha}}</p>
-                        </div>
+                        <p>Publicado el {{$bannerModal->Fecha}}</p>
+                        
                     </div>
-
-
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
+                    <h5 class="modal-title" id="exampleModalLabel">{{$bannerModal->Titulo}}</h5>
+
                     {{Str::limit($bannerModal->Descripcion,100)}}
 
                 </div>
