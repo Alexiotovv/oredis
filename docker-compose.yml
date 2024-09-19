@@ -15,11 +15,11 @@ services:
       - DB_HOST=host.docker.internal
       - DB_PORT=3306
       - DB_DATABASE=gorel_oredis
-      - DB_USERNAME=root
-      - DB_PASSWORD=_35Tera41_/()
+      - DB_USERNAME=gorel_jounii
+      - DB_PASSWORD=Gorel4202.++
     networks:
       - oredis_laravel
-           
+
   nginx:
     image: nginx:latest
     container_name: oredis_nginx
