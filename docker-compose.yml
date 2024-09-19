@@ -19,7 +19,7 @@ services:
       - DB_PASSWORD=_35Tera41_/()
     networks:
       - oredis_laravel
-      
+           
   nginx:
     image: nginx:latest
     container_name: oredis_nginx
