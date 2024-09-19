@@ -1,6 +1,6 @@
 # Dockerfile
 
-FROM php:8.0-fpm
+FROM php:8.1-fpm
 
 # Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
