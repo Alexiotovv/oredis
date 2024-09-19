@@ -25,7 +25,7 @@ WORKDIR /var/www
 COPY . .
 
 # Instalar dependencias de Composer
-RUN composer install --no-dev --optimize-autoloader
+RUN composer update composer update --no-dev --optimize-autoloader
 
 # Copiar el archivo de configuración de PHP
 COPY .docker/php/php.ini /usr/local/etc/php/php.ini
